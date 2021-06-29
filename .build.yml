@@ -25,6 +25,7 @@ requires:
     - docbook-utils
     - docbook-xml
     - docbook-xsl
+    - systemtap-sdt-dev
     - g++
     - gcc
     - gettext
@@ -42,6 +43,7 @@ requires:
     - libcairo-gobject2
     - libcolord-dev
     - libcups2-dev
+    - libfam-dev
     - libegl1-mesa-dev
     - libepoxy-dev
     - libfontconfig1-dev
@@ -70,6 +72,7 @@ requires:
     - libxml2-dev
     - libxrandr-dev
     - locales
+    - meson
     - ninja-build
     - pkg-config
     - python3
@@ -91,9 +94,9 @@ build_scripts:
   - export TITLESCANBUILD="${REPO_NAME} (clang-tools `dpkg -s clang-tools|grep -i version|cut -d " " -f 2`) - scan-build results"
   - mkdir html-report
   - cppcheck --enable=warning,style,performance,portability,information,missingInclude . 2>&1 | tee -a ./html-report/output_${TRAVIS_COMMIT}
-  - scan-build $CHECKERS --keep-cc -o html-report meson . _build 2>&1 | tee -a ./html-report/output_${TRAVIS_COMMIT}
+  - scan-build $CHECKERS --keep-cc meson --default-library=both --prefix=${START_DIR}/glib-installed --libdir=lib -Dsystemtap=true -Ddtrace=true -Dfam=true -Dinstalled_tests=true -Dgtk_doc=true . _build 2>&1 | tee -a ./html-report/output_${TRAVIS_COMMIT}
   - scan-build $CHECKERS --keep-cc -o html-report --html-title="$TITLESCANBUILD" ninja -C _build 2>&1 | tee -a ./html-report/output_${TRAVIS_COMMIT}
-  - echo Warnings detected in the logs `cat ./html-report/output_${TRAVIS_COMMIT} | grep -i warning | wc -l`
+  - echo Warnings detected in the logs `cat ./html-report/output_${TRAVIS_COMMIT} | grep -i warning | wc -l` 2>&1 | tee -a ./html-report/output_${TRAVIS_COMMIT}
 
 after_scripts:
   - ./gen-index -l 20
