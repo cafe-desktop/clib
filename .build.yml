@@ -1,0 +1,112 @@
+##########################################################
+# THE FOLLOWING LINES IS USED BY docker-build
+##########################################################
+requires:
+  debian:
+    - autoconf
+    - autoconf-archive
+    - automake
+    - autopoint
+    - autotools-dev
+    - adwaita-icon-theme
+    - build-essential
+    - ccache
+    - clang
+    - clang-tools
+    - cppcheck
+    - dconf-gsettings-backend
+    - dh-autoreconf
+    - docbook
+    - docbook-dsssl
+    - docbook-ebnf
+    - docbook-slides
+    - docbook-website
+    - docbook-to-man
+    - docbook-utils
+    - docbook-xml
+    - docbook-xsl
+    - g++
+    - gcc
+    - gettext
+    - git
+    - gobject-introspection
+    - gettext
+    - gvfs
+    - gtk-doc-tools
+    - hicolor-icon-theme
+    - itstool
+    - libatk-bridge2.0-dev
+    - libatk1.0-dev
+    - libc6-dev
+    - libcairo2-dev
+    - libcairo-gobject2
+    - libcolord-dev
+    - libcups2-dev
+    - libegl1-mesa-dev
+    - libepoxy-dev
+    - libfontconfig1-dev
+    - libfreetype6-dev
+    - libgdk-pixbuf2.0-dev
+    - libgirepository1.0-dev
+    - libharfbuzz-dev
+    - libpango1.0-dev
+    - librest-dev
+    - librsvg2-common
+    - libsoup2.4-dev
+    - libtool
+    - libtool-bin
+    - libwayland-dev
+    - libx11-dev
+    - libxcomposite-dev
+    - libxcursor-dev
+    - libxdamage-dev
+    - libxext-dev
+    - libxfixes-dev
+    - libxi-dev
+    - libxinerama-dev
+    - libxkbcommon-dev
+    - libxkbcommon-x11-dev
+    - libxml2-utils
+    - libxml2-dev
+    - libxrandr-dev
+    - locales
+    - ninja-build
+    - pkg-config
+    - python3
+    - python3-pip
+    - python3-setuptools
+    - python3-wheel
+    - shared-mime-info
+    - wayland-protocols
+    - xauth
+    - xvfb
+    - xml-core
+
+before_scripts:
+  - export TITLECPPCHECK="${REPO_NAME} (cppcheck `dpkg -s cppcheck|grep -i version|cut -d " " -f 2`)"
+  - cppcheck --xml --output-file=cppcheck.xml --enable=warning,style,performance,portability,information,missingInclude .
+  - cppcheck-htmlreport --title="$TITLECPPCHECK" --file=cppcheck.xml --report-dir=cppcheck-htmlreport
+
+build_scripts:
+  - export TITLESCANBUILD="${REPO_NAME} (clang-tools `dpkg -s clang-tools|grep -i version|cut -d " " -f 2`) - scan-build results"
+  - mkdir html-report
+  - cppcheck --enable=warning,style,performance,portability,information,missingInclude . 2>&1 | tee -a ./html-report/output_${TRAVIS_COMMIT}
+  - scan-build $CHECKERS --keep-cc -o html-report meson . _build 2>&1 | tee -a ./html-report/output_${TRAVIS_COMMIT}
+  - scan-build $CHECKERS --keep-cc -o html-report --html-title="$TITLESCANBUILD" ninja -C _build 2>&1 | tee -a ./html-report/output_${TRAVIS_COMMIT}
+  - echo Warnings detected in the logs `cat ./html-report/output_${TRAVIS_COMMIT} | grep -i warning | wc -l`
+
+after_scripts:
+  - ./gen-index -l 20
+
+releases:
+  draft: false
+  prerelease: false
+  checksum: true
+  file_glob: true
+  files: grapa-*.tar.xz
+  github_release:
+    tags: true
+    overwrite: true
+    base_version: 1.20.0
+    notify_servers:
+      - https://release.cafe-desktop.org/release
