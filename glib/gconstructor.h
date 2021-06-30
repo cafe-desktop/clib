@@ -16,7 +16,7 @@
 
 */
 
-#ifndef __CTK_DOC_IGNORE__
+#ifndef __GTK_DOC_IGNORE__
 
 #if  __GNUC__ > 2 || (__GNUC__ == 2 && __GNUC_MINOR__ >= 7)
 
@@ -119,4 +119,4 @@
 
 #endif
 
-#endif /* __CTK_DOC_IGNORE__ */
+#endif /* __GTK_DOC_IGNORE__ */

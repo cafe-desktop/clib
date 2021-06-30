@@ -65,7 +65,7 @@ typedef struct stat GStatBuf;
  * in future.
  */
 
-#ifndef __CTK_DOC_IGNORE__
+#ifndef __GTK_DOC_IGNORE__
 #define g_chmod   chmod
 #define g_open    open
 #define g_creat   creat
