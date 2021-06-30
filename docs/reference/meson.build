@@ -19,9 +19,9 @@ ignore_decorators = [
 
 foreach version : stable_2_series_versions
   ignore_decorators += [
-    # Note that ctkdoc is going to use those in regex, and the longest match
+    # Note that gtkdoc is going to use those in regex, and the longest match
     # must come first. That's why '_FOR()' variant comes first.
-    # ctkdoc special-case '()' and replace it by a regex matching a symbol name.
+    # gtkdoc special-case '()' and replace it by a regex matching a symbol name.
     'GLIB_AVAILABLE_IN_2_' + version,
     'GLIB_DEPRECATED_IN_2_' + version + '_FOR()',
     'GLIB_DEPRECATED_IN_2_' + version,
@@ -42,7 +42,7 @@ foreach version : stable_2_series_versions
   ]
 endforeach
 
-ctkdoc_common_scan_args = [
+gtkdoc_common_scan_args = [
   '--ignore-decorators=' + '|'.join(ignore_decorators),
 ]
 

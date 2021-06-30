@@ -8,7 +8,7 @@ ent_conf.set('PACKAGE_URL', 'FIXME')
 ent_conf.set('PACKAGE_VERSION', glib_version)
 ent_conf.set('PACKAGE_API_VERSION', glib_api_version)
 configure_file(
-  input: 'ctkdocentities.ent.in',
-  output: 'ctkdocentities.ent',
+  input: 'gtkdocentities.ent.in',
+  output: 'gtkdocentities.ent',
   configuration: ent_conf
 )

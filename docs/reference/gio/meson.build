@@ -186,13 +186,13 @@ if get_option('ctk_doc')
     ]
   endif
 
-  gnome.ctkdoc('gio',
+  gnome.gtkdoc('gio',
     main_xml : 'gio-docs.xml',
     namespace : 'g',
     mode : 'none',
     dependencies : [libgio_dep, libgobject_dep, libglib_dep],
     src_dir : 'gio',
-    scan_args : ctkdoc_common_scan_args + [
+    scan_args : gtkdoc_common_scan_args + [
       '--rebuild-types',
       '--ignore-headers=' + ' '.join(ignore_headers),
     ],

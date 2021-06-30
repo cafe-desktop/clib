@@ -64,7 +64,7 @@ fedora-x86_64:
   variables:
     CFLAGS: "-coverage -ftest-coverage -fprofile-arcs"
   script:
-    # FIXME: Cannot use MESON_COMMON_OPTIONS here because meson warns about ctkdoc
+    # FIXME: Cannot use MESON_COMMON_OPTIONS here because meson warns about gtkdoc
     # feature introduced in 0.52 but we only depends on 0.49. So we cannot build
     # with --fatal-meson-warnings.
     - meson ${MESON_COMMON_OPTIONS_NO_WARNING}
@@ -519,7 +519,7 @@ dist-job:
   only:
     - tags
   script:
-    # FIXME: Cannot use --fatal-meson-warnings here because meson warns about ctkdoc
+    # FIXME: Cannot use --fatal-meson-warnings here because meson warns about gtkdoc
     # feature introduced in 0.52 but we only depends on 0.49.
     - meson ${MESON_COMMON_OPTIONS_NO_WARNING} --buildtype release -Dctk_doc=true -Dman=true _build
     - cd _build
