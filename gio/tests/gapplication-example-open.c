@@ -42,7 +42,7 @@ main (int argc, char **argv)
   GApplication *app;
   int status;
 
-  app = g_application_new ("org.gtk.TestApplication",
+  app = g_application_new ("org.ctk.TestApplication",
                            G_APPLICATION_HANDLES_OPEN);
   g_signal_connect (app, "activate", G_CALLBACK (activate), NULL);
   g_signal_connect (app, "open", G_CALLBACK (open), NULL);

@@ -19,9 +19,9 @@ ignore_decorators = [
 
 foreach version : stable_2_series_versions
   ignore_decorators += [
-    # Note that gtkdoc is going to use those in regex, and the longest match
+    # Note that ctkdoc is going to use those in regex, and the longest match
     # must come first. That's why '_FOR()' variant comes first.
-    # gtkdoc special-case '()' and replace it by a regex matching a symbol name.
+    # ctkdoc special-case '()' and replace it by a regex matching a symbol name.
     'GLIB_AVAILABLE_IN_2_' + version,
     'GLIB_DEPRECATED_IN_2_' + version + '_FOR()',
     'GLIB_DEPRECATED_IN_2_' + version,
@@ -42,18 +42,18 @@ foreach version : stable_2_series_versions
   ]
 endforeach
 
-gtkdoc_common_scan_args = [
+ctkdoc_common_scan_args = [
   '--ignore-decorators=' + '|'.join(ignore_decorators),
 ]
 
-if get_option('gtk_doc')
+if get_option('ctk_doc')
   if not meson.version().version_compare('>=0.52.0')
     error('Building documentation requires Meson >= 0.52.0.')
   endif
-  # Check we have the minimum gtk-doc version required. Older versions won't
+  # Check we have the minimum ctk-doc version required. Older versions won't
   # generate correct documentation.
-  dependency('gtk-doc', version : '>=1.32.1',
-    fallback : ['gtk-doc', 'dummy_dep'],
+  dependency('ctk-doc', version : '>=1.32.1',
+    fallback : ['ctk-doc', 'dummy_dep'],
     default_options : ['tests=false'])
 endif
 

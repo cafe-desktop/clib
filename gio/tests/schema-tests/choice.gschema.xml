@@ -1,5 +1,5 @@
 <schemalist>
-  <schema id='org.gtk.test.schema'>
+  <schema id='org.ctk.test.schema'>
     <key name='test' type='s'>
       <default>'who'</default>
       <choices>

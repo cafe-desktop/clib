@@ -34,7 +34,7 @@
  * interface. This is the easiest way to create an action for purposes of
  * adding it to a #GSimpleActionGroup.
  *
- * See also #GtkAction.
+ * See also #CtkAction.
  */
 
 /**

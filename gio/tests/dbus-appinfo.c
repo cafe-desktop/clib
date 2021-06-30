@@ -257,14 +257,14 @@ test_dbus_appinfo (void)
   gchar *desktop_file = NULL;
 
   desktop_file = g_test_build_filename (G_TEST_DIST,
-                                        "org.gtk.test.dbusappinfo.desktop",
+                                        "org.ctk.test.dbusappinfo.desktop",
                                         NULL);
   appinfo = g_desktop_app_info_new_from_filename (desktop_file);
   g_assert (appinfo != NULL);
   g_free (desktop_file);
 
   app = g_object_new (test_application_get_type (),
-                      "application-id", "org.gtk.test.dbusappinfo",
+                      "application-id", "org.ctk.test.dbusappinfo",
                       "flags", G_APPLICATION_HANDLES_OPEN,
                       NULL);
   status = g_application_run (app, 1, (gchar **) argv);
@@ -322,7 +322,7 @@ on_flatpak_open (GApplication  *app,
   g_test_message ("on_flatpak_open received file '%s'", g_file_peek_path (files[0]));
 
   /* The file has been exported via the document portal */
-  f = g_file_new_for_uri ("file:///document-portal/document-id/org.gtk.test.dbusappinfo.flatpak.desktop");
+  f = g_file_new_for_uri ("file:///document-portal/document-id/org.ctk.test.dbusappinfo.flatpak.desktop");
   g_assert_true (g_file_equal (files[0], f));
   g_object_unref (f);
 }
@@ -339,13 +339,13 @@ test_flatpak_doc_export (void)
   g_test_summary ("Test that files launched via Flatpak apps are made available via the document portal.");
 
   desktop_file = g_test_build_filename (G_TEST_DIST,
-                                        "org.gtk.test.dbusappinfo.flatpak.desktop",
+                                        "org.ctk.test.dbusappinfo.flatpak.desktop",
                                         NULL);
   flatpak_appinfo = g_desktop_app_info_new_from_filename (desktop_file);
   g_assert_nonnull (flatpak_appinfo);
   g_free (desktop_file);
 
-  app = g_application_new ("org.gtk.test.dbusappinfo.flatpak",
+  app = g_application_new ("org.ctk.test.dbusappinfo.flatpak",
                            G_APPLICATION_HANDLES_OPEN);
   g_signal_connect (app, "activate", G_CALLBACK (on_flatpak_activate),
                     flatpak_appinfo);

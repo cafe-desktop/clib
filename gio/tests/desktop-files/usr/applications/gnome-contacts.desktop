@@ -21,6 +21,6 @@ Exec=true
 Terminal=false
 Type=Application
 StartupNotify=true
-Categories=GNOME;GTK;Utility;
+Categories=GNOME;CTK;Utility;
 OnlyShowIn=GNOME;Unity;
 Implements=org.gnome.Shell.SearchProvider2

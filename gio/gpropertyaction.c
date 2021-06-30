@@ -66,18 +66,18 @@
  * in sync with the property value -- its state is the property value.
  *
  * For example, it might be useful to create a #GAction corresponding to
- * the "visible-child-name" property of a #GtkStack so that the current
+ * the "visible-child-name" property of a #CtkStack so that the current
  * page can be switched from a menu.  The active radio indication in the
  * menu is then directly determined from the active page of the
- * #GtkStack.
+ * #CtkStack.
  *
  * An anti-example would be binding the "active-id" property on a
- * #GtkComboBox.  This is because the state of the combobox itself is
+ * #CtkComboBox.  This is because the state of the combobox itself is
  * probably uninteresting and is actually being used to control
  * something else.
  *
  * Another anti-example would be to bind to the "visible-child-name"
- * property of a #GtkStack if this value is actually stored in
+ * property of a #CtkStack if this value is actually stored in
  * #GSettings.  In that case, the real source of the value is
  * #GSettings.  If you want a #GAction to control a setting stored in
  * #GSettings, see g_settings_create_action() instead, and possibly

@@ -913,7 +913,7 @@ _xdg_mime_cache_mime_type_subclass (const char *mime,
   if (strcmp (umime, ubase) == 0)
     return 1;
 
-  /* We really want to handle text/ * in GtkFileFilter, so we just
+  /* We really want to handle text/ * in CtkFileFilter, so we just
    * turn on the supertype matching
    */
 #if 1

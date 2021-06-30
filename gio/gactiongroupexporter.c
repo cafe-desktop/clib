@@ -87,9 +87,9 @@ g_action_group_describe_action (GActionGroup *action_group,
  * For documentation of this interface, see
  * https://wiki.gnome.org/Projects/GLib/GApplication/DBusAPI
  */
-const char org_gtk_Actions_xml[] =
+const char org_ctk_Actions_xml[] =
   "<node>"
-  "  <interface name='org.gtk.Actions'>"
+  "  <interface name='org.ctk.Actions'>"
   "    <method name='List'>"
   "      <arg type='as' name='list' direction='out'/>"
   "    </method>"
@@ -119,7 +119,7 @@ const char org_gtk_Actions_xml[] =
   "  </interface>"
   "</node>";
 
-static GDBusInterfaceInfo *org_gtk_Actions;
+static GDBusInterfaceInfo *org_ctk_Actions;
 
 typedef struct
 {
@@ -197,7 +197,7 @@ g_action_group_exporter_dispatch_events (gpointer user_data)
   g_hash_table_remove_all (exporter->pending_changes);
 
   g_dbus_connection_emit_signal (exporter->connection, NULL, exporter->object_path,
-                                 "org.gtk.Actions", "Changed",
+                                 "org.ctk.Actions", "Changed",
                                  g_variant_new ("(asa{sb}a{sv}a{s(bgav)})",
                                                 &removes, &enabled_changes,
                                                 &state_changes, &adds),
@@ -364,7 +364,7 @@ g_action_group_exporter_action_enabled_changed (GActionGroup *action_group,
 }
 
 static void
-org_gtk_Actions_method_call (GDBusConnection       *connection,
+org_ctk_Actions_method_call (GDBusConnection       *connection,
                              const gchar           *sender,
                              const gchar           *object_path,
                              const gchar           *interface_name,
@@ -538,27 +538,27 @@ g_dbus_connection_export_action_group (GDBusConnection  *connection,
                                        GError          **error)
 {
   const GDBusInterfaceVTable vtable = {
-    org_gtk_Actions_method_call
+    org_ctk_Actions_method_call
   };
   GActionGroupExporter *exporter;
   guint id;
 
-  if G_UNLIKELY (org_gtk_Actions == NULL)
+  if G_UNLIKELY (org_ctk_Actions == NULL)
     {
       GError *error = NULL;
       GDBusNodeInfo *info;
 
-      info = g_dbus_node_info_new_for_xml (org_gtk_Actions_xml, &error);
+      info = g_dbus_node_info_new_for_xml (org_ctk_Actions_xml, &error);
       if G_UNLIKELY (info == NULL)
         g_error ("%s", error->message);
-      org_gtk_Actions = g_dbus_node_info_lookup_interface (info, "org.gtk.Actions");
-      g_assert (org_gtk_Actions != NULL);
-      g_dbus_interface_info_ref (org_gtk_Actions);
+      org_ctk_Actions = g_dbus_node_info_lookup_interface (info, "org.ctk.Actions");
+      g_assert (org_ctk_Actions != NULL);
+      g_dbus_interface_info_ref (org_ctk_Actions);
       g_dbus_node_info_unref (info);
     }
 
   exporter = g_slice_new (GActionGroupExporter);
-  id = g_dbus_connection_register_object (connection, object_path, org_gtk_Actions, &vtable,
+  id = g_dbus_connection_register_object (connection, object_path, org_ctk_Actions, &vtable,
                                           exporter, g_action_group_exporter_free, error);
 
   if (id == 0)

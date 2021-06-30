@@ -308,7 +308,7 @@ make_app (gboolean non_unique)
   GApplication *app;
   gboolean ok;
 
-  app = g_application_new ("org.gtk.Test-Application",
+  app = g_application_new ("org.ctk.Test-Application",
                            non_unique ? G_APPLICATION_NON_UNIQUE : 0);
   g_signal_connect (app, "activate", G_CALLBACK (nonunique_activate), NULL);
   ok = g_application_register (app, NULL, NULL);
@@ -380,7 +380,7 @@ properties (void)
   c = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, NULL);
 
   app = g_object_new (G_TYPE_APPLICATION,
-                      "application-id", "org.gtk.TestApplication",
+                      "application-id", "org.ctk.TestApplication",
                       NULL);
 
   g_object_get (app,
@@ -390,7 +390,7 @@ properties (void)
                 "inactivity-timeout", &timeout,
                 NULL);
 
-  g_assert_cmpstr (id, ==, "org.gtk.TestApplication");
+  g_assert_cmpstr (id, ==, "org.ctk.TestApplication");
   g_assert_cmpint (flags, ==, G_APPLICATION_FLAGS_NONE);
   g_assert (!registered);
   g_assert_cmpint (timeout, ==, 0);
@@ -487,7 +487,7 @@ test_nodbus (void)
   gchar *argv[] = { binpath, NULL };
   GApplication *app;
 
-  app = g_application_new ("org.gtk.Unimportant", G_APPLICATION_FLAGS_NONE);
+  app = g_application_new ("org.ctk.Unimportant", G_APPLICATION_FLAGS_NONE);
   g_signal_connect (app, "activate", G_CALLBACK (nodbus_activate), NULL);
   g_application_run (app, 1, argv);
   g_object_unref (app);
@@ -560,7 +560,7 @@ test_quit (void)
   session_bus_up ();
   c = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, NULL);
 
-  app = g_application_new ("org.gtk.Unimportant",
+  app = g_application_new ("org.ctk.Unimportant",
                            G_APPLICATION_FLAGS_NONE);
   activated = FALSE;
   quitted = FALSE;
@@ -617,7 +617,7 @@ test_local_actions (void)
   gchar *argv[] = { binpath, NULL };
   GApplication *app;
 
-  app = g_application_new ("org.gtk.Unimportant",
+  app = g_application_new ("org.ctk.Unimportant",
                            G_APPLICATION_FLAGS_NONE);
   g_signal_connect (app, "activate", G_CALLBACK (on_activate), NULL);
   g_application_run (app, 1, argv);
@@ -672,7 +672,7 @@ test_local_command_line (void)
   GApplication *app;
 
   app = g_object_new (test_loc_cmd_app_get_type (),
-                      "application-id", "org.gtk.Unimportant",
+                      "application-id", "org.ctk.Unimportant",
                       "flags", G_APPLICATION_FLAGS_NONE,
                       NULL);
   g_application_run (app, 1, argv);
@@ -739,7 +739,7 @@ test_help (void)
       gboolean called = FALSE;
       int status;
 
-      app = g_application_new ("org.gtk.TestApplication", G_APPLICATION_HANDLES_COMMAND_LINE);
+      app = g_application_new ("org.ctk.TestApplication", G_APPLICATION_HANDLES_COMMAND_LINE);
       g_application_add_main_option (app, "foo", 'f', G_OPTION_FLAG_NONE, G_OPTION_ARG_NONE, "", "");
       g_signal_connect (app, "command-line", G_CALLBACK (test_help_command_line), &called);
 
@@ -769,7 +769,7 @@ test_busy (void)
 
   session_bus_up ();
 
-  app = g_application_new ("org.gtk.TestApplication", G_APPLICATION_NON_UNIQUE);
+  app = g_application_new ("org.ctk.TestApplication", G_APPLICATION_NON_UNIQUE);
   g_assert (g_application_register (app, NULL, NULL));
 
   g_assert (!g_application_get_is_busy (app));
@@ -861,7 +861,7 @@ test_handle_local_options_success (void)
       gboolean called2 = FALSE;
       int status;
 
-      app = g_application_new ("org.gtk.TestApplication", 0);
+      app = g_application_new ("org.ctk.TestApplication", 0);
       g_application_add_main_option (app, "success", 0, G_OPTION_FLAG_NONE, G_OPTION_ARG_NONE, "", "");
       g_application_add_main_option (app, "failure", 0, G_OPTION_FLAG_NONE, G_OPTION_ARG_NONE, "", "");
       g_signal_connect (app, "handle-local-options", G_CALLBACK (test_local_options), &called);
@@ -893,7 +893,7 @@ test_handle_local_options_failure (void)
       gboolean called2 = FALSE;
       int status;
 
-      app = g_application_new ("org.gtk.TestApplication", 0);
+      app = g_application_new ("org.ctk.TestApplication", 0);
       g_application_add_main_option (app, "success", 0, G_OPTION_FLAG_NONE, G_OPTION_ARG_NONE, "", "");
       g_application_add_main_option (app, "failure", 0, G_OPTION_FLAG_NONE, G_OPTION_ARG_NONE, "", "");
       g_signal_connect (app, "handle-local-options", G_CALLBACK (test_local_options), &called);
@@ -925,7 +925,7 @@ test_handle_local_options_passthrough (void)
       gboolean called2 = FALSE;
       int status;
 
-      app = g_application_new ("org.gtk.TestApplication", 0);
+      app = g_application_new ("org.ctk.TestApplication", 0);
       g_application_add_main_option (app, "success", 0, G_OPTION_FLAG_NONE, G_OPTION_ARG_NONE, "", "");
       g_application_add_main_option (app, "failure", 0, G_OPTION_FLAG_NONE, G_OPTION_ARG_NONE, "", "");
       g_signal_connect (app, "handle-local-options", G_CALLBACK (test_local_options), &called);
@@ -951,7 +951,7 @@ test_api (void)
   GApplication *app;
   GSimpleAction *action;
 
-  app = g_application_new ("org.gtk.TestApplication", 0);
+  app = g_application_new ("org.ctk.TestApplication", 0);
 
   /* add an action without a name */
   g_test_expect_message (G_LOG_DOMAIN, G_LOG_LEVEL_CRITICAL, "*assertion*failed*");
@@ -1062,7 +1062,7 @@ test_replace (gconstpointer data)
       GApplication *app;
       gboolean startup = FALSE;
 
-      app = g_application_new ("org.gtk.TestApplication.Replace", G_APPLICATION_ALLOW_REPLACEMENT);
+      app = g_application_new ("org.ctk.TestApplication.Replace", G_APPLICATION_ALLOW_REPLACEMENT);
       g_signal_connect (app, "startup", G_CALLBACK (startup_in_subprocess), &startup);
       g_signal_connect (app, "activate", G_CALLBACK (activate), NULL);
 
@@ -1091,7 +1091,7 @@ test_replace (gconstpointer data)
       bus = g_test_dbus_new (0);
       g_test_dbus_up (bus);
 
-      app = g_application_new ("org.gtk.TestApplication.Replace", allow ? G_APPLICATION_ALLOW_REPLACEMENT : G_APPLICATION_FLAGS_NONE);
+      app = g_application_new ("org.ctk.TestApplication.Replace", allow ? G_APPLICATION_ALLOW_REPLACEMENT : G_APPLICATION_FLAGS_NONE);
       g_application_set_inactivity_timeout (app, 500);
       g_signal_connect (app, "name-lost", G_CALLBACK (name_was_lost), &name_lost);
       g_signal_connect (app, "startup", G_CALLBACK (startup_cb), &data);

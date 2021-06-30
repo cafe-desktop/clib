@@ -33,7 +33,7 @@ requires:
     - gobject-introspection
     - gettext
     - gvfs
-    - gtk-doc-tools
+    - ctk-doc-tools
     - hicolor-icon-theme
     - itstool
     - libatk-bridge2.0-dev
@@ -94,7 +94,7 @@ build_scripts:
   - export TITLESCANBUILD="${REPO_NAME} (clang-tools `dpkg -s clang-tools|grep -i version|cut -d " " -f 2`) - scan-build results"
   - mkdir html-report
   - cppcheck --enable=warning,style,performance,portability,information,missingInclude . 2>&1 | tee -a ./html-report/output_${TRAVIS_COMMIT}
-  - scan-build $CHECKERS --keep-cc meson --default-library=both --prefix=${START_DIR}/glib-installed --libdir=lib -Dsystemtap=true -Ddtrace=true -Dfam=true -Dinstalled_tests=true -Dgtk_doc=true . _build 2>&1 | tee -a ./html-report/output_${TRAVIS_COMMIT}
+  - scan-build $CHECKERS --keep-cc meson --default-library=both --prefix=${START_DIR}/glib-installed --libdir=lib -Dsystemtap=true -Ddtrace=true -Dfam=true -Dinstalled_tests=true -Dctk_doc=true . _build 2>&1 | tee -a ./html-report/output_${TRAVIS_COMMIT}
   - scan-build $CHECKERS --keep-cc -o html-report --html-title="$TITLESCANBUILD" ninja -C _build 2>&1 | tee -a ./html-report/output_${TRAVIS_COMMIT}
   - echo Warnings detected in the logs `cat ./html-report/output_${TRAVIS_COMMIT} | grep -i warning | wc -l` 2>&1 | tee -a ./html-report/output_${TRAVIS_COMMIT}
 

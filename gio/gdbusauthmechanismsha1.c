@@ -1050,7 +1050,7 @@ mechanism_server_data_send (GDBusAuthMechanism   *mechanism,
   *out_data_len = 0;
 
   /* TODO: use GDBusAuthObserver here to get the cookie context to use? */
-  cookie_context = "org_gtk_gdbus_general";
+  cookie_context = "org_ctk_gdbus_general";
 
   cookie_id = -1;
   error = NULL;

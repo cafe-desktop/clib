@@ -51,14 +51,14 @@
  * A #GApplication is the foundation of an application.  It wraps some
  * low-level platform-specific services and is intended to act as the
  * foundation for higher-level application classes such as
- * #GtkApplication or #MxApplication.  In general, you should not use
+ * #CtkApplication or #MxApplication.  In general, you should not use
  * this class outside of a higher level framework.
  *
  * GApplication provides convenient life cycle management by maintaining
  * a "use count" for the primary application instance. The use count can
  * be changed using g_application_hold() and g_application_release(). If
  * it drops to zero, the application exits. Higher-level classes such as
- * #GtkApplication employ the use count to ensure that the application
+ * #CtkApplication employ the use count to ensure that the application
  * stays alive as long as it has any opened windows.
  *
  * Another feature that GApplication (optionally) provides is process
@@ -146,7 +146,7 @@
  * The environment is only added to the platform data if the
  * %G_APPLICATION_SEND_ENVIRONMENT flag is set. #GApplication subclasses
  * can add their own platform data by overriding the @add_platform_data
- * virtual function. For instance, #GtkApplication adds startup notification
+ * virtual function. For instance, #CtkApplication adds startup notification
  * data in this way.
  *
  * To parse commandline arguments you may handle the
@@ -812,7 +812,7 @@ g_application_add_main_option (GApplication *application,
  *
  * The reason for that is because, by the time the options arrive at the
  * primary instance, it is typically too late to do anything with them.
- * Taking the GTK option group as an example: GTK will already have been
+ * Taking the CTK option group as an example: CTK will already have been
  * initialised by the time the #GApplication::command-line handler runs.
  * In the case that this is not the first-running instance of the
  * application, the existing instance may already have been running for
@@ -1928,9 +1928,9 @@ g_application_get_resource_base_path (GApplication *application)
  *
  * As an example, if the application has an ID of "org.example.app" then
  * the default resource base path will be "/org/example/app".  If this
- * is a #GtkApplication (and you have not manually changed the path)
- * then Gtk will then search for the menus of the application at
- * "/org/example/app/gtk/menus.ui".
+ * is a #CtkApplication (and you have not manually changed the path)
+ * then Ctk will then search for the menus of the application at
+ * "/org/example/app/ctk/menus.ui".
  *
  * See #GResource for more information about adding resources to your
  * application.
@@ -2221,7 +2221,7 @@ g_application_register (GApplication  *application,
  * Increases the use count of @application.
  *
  * Use this function to indicate that the application has a reason to
- * continue to run.  For example, g_application_hold() is called by GTK+
+ * continue to run.  For example, g_application_hold() is called by CTK+
  * when a toplevel window is on the screen.
  *
  * To cancel the hold, call g_application_release().
@@ -2460,8 +2460,8 @@ g_application_run (GApplication  *application,
      * CommandLineToArgvW(), which is called by g_win32_get_command_line(),
      * pulls in the whole command line that is used to call the program.  This is
      * fine in cases where the program is a .exe program, but in the cases where the
-     * program is a called via a script, such as PyGObject's gtk-demo.py, which is normally
-     * called using 'python gtk-demo.py' on Windows, the program name (argv[0])
+     * program is a called via a script, such as PyGObject's ctk-demo.py, which is normally
+     * called using 'python ctk-demo.py' on Windows, the program name (argv[0])
      * returned by g_win32_get_command_line() will not be the argv[0] that ->local_command_line()
      * would expect, causing the program to fail with "This application can not open files."
      */
@@ -2785,7 +2785,7 @@ g_application_set_default (GApplication *application)
  * Take care if your code has called g_application_hold() on the application and
  * is therefore still expecting it to exist.
  * (Note that you may have called g_application_hold() indirectly, for example
- * through gtk_application_add_window().)
+ * through ctk_application_add_window().)
  *
  * The result of calling g_application_run() again after it returns is
  * unspecified.

@@ -39,7 +39,7 @@ fixture_setup (TestFixture *fixture, gconstpointer unused)
   fixture->manager =
     example_object_manager_client_new_for_bus_sync (G_BUS_TYPE_SESSION,
                                                     G_DBUS_OBJECT_MANAGER_CLIENT_FLAGS_NONE,
-                                                    "org.gtk.GDBus.Examples.ObjectManager",
+                                                    "org.ctk.GDBus.Examples.ObjectManager",
                                                     "/example/Animals",
                                                     NULL, /* GCancellable */
                                                     &error);

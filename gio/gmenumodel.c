@@ -105,7 +105,7 @@
  * identifies an action in an action group. Which action group(s) provide
  * actions depends on the context in which the menu model is used.
  * E.g. when the model is exported as the application menu of a
- * #GtkApplication, actions can be application-wide or window-specific
+ * #CtkApplication, actions can be application-wide or window-specific
  * (and thus come from two different action groups). By convention, the
  * application-wide actions have names that start with "app.", while the
  * names of window-specific actions start with "win.".

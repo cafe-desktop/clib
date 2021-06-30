@@ -587,9 +587,9 @@ test_connection_signals (void)
    */
   s1 = g_dbus_connection_signal_subscribe (c1,
                                            ":1.2",
-                                           "org.gtk.GDBus.ExampleInterface",
+                                           "org.ctk.GDBus.ExampleInterface",
                                            "Foo",
-                                           "/org/gtk/GDBus/ExampleInterface",
+                                           "/org/ctk/GDBus/ExampleInterface",
                                            NULL,
                                            G_DBUS_SIGNAL_FLAGS_NONE,
                                            test_connection_signal_handler,
@@ -597,9 +597,9 @@ test_connection_signals (void)
                                            NULL);
   s2 = g_dbus_connection_signal_subscribe (c1,
                                            NULL, /* match any sender */
-                                           "org.gtk.GDBus.ExampleInterface",
+                                           "org.ctk.GDBus.ExampleInterface",
                                            "Foo",
-                                           "/org/gtk/GDBus/ExampleInterface",
+                                           "/org/ctk/GDBus/ExampleInterface",
                                            NULL,
                                            G_DBUS_SIGNAL_FLAGS_NONE,
                                            test_connection_signal_handler,
@@ -621,9 +621,9 @@ test_connection_signals (void)
    */
   s1b = g_dbus_connection_signal_subscribe (c1,
                                             ":1.2",
-                                            "org.gtk.GDBus.ExampleInterface",
+                                            "org.ctk.GDBus.ExampleInterface",
                                             "Foo",
-                                            "/org/gtk/GDBus/ExampleInterface",
+                                            "/org/ctk/GDBus/ExampleInterface",
                                             NULL,
                                             G_DBUS_SIGNAL_FLAGS_NONE,
                                             test_connection_signal_handler,
@@ -680,8 +680,8 @@ test_connection_signals (void)
   /* now, emit the signal on c2 */
   ret = g_dbus_connection_emit_signal (c2,
                                        NULL, /* destination bus name */
-                                       "/org/gtk/GDBus/ExampleInterface",
-                                       "org.gtk.GDBus.ExampleInterface",
+                                       "/org/ctk/GDBus/ExampleInterface",
+                                       "org.ctk.GDBus.ExampleInterface",
                                        "Foo",
                                        NULL,
                                        &error);
@@ -697,8 +697,8 @@ test_connection_signals (void)
    */
   ret = g_dbus_connection_emit_signal (c3,
                                        NULL, /* destination bus name */
-                                       "/org/gtk/GDBus/ExampleInterface",
-                                       "org.gtk.GDBus.ExampleInterface",
+                                       "/org/ctk/GDBus/ExampleInterface",
+                                       "org.ctk.GDBus.ExampleInterface",
                                        "Foo",
                                        NULL,
                                        &error);
@@ -747,13 +747,13 @@ test_match_rule (GDBusConnection  *connection,
   GError *error = NULL;
 
   subscription_ids[0] = g_dbus_connection_signal_subscribe (connection,
-                                                            NULL, "org.gtk.ExampleInterface", "Foo", "/",
+                                                            NULL, "org.ctk.ExampleInterface", "Foo", "/",
                                                             NULL,
                                                             G_DBUS_SIGNAL_FLAGS_NONE,
                                                             test_connection_signal_handler,
                                                             &emissions, NULL);
   subscription_ids[1] = g_dbus_connection_signal_subscribe (connection,
-                                                            NULL, "org.gtk.ExampleInterface", "Foo", "/",
+                                                            NULL, "org.ctk.ExampleInterface", "Foo", "/",
                                                             arg0_rule,
                                                             flags,
                                                             test_connection_signal_handler,
@@ -762,13 +762,13 @@ test_match_rule (GDBusConnection  *connection,
   g_assert_cmpint (subscription_ids[1], !=, 0);
 
   g_dbus_connection_emit_signal (connection,
-                                 NULL, "/", "org.gtk.ExampleInterface",
+                                 NULL, "/", "org.ctk.ExampleInterface",
                                  "Foo", g_variant_new ("(s)", arg0),
                                  &error);
   g_assert_no_error (error);
 
   /* synchronously ping a non-existent method to make sure the signals are dispatched */
-  g_dbus_connection_call_sync (connection, "org.gtk.ExampleInterface", "/", "org.gtk.ExampleInterface",
+  g_dbus_connection_call_sync (connection, "org.ctk.ExampleInterface", "/", "org.ctk.ExampleInterface",
                                "Bar", g_variant_new ("()"), G_VARIANT_TYPE_UNIT, G_DBUS_CALL_FLAGS_NONE,
                                -1, NULL, NULL);
 
@@ -793,19 +793,19 @@ test_connection_signal_match_rules (void)
   test_match_rule (con, G_DBUS_SIGNAL_FLAGS_NONE, "foo", "foo", TRUE);
   test_match_rule (con, G_DBUS_SIGNAL_FLAGS_NONE, "foo", "bar", FALSE);
 
-  test_match_rule (con, G_DBUS_SIGNAL_FLAGS_MATCH_ARG0_NAMESPACE, "org.gtk", "", FALSE);
-  test_match_rule (con, G_DBUS_SIGNAL_FLAGS_MATCH_ARG0_NAMESPACE, "org.gtk", "org", FALSE);
-  test_match_rule (con, G_DBUS_SIGNAL_FLAGS_MATCH_ARG0_NAMESPACE, "org.gtk", "org.gtk", TRUE);
-  test_match_rule (con, G_DBUS_SIGNAL_FLAGS_MATCH_ARG0_NAMESPACE, "org.gtk", "org.gtk.Example", TRUE);
-  test_match_rule (con, G_DBUS_SIGNAL_FLAGS_MATCH_ARG0_NAMESPACE, "org.gtk", "org.gtk+", FALSE);
+  test_match_rule (con, G_DBUS_SIGNAL_FLAGS_MATCH_ARG0_NAMESPACE, "org.ctk", "", FALSE);
+  test_match_rule (con, G_DBUS_SIGNAL_FLAGS_MATCH_ARG0_NAMESPACE, "org.ctk", "org", FALSE);
+  test_match_rule (con, G_DBUS_SIGNAL_FLAGS_MATCH_ARG0_NAMESPACE, "org.ctk", "org.ctk", TRUE);
+  test_match_rule (con, G_DBUS_SIGNAL_FLAGS_MATCH_ARG0_NAMESPACE, "org.ctk", "org.ctk.Example", TRUE);
+  test_match_rule (con, G_DBUS_SIGNAL_FLAGS_MATCH_ARG0_NAMESPACE, "org.ctk", "org.ctk+", FALSE);
 
   test_match_rule (con, G_DBUS_SIGNAL_FLAGS_MATCH_ARG0_PATH, "/", "/", TRUE);
   test_match_rule (con, G_DBUS_SIGNAL_FLAGS_MATCH_ARG0_PATH, "/", "", FALSE);
-  test_match_rule (con, G_DBUS_SIGNAL_FLAGS_MATCH_ARG0_PATH, "/org/gtk/Example", "/org/gtk/Example", TRUE);
-  test_match_rule (con, G_DBUS_SIGNAL_FLAGS_MATCH_ARG0_PATH, "/org/gtk/", "/org/gtk/Example", TRUE);
-  test_match_rule (con, G_DBUS_SIGNAL_FLAGS_MATCH_ARG0_PATH, "/org/gtk/Example", "/org/gtk/", TRUE);
-  test_match_rule (con, G_DBUS_SIGNAL_FLAGS_MATCH_ARG0_PATH, "/org/gtk/Example", "/org/gtk", FALSE);
-  test_match_rule (con, G_DBUS_SIGNAL_FLAGS_MATCH_ARG0_PATH, "/org/gtk+", "/org/gtk", FALSE);
+  test_match_rule (con, G_DBUS_SIGNAL_FLAGS_MATCH_ARG0_PATH, "/org/ctk/Example", "/org/ctk/Example", TRUE);
+  test_match_rule (con, G_DBUS_SIGNAL_FLAGS_MATCH_ARG0_PATH, "/org/ctk/", "/org/ctk/Example", TRUE);
+  test_match_rule (con, G_DBUS_SIGNAL_FLAGS_MATCH_ARG0_PATH, "/org/ctk/Example", "/org/ctk/", TRUE);
+  test_match_rule (con, G_DBUS_SIGNAL_FLAGS_MATCH_ARG0_PATH, "/org/ctk/Example", "/org/ctk", FALSE);
+  test_match_rule (con, G_DBUS_SIGNAL_FLAGS_MATCH_ARG0_PATH, "/org/ctk+", "/org/ctk", FALSE);
 
   g_object_unref (con);
   session_bus_down ();

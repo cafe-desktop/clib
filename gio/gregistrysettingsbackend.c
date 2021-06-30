@@ -76,7 +76,7 @@
  *       termed a 'path', which contains 'values'.
  *
  *   - My set of tests for this backend are currently at:
- *       http://gitorious.org/gsettings-gtk/gsettings-test.git
+ *       http://gitorious.org/gsettings-ctk/gsettings-test.git
  *
  *   - There is an undocumented function in ntdll.dll which might be more
  *     than RegNotifyChangeKeyValue(), NtNotifyChangeKey:

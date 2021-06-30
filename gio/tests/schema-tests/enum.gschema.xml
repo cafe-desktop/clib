@@ -1,5 +1,5 @@
 <schemalist>
-  <enum id='org.gtk.test.MyEnum'>
+  <enum id='org.ctk.test.MyEnum'>
     <value nick='nospam' value='0'/>
     <value nick='spam' value='1'/>
     <value nick='ham' value='2'/>
@@ -8,8 +8,8 @@
     <value nick='mash' value='5'/>
   </enum>
 
-  <schema id='org.gtk.test.schema'>
-    <key name='test' enum='org.gtk.test.MyEnum'>
+  <schema id='org.ctk.test.schema'>
+    <key name='test' enum='org.ctk.test.MyEnum'>
       <default>'spam'</default>
     </key>
   </schema>

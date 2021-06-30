@@ -52,7 +52,7 @@ G_DEFINE_BOXED_TYPE (GResource, g_resource, g_resource_ref, g_resource_unref)
  *
  * Applications and libraries often contain binary or textual data that is
  * really part of the application, rather than user data. For instance
- * #GtkBuilder .ui files, splashscreen images, GMenu markup XML, CSS files,
+ * #CtkBuilder .ui files, splashscreen images, GMenu markup XML, CSS files,
  * icons, etc. These are often shipped as files in `$datadir/appname`, or
  * manually included as literal strings in the code.
  *
@@ -107,7 +107,7 @@ G_DEFINE_BOXED_TYPE (GResource, g_resource, g_resource_ref, g_resource_unref)
  * |[
  * <?xml version="1.0" encoding="UTF-8"?>
  * <gresources>
- *   <gresource prefix="/org/gtk/Example">
+ *   <gresource prefix="/org/ctk/Example">
  *     <file>data/splashscreen.png</file>
  *     <file compressed="true">dialog.ui</file>
  *     <file preprocess="xml-stripblanks">menumarkup.xml</file>
@@ -118,10 +118,10 @@ G_DEFINE_BOXED_TYPE (GResource, g_resource, g_resource_ref, g_resource_unref)
  *
  * This will create a resource bundle with the following files:
  * |[
- * /org/gtk/Example/data/splashscreen.png
- * /org/gtk/Example/dialog.ui
- * /org/gtk/Example/menumarkup.xml
- * /org/gtk/Example/example.css
+ * /org/ctk/Example/data/splashscreen.png
+ * /org/ctk/Example/dialog.ui
+ * /org/ctk/Example/menumarkup.xml
+ * /org/ctk/Example/example.css
  * ]|
  *
  * Note that all resources in the process share the same namespace, so use Java-style
@@ -139,10 +139,10 @@ G_DEFINE_BOXED_TYPE (GResource, g_resource, g_resource_ref, g_resource_unref)
  *
  * Once a #GResource has been created and registered all the data in it can be accessed globally in the process by
  * using API calls like g_resources_open_stream() to stream the data or g_resources_lookup_data() to get a direct pointer
- * to the data. You can also use URIs like "resource:///org/gtk/Example/data/splashscreen.png" with #GFile to access
+ * to the data. You can also use URIs like "resource:///org/ctk/Example/data/splashscreen.png" with #GFile to access
  * the resource data.
  *
- * Some higher-level APIs, such as #GtkApplication, will automatically load
+ * Some higher-level APIs, such as #CtkApplication, will automatically load
  * resources from certain well-known paths in the resource namespace as a
  * convenience. See the documentation for those APIs for details.
  *
@@ -166,7 +166,7 @@ G_DEFINE_BOXED_TYPE (GResource, g_resource, g_resource_ref, g_resource_unref)
  * A substitution has the form
  *
  * |[
- *    /org/gtk/libgtk=/home/desrt/gtk-overlay
+ *    /org/ctk/libctk=/home/desrt/ctk-overlay
  * ]|
  *
  * The part before the `=` is the resource subpath for which the overlay applies.  The part after is a
@@ -174,8 +174,8 @@ G_DEFINE_BOXED_TYPE (GResource, g_resource, g_resource_ref, g_resource_unref)
  * equivalent names.
  *
  * In the example above, if an application tried to load a resource with the resource path
- * `/org/gtk/libgtk/ui/gtkdialog.ui` then GResource would check the filesystem path
- * `/home/desrt/gtk-overlay/ui/gtkdialog.ui`.  If a file was found there, it would be used instead.  This is an
+ * `/org/ctk/libctk/ui/ctkdialog.ui` then GResource would check the filesystem path
+ * `/home/desrt/ctk-overlay/ui/ctkdialog.ui`.  If a file was found there, it would be used instead.  This is an
  * overlay, not an outright replacement, which means that if a file is not found at that path, the built-in
  * version will be used instead.  Whiteouts are not currently supported.
  *
@@ -1205,8 +1205,8 @@ g_resources_enumerate_children (const gchar           *path,
 
   /* This will enumerate actual files found in overlay directories but
    * will not enumerate the overlays themselves.  For example, if we
-   * have an overlay "/org/gtk=/path/to/files" and we enumerate "/org"
-   * then we will not see "gtk" in the result set unless it is provided
+   * have an overlay "/org/ctk=/path/to/files" and we enumerate "/org"
+   * then we will not see "ctk" in the result set unless it is provided
    * by another resource file.
    *
    * This is probably not going to be a problem since if we are doing

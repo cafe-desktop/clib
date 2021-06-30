@@ -48,9 +48,9 @@
 /* For documentation of these interfaces, see
  * https://wiki.gnome.org/Projects/GLib/GApplication/DBusAPI
  */
-static const gchar org_gtk_Application_xml[] =
+static const gchar org_ctk_Application_xml[] =
   "<node>"
-    "<interface name='org.gtk.Application'>"
+    "<interface name='org.ctk.Application'>"
       "<method name='Activate'>"
         "<arg type='a{sv}' name='platform-data' direction='in'/>"
       "</method>"
@@ -69,7 +69,7 @@ static const gchar org_gtk_Application_xml[] =
     "</interface>"
   "</node>";
 
-static GDBusInterfaceInfo *org_gtk_Application;
+static GDBusInterfaceInfo *org_ctk_Application;
 
 static const gchar org_freedesktop_Application_xml[] =
   "<node>"
@@ -91,9 +91,9 @@ static const gchar org_freedesktop_Application_xml[] =
 
 static GDBusInterfaceInfo *org_freedesktop_Application;
 
-static const gchar org_gtk_private_CommandLine_xml[] =
+static const gchar org_ctk_private_CommandLine_xml[] =
   "<node>"
-    "<interface name='org.gtk.private.CommandLine'>"
+    "<interface name='org.ctk.private.CommandLine'>"
       "<method name='Print'>"
         "<arg type='s' name='message' direction='in'/>"
       "</method>"
@@ -103,7 +103,7 @@ static const gchar org_gtk_private_CommandLine_xml[] =
     "</interface>"
   "</node>";
 
-static GDBusInterfaceInfo *org_gtk_private_CommandLine;
+static GDBusInterfaceInfo *org_ctk_private_CommandLine;
 
 /* GApplication implementation {{{1 */
 struct _GApplicationImpl
@@ -164,7 +164,7 @@ send_property_change (GApplicationImpl *impl)
                                  "org.freedesktop.DBus.Properties",
                                  "PropertiesChanged",
                                  g_variant_new ("(sa{sv}as)",
-                                                "org.gtk.Application",
+                                                "org.ctk.Application",
                                                 &builder,
                                                 NULL),
                                  NULL);
@@ -189,7 +189,7 @@ g_application_impl_method_call (GDBusConnection       *connection,
     {
       GVariant *platform_data;
 
-      /* Completely the same for both freedesktop and gtk interfaces */
+      /* Completely the same for both freedesktop and ctk interfaces */
 
       g_variant_get (parameters, "(@a{sv})", &platform_data);
 
@@ -267,7 +267,7 @@ g_application_impl_method_call (GDBusConnection       *connection,
           return;
         }
 
-      /* Only on the GtkApplication interface */
+      /* Only on the CtkApplication interface */
 
       cmdline = g_dbus_command_line_new (invocation);
       platform_data = g_variant_get_child_value (parameters, 2);
@@ -313,7 +313,7 @@ application_path_from_appid (const gchar *appid)
 
   if (appid == NULL)
     /* this is a private implementation detail */
-    return g_strdup ("/org/gtk/Application/anonymous");
+    return g_strdup ("/org/ctk/Application/anonymous");
 
   appid_path = g_strconcat ("/", appid, NULL);
   for (iter = appid_path; *iter; iter++)
@@ -372,17 +372,17 @@ g_application_impl_attempt_primary (GApplicationImpl  *impl,
   GVariant *reply;
   guint32 rval;
 
-  if (org_gtk_Application == NULL)
+  if (org_ctk_Application == NULL)
     {
       GError *error = NULL;
       GDBusNodeInfo *info;
 
-      info = g_dbus_node_info_new_for_xml (org_gtk_Application_xml, &error);
+      info = g_dbus_node_info_new_for_xml (org_ctk_Application_xml, &error);
       if G_UNLIKELY (info == NULL)
         g_error ("%s", error->message);
-      org_gtk_Application = g_dbus_node_info_lookup_interface (info, "org.gtk.Application");
-      g_assert (org_gtk_Application != NULL);
-      g_dbus_interface_info_ref (org_gtk_Application);
+      org_ctk_Application = g_dbus_node_info_lookup_interface (info, "org.ctk.Application");
+      g_assert (org_ctk_Application != NULL);
+      g_dbus_interface_info_ref (org_ctk_Application);
       g_dbus_node_info_unref (info);
 
       info = g_dbus_node_info_new_for_xml (org_freedesktop_Application_xml, &error);
@@ -409,7 +409,7 @@ g_application_impl_attempt_primary (GApplicationImpl  *impl,
    * for the same reason.
    */
   impl->object_id = g_dbus_connection_register_object (impl->session_bus, impl->object_path,
-                                                       org_gtk_Application, &vtable, impl, NULL, error);
+                                                       org_ctk_Application, &vtable, impl, NULL, error);
 
   if (impl->object_id == 0)
     return FALSE;
@@ -664,7 +664,7 @@ g_application_impl_activate (GApplicationImpl *impl,
   g_dbus_connection_call (impl->session_bus,
                           impl->bus_name,
                           impl->object_path,
-                          "org.gtk.Application",
+                          "org.ctk.Application",
                           "Activate",
                           g_variant_new ("(@a{sv})", platform_data),
                           NULL, 0, -1, NULL, NULL, NULL);
@@ -695,7 +695,7 @@ g_application_impl_open (GApplicationImpl  *impl,
   g_dbus_connection_call (impl->session_bus,
                           impl->bus_name,
                           impl->object_path,
-                          "org.gtk.Application",
+                          "org.ctk.Application",
                           "Open",
                           g_variant_builder_end (&builder),
                           NULL, 0, -1, NULL, NULL, NULL);
@@ -771,7 +771,7 @@ g_application_impl_command_line (GApplicationImpl    *impl,
   const static GDBusInterfaceVTable vtable = {
     g_application_impl_cmdline_method_call
   };
-  const gchar *object_path = "/org/gtk/Application/CommandLine";
+  const gchar *object_path = "/org/ctk/Application/CommandLine";
   GMainContext *context;
   CommandLineData data;
   guint object_id G_GNUC_UNUSED  /* when compiling with G_DISABLE_ASSERT */;
@@ -780,22 +780,22 @@ g_application_impl_command_line (GApplicationImpl    *impl,
   data.loop = g_main_loop_new (context, FALSE);
   g_main_context_push_thread_default (context);
 
-  if (org_gtk_private_CommandLine == NULL)
+  if (org_ctk_private_CommandLine == NULL)
     {
       GError *error = NULL;
       GDBusNodeInfo *info;
 
-      info = g_dbus_node_info_new_for_xml (org_gtk_private_CommandLine_xml, &error);
+      info = g_dbus_node_info_new_for_xml (org_ctk_private_CommandLine_xml, &error);
       if G_UNLIKELY (info == NULL)
         g_error ("%s", error->message);
-      org_gtk_private_CommandLine = g_dbus_node_info_lookup_interface (info, "org.gtk.private.CommandLine");
-      g_assert (org_gtk_private_CommandLine != NULL);
-      g_dbus_interface_info_ref (org_gtk_private_CommandLine);
+      org_ctk_private_CommandLine = g_dbus_node_info_lookup_interface (info, "org.ctk.private.CommandLine");
+      g_assert (org_ctk_private_CommandLine != NULL);
+      g_dbus_interface_info_ref (org_ctk_private_CommandLine);
       g_dbus_node_info_unref (info);
     }
 
   object_id = g_dbus_connection_register_object (impl->session_bus, object_path,
-                                                 org_gtk_private_CommandLine,
+                                                 org_ctk_private_CommandLine,
                                                  &vtable, &data, NULL, NULL);
   /* In theory we should try other paths... */
   g_assert (object_id != 0);
@@ -813,7 +813,7 @@ g_application_impl_command_line (GApplicationImpl    *impl,
     g_assert_no_error (error);
 
     g_dbus_connection_call_with_unix_fd_list (impl->session_bus, impl->bus_name, impl->object_path,
-                                              "org.gtk.Application", "CommandLine",
+                                              "org.ctk.Application", "CommandLine",
                                               g_variant_new ("(o^aay@a{sv})", object_path, arguments, platform_data),
                                               G_VARIANT_TYPE ("(i)"), 0, G_MAXINT, fd_list, NULL,
                                               g_application_impl_cmdline_done, &data);
@@ -821,7 +821,7 @@ g_application_impl_command_line (GApplicationImpl    *impl,
   }
 #else
   g_dbus_connection_call (impl->session_bus, impl->bus_name, impl->object_path,
-                          "org.gtk.Application", "CommandLine",
+                          "org.ctk.Application", "CommandLine",
                           g_variant_new ("(o^aay@a{sv})", object_path, arguments, platform_data),
                           G_VARIANT_TYPE ("(i)"), 0, G_MAXINT, NULL,
                           g_application_impl_cmdline_done, &data);
@@ -883,7 +883,7 @@ g_dbus_command_line_print_literal (GApplicationCommandLine *cmdline,
   g_dbus_connection_call (gdbcl->connection,
                           gdbcl->bus_name,
                           gdbcl->object_path,
-                          "org.gtk.private.CommandLine", "Print",
+                          "org.ctk.private.CommandLine", "Print",
                           g_variant_new ("(s)", message),
                           NULL, 0, -1, NULL, NULL, NULL);
 }
@@ -897,7 +897,7 @@ g_dbus_command_line_printerr_literal (GApplicationCommandLine *cmdline,
   g_dbus_connection_call (gdbcl->connection,
                           gdbcl->bus_name,
                           gdbcl->object_path,
-                          "org.gtk.private.CommandLine", "PrintError",
+                          "org.ctk.private.CommandLine", "PrintError",
                           g_variant_new ("(s)", message),
                           NULL, 0, -1, NULL, NULL, NULL);
 }

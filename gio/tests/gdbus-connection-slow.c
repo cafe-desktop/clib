@@ -70,9 +70,9 @@ test_connection_flush (void)
 
   signal_handler_id = g_dbus_connection_signal_subscribe (connection,
                                                           NULL, /* sender */
-                                                          "org.gtk.GDBus.FlushInterface",
+                                                          "org.ctk.GDBus.FlushInterface",
                                                           "SomeSignal",
-                                                          "/org/gtk/GDBus/FlushObject",
+                                                          "/org/ctk/GDBus/FlushObject",
                                                           NULL,
                                                           G_DBUS_SIGNAL_FLAGS_NONE,
                                                           test_connection_flush_signal_handler,

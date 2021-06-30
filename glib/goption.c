@@ -63,7 +63,7 @@
  * Help Options:
  *   -h, --help               Show help options
  *   --help-all               Show all help options
- *   --help-gtk               Show GTK+ Options
+ *   --help-ctk               Show CTK+ Options
  *  
  * Application Options:
  *   -r, --repeats=N          Average over N repetitions
@@ -78,7 +78,7 @@
  * incorporate options from multiple sources. The intended use for this is
  * to let applications collect option groups from the libraries it uses,
  * add them to their #GOptionContext, and parse all options by a single call
- * to g_option_context_parse(). See gtk_get_option_group() for an example.
+ * to g_option_context_parse(). See ctk_get_option_group() for an example.
  *
  * If an option is declared to be of type string or filename, GOption takes
  * care of converting it to the right encoding; strings are returned in
@@ -113,7 +113,7 @@
  *
  *   context = g_option_context_new ("- test tree model performance");
  *   g_option_context_add_main_entries (context, entries, GETTEXT_PACKAGE);
- *   g_option_context_add_group (context, gtk_get_option_group (TRUE));
+ *   g_option_context_add_group (context, ctk_get_option_group (TRUE));
  *   if (!g_option_context_parse (context, &argc, &argv, &error))
  *     {
  *       g_print ("option parsing failed: %s\n", error->message);

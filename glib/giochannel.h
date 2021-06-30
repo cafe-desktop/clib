@@ -19,7 +19,7 @@
  * Modified by the GLib Team and others 1997-2000.  See the AUTHORS
  * file for a list of people on the GLib Team.  See the ChangeLog
  * files for a list of changes.  These files are distributed with
- * GLib at ftp://ftp.gtk.org/pub/gtk/.
+ * GLib at ftp://ftp.ctk.org/pub/ctk/.
  */
 
 #ifndef __G_IOCHANNEL_H__
@@ -329,7 +329,7 @@ GLIB_VAR GSourceFuncs g_io_watch_funcs;
 #ifdef G_OS_WIN32
 
 /* You can use this "pseudo file descriptor" in a GPollFD to add
- * polling for Windows messages. GTK applications should not do that.
+ * polling for Windows messages. CTK applications should not do that.
  */
 
 #define G_WIN32_MSG_HANDLE 19981206

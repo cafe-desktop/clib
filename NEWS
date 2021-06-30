@@ -155,7 +155,7 @@ Overview of changes in GLib 2.66.1
 * Bugs fixed:
  - #2077 Invalid Pointer Arithmetic in g_path_get_basename
  - #2164 GDBus DBUS_COOKIE_SHA1 mechanism may use too old a key
- - #2194 gtk3/glib crash on gimp
+ - #2194 ctk3/glib crash on gimp
  - #2204 Time zone cache is constantly invalidated if TZ is NULL
  - #2209 gthreadedresolver: faulty logic in parse_res_txt
  - !1187 Define G_MSVC_SYMBOL_PREFIX correctly for ARM
@@ -443,7 +443,7 @@ Overview of changes in GLib 2.65.0
  - !1418 ginetaddress, ginetsocketaddress: Add missing (nullable) annotations
  - !1422 glib: Update Unicode Character Database to version 13.0.0
  - !1423 gobject: Clarify assertion failure on ref-after-finalize
- - !1424 docs: Fix configuration with gtk_doc=true and installed_tests=false
+ - !1424 docs: Fix configuration with ctk_doc=true and installed_tests=false
  - !1425 gdbusconnection: GDBusSignalCallback can have a NULL sender_name
  - !1426 gunidecomp: Update and reformat Unicode version support history
  - !1427 gicon: Clarify GVariant refcounting in docs
@@ -638,7 +638,7 @@ Overview of changes in GLib 2.63.5
   (this is not an API break as `--glib-min-version` was added earlier in the
   2.63 cycle) (#1993)
 
-* Add gtk-doc checks to CI and fix a number of documentation issues
+* Add ctk-doc checks to CI and fix a number of documentation issues
   (thanks to Xavier Claessens) (!978)
 
 * Add `G_SIZEOF_MEMBER()` macro (!1333)
@@ -663,7 +663,7 @@ Overview of changes in GLib 2.63.5
  - #1993 Rename gdbus-codegen --glib-min-version argument to --glib-min-required and add --glib-max-allowed
  - #2012 spawn_thread_queue not initialised in GThreadPool
  - #2020 g_network_monitor_base_add_network() improperly unrefs GInetAddressMask
- - !978 Various fixes to make gtkdoc-check pass on glib
+ - !978 Various fixes to make ctkdoc-check pass on glib
  - !1018 docs: tag enclose 'all' and 'help' values
  - !1170 Avoid C++20 deprecated assignment to volatile
  - !1296 tests: Skip GMemoryMonitor tests if the dbusmock template is not available
@@ -780,7 +780,7 @@ Overview of changes in GLib 2.63.3
  - #1935 Assert in _kqsub_free seems to be too strict
  - #1943 Consider g_clear_list()
  - #1947 Documentation clarification for g_uuid_string_random()
- - #1953 Documentation for g_type_init() and others missing from online gtk-doc documentation
+ - #1953 Documentation for g_type_init() and others missing from online ctk-doc documentation
  - #1961 A typo in the comment of `g_settings_schema_get_path`: threfore -> therefore
  - !1005 gio: Add GMemoryMonitor to monitor for low-memory
  - !1172 gptrarray: Add an example to the g_ptr_array_steal() docs
@@ -798,16 +798,16 @@ Overview of changes in GLib 2.63.3
  - !1255 ci: Build Docker images rather than OCI images if using podman
  - !1256 gdate: Add autoptr support
  - !1258 Minor CI fixups
- - !1261 gtk-doc: Ensure we have recent enough version
+ - !1261 ctk-doc: Ensure we have recent enough version
  - !1262 tests: Add tests for the gdbus-codegen executable
  - !1265 build: don't check for protected visibility
- - !1267 Revert "doc: Workaround gtkdoc-scan bug leading to undocumented symbols"
+ - !1267 Revert "doc: Workaround ctkdoc-scan bug leading to undocumented symbols"
  - !1268 ci: Work-around successful installed tests having no logs
  - !1269 gvariant: Add guard to g_variant_get()
  - !1271 tests: Enable GDBus debug for a number of unreliable tests
  - !1274 trash portal: Don't follow symlinks
  - !1275 Small doc correction
- - !1277 Various gtk-doc improvements
+ - !1277 Various ctk-doc improvements
  - !1278 Update installed tests CI
  - !1280 clang-format-diff: Output diff for multiple files, not just one
  - !1282 Revert "Revert "docs: remove GDBusObjectManager example""
@@ -915,7 +915,7 @@ Overview of changes in GLib 2.63.1
  - #1903 use-after-free in mimeapps test causes intermittent segfault during testing
  - #1906 test_os_info fails on FreeBSD
  - #1916 objcopy not used from cross-compilation file in GIO tests
- - #1923 Recent Versions of GLib Break Dolphin File-Manager's Thumbnailing when Using 'gtk2' Style
+ - #1923 Recent Versions of GLib Break Dolphin File-Manager's Thumbnailing when Using 'ctk2' Style
  - !616 Always resolve localhost to loopback address
  - !983 gmain: Add GMainContextPusher convenience API
  - !1014 tests: Add a test for g_assert_finalize_object()
@@ -1429,7 +1429,7 @@ Overview of changes in GLib 2.61.0
   from the autotools build) (!736)
 
 * Use `GCocoaNotificationBackend` by default on macOS, rather than
-  `GGtkNotificationBackend` (!745)
+  `GCtkNotificationBackend` (!745)
 
 * Use Windows symbol visibility when GLib is built on Cygwin, as PE binaries
   are subject to W32 visibility mechanics — this affects the definition of
@@ -1478,7 +1478,7 @@ Overview of changes in GLib 2.61.0
  - !736 Set G_WITH_CYGWIN again
  - !737 gresolver: Don’t use gai_strerror() on Windows, as it isn’t threadsafe
  - !741 Fix use-after-free triggered by gnome-session-binary
- - !745 gcocoanotificationbackend: give more priority than the gtk one
+ - !745 gcocoanotificationbackend: give more priority than the ctk one
  - !749 gio: Add missing autocleanup definition for GSettingsSchema{Key,Source}
  - !750 Check for RTLD_NEXT
  - !752 Use W32 visibility for Cygwin
@@ -1830,7 +1830,7 @@ Overview of changes in GLib 2.59.0
  - #1530 tests/mainloop-test appears to be flaky
  - #1535 meson: installed-test metadata not run in TAP mode
  - #1536 meson: spurious dependencies on convenience libraries in .pc files
- - #1537 meson: absolute paths to ${builddir} included in gtk-doc HTML
+ - #1537 meson: absolute paths to ${builddir} included in ctk-doc HTML
  - #1538 meson: G_HAVE_GROWING_STACK defined differently
  - #1539 meson: Some files are unnecessarily installed executable
  - #1541 meson: timeloop-closure test not installed
@@ -1843,7 +1843,7 @@ Overview of changes in GLib 2.59.0
  - #1572 Flags validation fails
  - #1575 g_date_time_format() should have format attribute
  - #1576 Fails to build with Meson on Debian armel (armv5te EABI softfloat little-endian)
- - #1580 glib-compile-resources using strings breaks building e.g. GTK+ on MS Visual C, which limits strings to 65535 chars
+ - #1580 glib-compile-resources using strings breaks building e.g. CTK+ on MS Visual C, which limits strings to 65535 chars
  - #1581 Memory used for reference counted data might be misaligned.
  - #1588 Moving a bookmark item to the same URI causes a crash
  - #1589 g_log_writer_is_journald memoizes a single result, even though it accepts a parameter
@@ -2007,7 +2007,7 @@ Overview of changes in GLib 2.58.0
   autotools (which is supported), you will need to re-run autogen.sh. This
   release, and all micro releases in the 2.58.x series, support being built
   with Meson or autotools. See:
-  https://mail.gnome.org/archives/gtk-devel-list/2018-June/msg00012.html
+  https://mail.gnome.org/archives/ctk-devel-list/2018-June/msg00012.html
 
 * Fix cancellation of g_subprocess_communicate_async() calls. See !266.
 
@@ -2222,7 +2222,7 @@ Overview of changes in GLib 2.57.0
  794506	glib-mkenums: Enters infinite loop if using typedef enum SomeIdentifier
  794528	Fix segfault caused by use-after-free in GPollFileMonitor
  794555	glib meson build fails on MinGW due to misdetected functions
- 794557	gtkdoc-scangobj fails on gio in meson builds
+ 794557	ctkdoc-scangobj fails on gio in meson builds
  794606	glib-2.56.0 fails to compile when res_nquery is not available
  794635	gmacros: Don't define bogus __has_* macros
  794636	G_HAVE_GNUC_VISIBILITY is defined in meson MinGW builds
@@ -2379,7 +2379,7 @@ Overview of changes in GLib 2.55.1
  780893 Reword licensing header for gdbus-codegen
  782057 Unit tests fail in run-assert-msg-test.sh
  784995 meson: some Windows improvements
- 786796 gtk-doc build fails with meson
+ 786796 ctk-doc build fails with meson
  788806 Impossible to build static glib via meson
  788936 Show mime type icons on OS X
  790416 g_date_time_format returns empty string on %r with German locale
@@ -2392,7 +2392,7 @@ Overview of changes in GLib 2.55.1
  790839 GApplication command line: lacks parameter_string, summary and descri...
  790877 fix non-portable check in G_GNUC_CHECK_VERSION
  790894 Do not connect to the session bus when trying GProxyResolverPortal io...
- 790896 docs/reference/README has broken link to http://www.gtk.org/rdp/
+ 790896 docs/reference/README has broken link to http://www.ctk.org/rdp/
  790914 gdesktopappinfo: Downgrade a warning to a debug message
  790934 gtester doesn't handle skipped tests
  790948 GSourceFuncs documentation is confusing: when will dispatch be called?
@@ -2725,7 +2725,7 @@ Overview of changes in GLib 2.53.3
  783340 win32: port monotonic times to use QPC
  783350 length parameter can be NULL g_data_input_stream_read_line
  783392 incorrect (out) annotation for g_dbus_interface_info_generate_xml
- 783593 GGtkNotificationBackend should use /org/freedesktop/DBus to call Ge...
+ 783593 GCtkNotificationBackend should use /org/freedesktop/DBus to call Ge...
 
 * Translation updates:
  Esperanto
@@ -3280,7 +3280,7 @@ Bugs fixed:
  758174 Fix documentation typos
  758738 Usage of GType properties causes crashes due to gulong/gpointer mismatch
  760186 namespace clash with gdb pretty-printing code
- 762994 Race condition in GIO/AppFileChooser crashes Firefox/Gtk3
+ 762994 Race condition in GIO/AppFileChooser crashes Firefox/Ctk3
  763379 codegen: Add support for g_autoptr to gdbus-codegen–generated objects
  763821 build: Also dist Systemtap files always for gobject/
  764092 gstrfuncs: Document the behaviour of g_strjoinv()
@@ -3438,7 +3438,7 @@ Overview of changes in GLib 2.47.5
 
 Bugs fixed:
  624186 Deprecate glib-gettext macros
- 734095 gtk-demo.py of PyGObject fails to run on Windows (and likely other binding scripts using g_application_run())
+ 734095 ctk-demo.py of PyGObject fails to run on Windows (and likely other binding scripts using g_application_run())
  735754 Implement close on TLS GOutputStream
  748064 gnulib vfprintf returns desired (not actual) number of bytes, ignores errors
  752240 Add DTLS support to GIO
@@ -3507,7 +3507,7 @@ Bugs fixed:
  696324 gtester-report doesn't work with Python 3.x
  719966 glib: Add missing (nullable) and (optional) annotations
  752837 gobject and glib-compile-resources rely on .CRT$XCU section, no longer works with Win 10 UCRT (VS 2015)
- 755364 make gtkdoc-check happy again
+ 755364 make ctkdoc-check happy again
  756134 Segmentation fault on calling g_simple_action_group_add_action with bad action constructor call
  756179 gwin32.c: Replace VerifyVersionInfoW() with RtlGetVersion() due to API deprecation
  756988 GSequence should document each function's complexity
@@ -3822,7 +3822,7 @@ Overview of changes in GLib 2.45.2
 
 * Bugs fixed:
  696749 win32 : failed to compile because of careless mistake in the code
- 723394 const parameter to GtkPopover gtk_popover_set_pointing_to
+ 723394 const parameter to CtkPopover ctk_popover_set_pointing_to
  724113 gdbus-connection-loss test can fail on slow machines
  725981 tap-driver.sh: internal error getting exit status
  733325 Several regex tests fail with pcre3 8.35
@@ -4359,7 +4359,7 @@ Overview of changes in GLib 2.41.2
 * Bugs fixed:
  699132 Pluggable event loop backends
  720708 g_assert_warning(): number of arguments doesn't match for...
- 722092 Add GtkApplication resources support
+ 722092 Add CtkApplication resources support
  724986 Change gio/data-to-c.pl to /usr/bin/env perl.
  727974 Fix up failure-to-see-expected-message logging
  728256 gcredentials: add NetBSD support
@@ -4618,7 +4618,7 @@ Overview of changes from GLib 2.39.3 to GLib 2.39.4
  722436 Adjust doc to Makefile.decl renaming
  722503 GSimpleAction: add default activate handler
  722526 glib/deprecated/gthread.h error on FreeBSD
- 722591 [documentation] broken link to GtkAction from GAction.html
+ 722591 [documentation] broken link to CtkAction from GAction.html
  722973 Broken example in GApplication reference
  723048 'network-access' test can fail to guess interface index
  723360 gmain: Note that g_source_destroy() can be called multiple times 
@@ -4750,7 +4750,7 @@ Overview of changes from GLib 2.39.1 to GLib 2.39.2
  710741 some mainloop instrumentation
  710983 Test failures on powerpc
  711047 Enable the build of the various test programs on Windo...
- 711051 Add basic test for the GNotification gtk backend
+ 711051 Add basic test for the GNotification ctk backend
  711088 gbacktrace: Don't close stderr when running gdb
  711103 gmessages: Add g_info macro for G_LOG_LEVEL_INFO
  711178 appinfo test problems
@@ -4894,7 +4894,7 @@ Bugs fixed:
  668233 Unable to determine if a key is set to the default / what the default value is
  680838 Need g_settings_schema_source_get_schemas()
  683017 API for accessing GSettings Schema metadata
- 687185 org.gtk.Actions.Describe doesn't return an error for non-existing action names
+ 687185 org.ctk.Actions.Describe doesn't return an error for non-existing action names
  687202 If trashing fails, the ".trashinfo" file is not removed
  695558 The --schemadir option has no effect
  696424 GSimpleAction.state property is not right
@@ -5035,7 +5035,7 @@ Overview of changes from GLib 2.38.0 to GLib 2.39.0
 
    - a pair of functions to support matching strings for the type of
      search functionality that you'd expect to have with things like
-     GtkSearchBar.  This will also be used by the desktop file index.
+     CtkSearchBar.  This will also be used by the desktop file index.
 
    - g_str_is_ascii() with obvious purpose
 
@@ -5118,7 +5118,7 @@ Bugs fixed:
  709326 GDesktopAppInfo crashes creating a DBusActivatable app without a filename
  709440 Fix overloading of "source" and "target" terminology in GBinding
  709615 Cannot use g_test_expect_message with g_error
- 709753 Add helpers for string matches when using GtkSearchBar-like widget
+ 709753 Add helpers for string matches when using CtkSearchBar-like widget
  709898 Expose thumbnail validity in GFile attributes
  709966 Remove outdated documentation
  709994 Minor fix for HACKERS doc to direct hackers to proper help file
@@ -5204,7 +5204,7 @@ What's new in Glib 2.38
 
   - GPropertyAction provides a convenient way of creating a stateful
     property corresponding to a property on a GObject, such as the
-    "visible-child-name" property of a GtkStack
+    "visible-child-name" property of a CtkStack
 
   - new API g_menu_remove_all()
 
@@ -6225,7 +6225,7 @@ Overview of changes from GLib 2.33.10 to 2.33.12
  682849 drop the global lock for g_object_weak_ref
  682965 gdbus-tool: Check return value of strrchr()
  683088 gdbus-codegen: fix error when wrong interface n...
-        Fix the build with gtk-doc-stub
+        Fix the build with ctk-doc-stub
         Don't crash if set_app_info is called before ad...
 
 * Translation updates
@@ -6286,7 +6286,7 @@ Overview of changes from GLib 2.33.8 to 2.33.10
  679556 it's hard to use gtest when g_warning() is expected
  680823 g_file_make_directory_with_parents: Fix error propagation
  681319 gtlscertificate: Add certificate-bytes and private-key-bytes props
- 681336 man pages not built if --enable-gtk-doc not specified
+ 681336 man pages not built if --enable-ctk-doc not specified
  681413 build: Switch back to using AS_IF for conditionals
  681501 gmem: array only partially filled with memcpy
  681854 Documentation fix for Howto compile a program with glib
@@ -6327,7 +6327,7 @@ Overview of changes from GLib 2.33.6 to 2.33.8
  681116 gtlscertificate: Add g_tls_certificate_equal() function
  681118 gtlsdatabase: Don't complain if no callbacks for async...
  669331 try to get gio tests working a little better on win32
- 674314 Make gtk-doc not a hard dependency of GLib
+ 674314 Make ctk-doc not a hard dependency of GLib
  674800 gclosure: generic marshaller leaks return value
  675524 gsocket: FIONREAD undeclared (needs sys/filio.h)
  679509 use after free in g_dbus_action_group_describe_all_done()
@@ -6544,7 +6544,7 @@ Overview of changes from GLib 2.32.1 to 2.33.1
 
 * Resources:
  - fix broken use of GVDB on big endian machines
- - set a 'display name' so that pretty file names appear in Gtk CSS
+ - set a 'display name' so that pretty file names appear in Ctk CSS
    warning messages
 
 * GMainContext:
@@ -6777,7 +6777,7 @@ Overview of changes from GLib 2.31.16 to 2.31.18
  669865 g_regex_fetch()
  670085 memory leak in g_output_stream_write_async
  670138 gbytes.h is missing the G_BEGIN/END_DECL guards
- 670485 Simplify session API (shared bug with gtk+)
+ 670485 Simplify session API (shared bug with ctk+)
 
 * Updated translations:
  Belarusian
@@ -6821,7 +6821,7 @@ Overview of changes from GLib 2.31.12 to 2.31.14
 
 * GApplication:
  - The menu markup parser API has been dropped, the
-   menu XML support lives in GTK+ now
+   menu XML support lives in CTK+ now
 
 * GValueArray has been deprecated
 
@@ -6854,7 +6854,7 @@ Overview of changes from GLib 2.31.10 to 2.31.12
 
 * GApplication:
  - Drop support for exporting menus - this functionality
-   will be provided in GtkApplication
+   will be provided in CtkApplication
  - Add a way to create actions that change settings
 
 * Bugs fixed:
@@ -6954,11 +6954,11 @@ Overview of changes from GLib 2.31.4 to 2.31.6
 ==============================================
 
 * GApplication no longer has APIs for setting menus.  Those have been
-  moved to GtkApplication.
+  moved to CtkApplication.
 
 * the GActionGroup import/export functionality has been decoupled from
   GApplication by the introduction of a new interface for the purpose of
-  handling platform data: GRemoteActionGroup.  This allows Gtk to
+  handling platform data: GRemoteActionGroup.  This allows Ctk to
   properly deal with platform data (and gdk threads) on window actions.
 
 * lots of documentation improvements
@@ -7340,7 +7340,7 @@ Overview of changes from GLib 2.29.18 to 2.29.90
 
 * fix a race condition in the first use of g_get_monotonic_time()
 
-* lots gtk-doc cleanups
+* lots ctk-doc cleanups
 
 * better intltool compatibility when generating pot file
 
@@ -7829,7 +7829,7 @@ Overview of Changes from GLib 2.28.0 to 2.29.2
  643649 g_application_run() should say that argc/argv can be NULL
  643780 shouldn't need to create an action group to use actions...
  643795 g_timeout_add_seconds fires with intervals 1 second longer...
- 644309 Program name is not set when using GtkApplication
+ 644309 Program name is not set when using CtkApplication
  644428 Crash in failure section of g_markup_collect_attributes()
  644465 undefined reference to `_usleep'
  644552 g_timeout_add_seconds(1, ...) may have a latency of up to 2...
@@ -7927,7 +7927,7 @@ Overview of Changes from GLib 2.27.91 to 2.27.92
 * Bugs fixed:
  637696 g_unix_connection_send_fd() doesn't work
  638872 null settings backend bug
- 640042 GtkApplication's warning about not connecting...
+ 640042 CtkApplication's warning about not connecting...
 
 * Translation updates:
  Arabic
@@ -8598,7 +8598,7 @@ Overview of Changes from GLib 2.25.10 to GLib 2.25.11
 +-------------------------------------------------------------------+
 | WARNING: There have been minor API changes in GDBus and GVariant. |
 | These API changes will not affect many users, but they do require |
-| a new version of GTK+ to be installed.                            |
+| a new version of CTK+ to be installed.                            |
 +-------------------------------------------------------------------+
 
 Build:
@@ -8824,7 +8824,7 @@ Overview of Changes from GLib 2.25.8 to GLib 2.25.9
 +----------------------------------------------------------------+
 | WARNING: There have been API changes in GDBus, GSettings and   |
 | GApplication. Users of these APIs will need to be adapted. In  |
-| particular, a new release of GTK+ is required to go along with |
+| particular, a new release of CTK+ is required to go along with |
 | this one.                                                      |
 +----------------------------------------------------------------+
 
@@ -10034,7 +10034,7 @@ Overview of Changes from GLib 2.19.3 to GLib 2.19.4
  560676 function access for g_threads_supported
  565905 There is no g_context_group_set_translation_domain
  564210 SUN Studio 12 has supported visibility attribute
- 565136 GObject's "notify" signal parameters are wrong in gtk-doc
+ 565136 GObject's "notify" signal parameters are wrong in ctk-doc
  565831 error in interface creation sample
  566348 g_file_open_tmp uses the wrong g_mkstemp on win32
  566064 Add NOATIME flag to query_info_flags
@@ -10125,7 +10125,7 @@ Overview of Changes from GLib 2.19.0 to GLib 2.19.1
  541715 win32 : patch for warnings and signature problems in recent code
  547481 g_data_input_stream_read_line behaves not as stated in the docs
  548163 Nautilus displays wrong error message for too long file names
- 559633 gtk_image_new_from_gicon does not always work for .desktop files
+ 559633 ctk_image_new_from_gicon does not always work for .desktop files
  555486 – No way to recover command line from GAppInfo
 
 * Translation updates:
@@ -10282,7 +10282,7 @@ Overview of Changes from GLib 2.17.6 to GLib 2.17.7
  547200 g_utf8_find_next_char() issues
  547637 unconditional #include of sys/statfs.h in configure
  547337 G_DISABLE_DEPRECATED breaks tests build
- 547832 gtk+-2.12.11 fails to build - AC_PROG_MMAP too strict
+ 547832 ctk+-2.12.11 fails to build - AC_PROG_MMAP too strict
  502498 Test framework assertion failures should follow gcc
  546371 Improve docs re g_file_monitor
  546483 GThemedIcon:use-default-fallbacks is not readable without...
@@ -10473,7 +10473,7 @@ Overview of Changes from GLib 2.17.0 to GLib 2.17.1
  530526 Misprint in the description of the fields 'class_init' and 
         'class_finalize' of the structure GTypeInfo
  528719 Improvement to the documentation of the "g_object_connect" interface
- 528172 gtk_signal_handlers_unblock_* functions return value
+ 528172 ctk_signal_handlers_unblock_* functions return value
         amount of matched signals, not amount of actually unblocked
  528717 Misprint in the description of the parameter 'type_id' for 
         the interface g_type_register_fundamental
@@ -11463,7 +11463,7 @@ Overview of Changes from GLib 2.11.1 to GLib 2.11.2
          other _g_*_thread_init() functions
  343548  Potential use after free in callers of g_string_free() 
  168538  Wish: Clearing contents of GHashTables
- 321886  GTK+ cannot be reliably used in multi-threaded 
+ 321886  CTK+ cannot be reliably used in multi-threaded 
          applications
  341826  goption.c: 'strtoll' is C99's function
  343899  g_ascii_formatd dosn't work as expected for all 
@@ -11622,7 +11622,7 @@ Overview of Changes from GLib 2.9.3 to GLib 2.9.4
 
 * Type system:
   Fix a problem with g_object_compat_control() which 
-  can lead to segfaults in GTK+ applications on 64bit 
+  can lead to segfaults in CTK+ applications on 64bit 
   platforms. 
 
 * Thread suppport: 
@@ -11697,7 +11697,7 @@ Overview of Changes from GLib 2.9.1 to GLib 2.9.2
 * New and updated translations (en_CA,fi,fr,gl,ml,nb,no,zh_HK,zh_TW)
 
 * Bugs fixed:
- 324179 g_allocator_new() returns pointer to const dummy which Gtk+ 2.8 
+ 324179 g_allocator_new() returns pointer to const dummy which Ctk+ 2.8 
         tries to modify [J. Ali Harlow]
  324332 g_option_context_parse() returns false without setting error 
         [Tim-Philipp Müller]
@@ -11739,7 +11739,7 @@ Overview of Changes from GLib 2.9.0 to GLib 2.9.1
 
 * GObject:
  - The concept of a floating initial reference has been
-   moved from GtkObject to GObject [Tim]
+   moved from CtkObject to GObject [Tim]
 
 * Win32 changes:
  - Make g_rename() replace existing files [Tor Lillqvist]
@@ -11979,7 +11979,7 @@ Overview of Changes from GLib 2.6.x to GLib 2.7.0
 Overview of Changes from GLib 2.6.0 to GLib 2.6.1
 =================================================
 * GOption
- - Make gtk_init(NULL, NULL) work again [Marcin Krzyzanowski]
+ - Make ctk_init(NULL, NULL) work again [Marcin Krzyzanowski]
  - Improve handling of -- [Matthias Clasen]
  - Don't show G_OPTION_REMAINING in --help output [Matthew F. Barnes]
 * g_find_program_in_path() doesn't return directories [Tommi Komulainen]
@@ -12728,7 +12728,7 @@ GLib:
 * Improved format support of GDate parser.
 * String function speed improvements with new g_stpcpy().
 * Hashtable API additions.
-* New GPatternSpec for shell-style pattern matching (from GtkPatternSpec).
+* New GPatternSpec for shell-style pattern matching (from CtkPatternSpec).
 * Optimizations, cleanups, bug fixes.
 
 GObject:
@@ -12802,7 +12802,7 @@ What's new in GLib 1.3.1:
 =========================
 
 * New GObject library added including object system based on
-  the GTK+ object system. 
+  the CTK+ object system. 
 * Functions for getting the properties of Unicode characters, 
   computing the canonical decomposition and ordering combining
   characters aand manipulating UTF-8 string manipulation based

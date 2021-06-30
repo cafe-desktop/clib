@@ -231,7 +231,7 @@ G_DEFINE_QUARK (g-spawn-exit-error-quark, g_spawn_exit_error)
  * You should call g_spawn_close_pid() on the returned child process
  * reference when you don't need it any more.
  * 
- * If you are writing a GTK+ application, and the program you are spawning is a
+ * If you are writing a CTK+ application, and the program you are spawning is a
  * graphical application too, then to ensure that the spawned program opens its
  * windows on the right screen, you may want to use #GdkAppLaunchContext,
  * #GAppLaunchContext, or set the %DISPLAY environment variable.
@@ -760,7 +760,7 @@ g_spawn_sync (const gchar          *working_directory,
  * 5. @child_setup is %NULL
  * 6. The program is of a recognised binary format, or has a shebang. Otherwise, GLib will have to execute the program through the shell, which is not done using the optimized codepath.
  *
- * If you are writing a GTK+ application, and the program you are spawning is a
+ * If you are writing a CTK+ application, and the program you are spawning is a
  * graphical application too, then to ensure that the spawned program opens its
  * windows on the right screen, you may want to use #GdkAppLaunchContext,
  * #GAppLaunchContext, or set the %DISPLAY environment variable.

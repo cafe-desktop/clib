@@ -31,7 +31,7 @@ RUN dnf -y install \
     glibc-langpack-pl \
     glibc-langpack-ru \
     glibc-langpack-tr \
-    gtk-doc \
+    ctk-doc \
     itstool \
     lcov \
     libattr-devel \

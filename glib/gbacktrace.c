@@ -19,7 +19,7 @@
  * Modified by the GLib Team and others 1997-2000.  See the AUTHORS
  * file for a list of people on the GLib Team.  See the ChangeLog
  * files for a list of changes.  These files are distributed with
- * GLib at ftp://ftp.gtk.org/pub/gtk/.
+ * GLib at ftp://ftp.ctk.org/pub/ctk/.
  */
 
 /*
@@ -92,7 +92,7 @@ volatile gboolean glib_on_error_halt = TRUE;
  * @prg_name: the program name, needed by gdb for the "[S]tack trace"
  *     option. If @prg_name is %NULL, g_get_prgname() is called to get
  *     the program name (which will work correctly if gdk_init() or
- *     gtk_init() has been called)
+ *     ctk_init() has been called)
  *
  * Prompts the user with
  * `[E]xit, [H]alt, show [S]tack trace or [P]roceed`.
@@ -225,7 +225,7 @@ g_on_error_query (const gchar *prg_name)
  * Invokes gdb, which attaches to the current process and shows a
  * stack trace. Called by g_on_error_query() when the "[S]tack trace"
  * option is selected. You can get the current process's program name
- * with g_get_prgname(), assuming that you have called gtk_init() or
+ * with g_get_prgname(), assuming that you have called ctk_init() or
  * gdk_init().
  *
  * This function may cause different actions on non-UNIX platforms.

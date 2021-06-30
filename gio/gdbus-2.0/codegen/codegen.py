@@ -818,7 +818,7 @@ class InterfaceInfoBodyCodeGenerator:
 
         for a in annotations:
             # Skip internal annotations.
-            if a.key.startswith('org.gtk.GDBus'):
+            if a.key.startswith('org.ctk.GDBus'):
                 continue
 
             self.define_annotations('%s__%s_annotations' % (array_name_lower, a.key_lower), a.annotations)
@@ -1196,7 +1196,7 @@ class CodeGenerator:
             #self.generate_annotations('%s_%d'%(prefix, n), a.get_annotations())
 
             # skip internal annotations
-            if a.key.startswith('org.gtk.GDBus'):
+            if a.key.startswith('org.ctk.GDBus'):
                 continue
 
             self.outfile.write('static const GDBusAnnotationInfo %s_%d =\n'
@@ -1217,7 +1217,7 @@ class CodeGenerator:
                                '{\n'%(prefix))
             m = 0;
             for a in annotations:
-                if a.key.startswith('org.gtk.GDBus'):
+                if a.key.startswith('org.ctk.GDBus'):
                     continue
                 self.outfile.write('  &%s_%d,\n'%(prefix, m))
                 m += 1
@@ -1241,7 +1241,7 @@ class CodeGenerator:
             else:
                 self.outfile.write('    (GDBusAnnotationInfo **) &%s_arg_%s_annotation_info_pointers\n'%(prefix, a.name))
             self.outfile.write('  },\n')
-            if not utils.lookup_annotation(a.annotations, 'org.gtk.GDBus.C.ForceGVariant'):
+            if not utils.lookup_annotation(a.annotations, 'org.ctk.GDBus.C.ForceGVariant'):
                 self.outfile.write('  FALSE\n')
             else:
                 self.outfile.write('  TRUE\n')
@@ -1361,7 +1361,7 @@ class CodeGenerator:
                     self.outfile.write('  },\n'
                                        '  "%s",\n'
                                        %(p.name_hyphen))
-                    if not utils.lookup_annotation(p.annotations, 'org.gtk.GDBus.C.ForceGVariant'):
+                    if not utils.lookup_annotation(p.annotations, 'org.ctk.GDBus.C.ForceGVariant'):
                         self.outfile.write('  FALSE,\n')
                     else:
                         self.outfile.write('  TRUE,\n')
@@ -1416,7 +1416,7 @@ class CodeGenerator:
                     ' *\n'
                     ' * Returns: (transfer none): A #GDBusInterfaceInfo. Do not free.\n'
                     %(i.name_lower, i.name), False))
-            self.write_gtkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
+            self.write_ctkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
             self.outfile.write('GDBusInterfaceInfo *\n'
                                '%s_interface_info (void)\n'
                                '{\n'
@@ -1435,7 +1435,7 @@ class CodeGenerator:
                     ' *\n'
                     ' * Returns: The last property id.\n'
                     %(i.name_lower, i.camel_name), False))
-            self.write_gtkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
+            self.write_ctkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
             self.outfile.write('guint\n'
                                '%s_override_properties (GObjectClass *klass, guint property_id_begin)\n'
                                '{\n'%(i.name_lower))
@@ -1457,7 +1457,7 @@ class CodeGenerator:
                 ' *\n'
                 ' * Abstract interface type for the D-Bus interface #%s.\n'
                 %(i.camel_name, i.name), False))
-        self.write_gtkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
+        self.write_ctkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
         self.outfile.write('\n')
 
         self.outfile.write(self.docbook_gen.expand(
@@ -1492,7 +1492,7 @@ class CodeGenerator:
                 ' *\n'
                 ' * Virtual table for the D-Bus interface #%s.\n'
                 %(i.name), False))
-        self.write_gtkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
+        self.write_ctkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
         self.outfile.write('\n')
 
         self.outfile.write('typedef %sIface %sInterface;\n'%(i.camel_name, i.camel_name))
@@ -1524,7 +1524,7 @@ class CodeGenerator:
                         '   *\n'
                         '   * Returns: %%TRUE if the invocation was handled, %%FALSE to let other signal handlers run.\n'
                         %(i.name, m.name, i.name_lower, m.name_lower), False))
-                self.write_gtkdoc_deprecated_and_since_and_close(m, self.outfile, 2)
+                self.write_ctkdoc_deprecated_and_since_and_close(m, self.outfile, 2)
                 if m.unix_fd:
                     extra_args = 2
                 else:
@@ -1563,7 +1563,7 @@ class CodeGenerator:
                         '   *\n'
                         '   * On the service-side, this signal can be used with e.g. g_signal_emit_by_name() to make the object emit the D-Bus signal.\n'
                         %(i.name, s.name), False))
-                self.write_gtkdoc_deprecated_and_since_and_close(s, self.outfile, 2)
+                self.write_ctkdoc_deprecated_and_since_and_close(s, self.outfile, 2)
                 self.outfile.write('  g_signal_new ("%s",\n'
                                    '    G_TYPE_FROM_INTERFACE (iface),\n'
                                    '    G_SIGNAL_RUN_LAST,\n'
@@ -1598,7 +1598,7 @@ class CodeGenerator:
                         '   *\n'
                         '   * %s\n'
                         %(i.camel_name, p.name_hyphen, i.name, p.name, hint), False))
-                self.write_gtkdoc_deprecated_and_since_and_close(p, self.outfile, 2)
+                self.write_ctkdoc_deprecated_and_since_and_close(p, self.outfile, 2)
                 self.outfile.write('  g_object_interface_install_property (iface,\n')
                 if p.arg.gtype == 'G_TYPE_VARIANT':
                     s = 'g_param_spec_variant ("%s", "%s", "%s", G_VARIANT_TYPE ("%s"), NULL'%(p.name_hyphen, p.name, p.name, p.arg.signature)
@@ -1675,7 +1675,7 @@ class CodeGenerator:
                                    %(i.name_lower, p.name_lower))
             else:
                 self.outfile.write(' * Returns: The property value.\n')
-            self.write_gtkdoc_deprecated_and_since_and_close(p, self.outfile, 0)
+            self.write_ctkdoc_deprecated_and_since_and_close(p, self.outfile, 0)
             self.outfile.write('%s\n'
                                '%s_get_%s (%s *object)\n'
                                '{\n'%(p.arg.ctype_in, i.name_lower, p.name_lower, i.camel_name))
@@ -1695,7 +1695,7 @@ class CodeGenerator:
                         ' *\n'
                         ' * Returns: (transfer full) (nullable): The property value or %%NULL if the property is not set. The returned value should be freed with %s().\n'
                         %(i.name_lower, p.name_lower, i.camel_name, i.name, p.name, hint, p.arg.free_func), False))
-                self.write_gtkdoc_deprecated_and_since_and_close(p, self.outfile, 0)
+                self.write_ctkdoc_deprecated_and_since_and_close(p, self.outfile, 0)
                 self.outfile.write('%s\n'
                                    '%s_dup_%s (%s *object)\n'
                                    '{\n'
@@ -1724,7 +1724,7 @@ class CodeGenerator:
                     ' *\n'
                     ' * %s\n'
                     %(i.name_lower, p.name_lower, i.camel_name, i.name, p.name, hint), False))
-            self.write_gtkdoc_deprecated_and_since_and_close(p, self.outfile, 0)
+            self.write_ctkdoc_deprecated_and_since_and_close(p, self.outfile, 0)
             self.outfile.write('void\n'
                                '%s_set_%s (%s *object, %svalue)\n'
                                '{\n'%(i.name_lower, p.name_lower, i.camel_name, p.arg.ctype_in, ))
@@ -1747,7 +1747,7 @@ class CodeGenerator:
                     ' *\n'
                     ' * Emits the #%s::%s D-Bus signal.\n'
                     %(i.name, s.name), False))
-            self.write_gtkdoc_deprecated_and_since_and_close(s, self.outfile, 0)
+            self.write_ctkdoc_deprecated_and_since_and_close(s, self.outfile, 0)
             self.outfile.write('void\n'
                                '%s_emit_%s (\n'
                                '    %s *object'%(i.name_lower, s.name_lower, i.camel_name))
@@ -1791,7 +1791,7 @@ class CodeGenerator:
                     ' *\n'
                     ' * See %s_call_%s_sync() for the synchronous, blocking version of this method.\n'
                     %(i.name, m.name, i.name_lower, m.name_lower, i.name_lower, m.name_lower), False))
-            self.write_gtkdoc_deprecated_and_since_and_close(m, self.outfile, 0)
+            self.write_ctkdoc_deprecated_and_since_and_close(m, self.outfile, 0)
             self.outfile.write('void\n'
                                '%s_call_%s (\n'
                                '    %s *proxy'%(i.name_lower, m.name_lower, i.camel_name))
@@ -1849,7 +1849,7 @@ class CodeGenerator:
                     ' *\n'
                     ' * Returns: (skip): %%TRUE if the call succeeded, %%FALSE if @error is set.\n'
                     %(i.name_lower, m.name_lower, i.name_lower, m.name_lower), False))
-            self.write_gtkdoc_deprecated_and_since_and_close(m, self.outfile, 0)
+            self.write_ctkdoc_deprecated_and_since_and_close(m, self.outfile, 0)
             self.outfile.write('gboolean\n'
                                '%s_call_%s_finish (\n'
                                '    %s *proxy'%(i.name_lower, m.name_lower, i.camel_name))
@@ -1911,7 +1911,7 @@ class CodeGenerator:
                     ' *\n'
                     ' * Returns: (skip): %%TRUE if the call succeeded, %%FALSE if @error is set.\n'
                     %(i.name, m.name, i.name_lower, m.name_lower), False))
-            self.write_gtkdoc_deprecated_and_since_and_close(m, self.outfile, 0)
+            self.write_ctkdoc_deprecated_and_since_and_close(m, self.outfile, 0)
             self.outfile.write('gboolean\n'
                                '%s_call_%s_sync (\n'
                                '    %s *proxy'%(i.name_lower, m.name_lower, i.camel_name))
@@ -1989,7 +1989,7 @@ class CodeGenerator:
                     ' *\n'
                     ' * This method will free @invocation, you cannot use it afterwards.\n'
                     %(i.name, m.name), False))
-            self.write_gtkdoc_deprecated_and_since_and_close(m, self.outfile, 0)
+            self.write_ctkdoc_deprecated_and_since_and_close(m, self.outfile, 0)
             self.outfile.write('void\n'
                                '%s_complete_%s (\n'
                                '    %s *object,\n'
@@ -2032,7 +2032,7 @@ class CodeGenerator:
                 ' *\n'
                 ' * The #%sProxy structure contains only private data and should only be accessed using the provided API.\n'
                 %(i.camel_name, i.camel_name), False))
-        self.write_gtkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
+        self.write_ctkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
         self.outfile.write('\n')
 
         self.outfile.write(self.docbook_gen.expand(
@@ -2042,7 +2042,7 @@ class CodeGenerator:
                 ' *\n'
                 ' * Class structure for #%sProxy.\n'
                 %(i.camel_name, i.camel_name), False))
-        self.write_gtkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
+        self.write_ctkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
         self.outfile.write('\n')
 
         self.outfile.write('struct _%sProxyPrivate\n'
@@ -2353,7 +2353,7 @@ class CodeGenerator:
                 ' *\n'
                 ' * See %s_proxy_new_sync() for the synchronous, blocking version of this constructor.\n'
                 %(i.name_lower, i.name, i.name_lower, i.name_lower), False))
-        self.write_gtkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
+        self.write_ctkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
         self.outfile.write('void\n'
                            '%s_proxy_new (\n'
                            '    GDBusConnection     *connection,\n'
@@ -2377,7 +2377,7 @@ class CodeGenerator:
                            ' *\n'
                            ' * Returns: (transfer full) (type %sProxy): The constructed proxy object or %%NULL if @error is set.\n'
                            %(i.name_lower, i.name_lower, i.name_lower, i.camel_name))
-        self.write_gtkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
+        self.write_ctkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
         self.outfile.write('%s *\n'
                            '%s_proxy_new_finish (\n'
                            '    GAsyncResult        *res,\n'
@@ -2413,7 +2413,7 @@ class CodeGenerator:
                 ' *\n'
                 ' * Returns: (transfer full) (type %sProxy): The constructed proxy object or %%NULL if @error is set.\n'
                 %(i.name_lower, i.name, i.name_lower, i.camel_name), False))
-        self.write_gtkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
+        self.write_ctkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
         self.outfile.write('%s *\n'
                            '%s_proxy_new_sync (\n'
                            '    GDBusConnection     *connection,\n'
@@ -2451,7 +2451,7 @@ class CodeGenerator:
                 ' *\n'
                 ' * See %s_proxy_new_for_bus_sync() for the synchronous, blocking version of this constructor.\n'
                 %(i.name_lower, i.name_lower, i.name_lower, i.name_lower), False))
-        self.write_gtkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
+        self.write_ctkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
         self.outfile.write('void\n'
                            '%s_proxy_new_for_bus (\n'
                            '    GBusType             bus_type,\n'
@@ -2475,7 +2475,7 @@ class CodeGenerator:
                            ' *\n'
                            ' * Returns: (transfer full) (type %sProxy): The constructed proxy object or %%NULL if @error is set.\n'
                            %(i.name_lower, i.name_lower, i.name_lower, i.camel_name))
-        self.write_gtkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
+        self.write_ctkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
         self.outfile.write('%s *\n'
                            '%s_proxy_new_for_bus_finish (\n'
                            '    GAsyncResult        *res,\n'
@@ -2511,7 +2511,7 @@ class CodeGenerator:
                 ' *\n'
                 ' * Returns: (transfer full) (type %sProxy): The constructed proxy object or %%NULL if @error is set.\n'
                 %(i.name_lower, i.name_lower, i.name_lower, i.camel_name), False))
-        self.write_gtkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
+        self.write_ctkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
         self.outfile.write('%s *\n'
                            '%s_proxy_new_for_bus_sync (\n'
                            '    GBusType             bus_type,\n'
@@ -2545,7 +2545,7 @@ class CodeGenerator:
                 ' *\n'
                 ' * The #%sSkeleton structure contains only private data and should only be accessed using the provided API.\n'
                 %(i.camel_name, i.camel_name), False))
-        self.write_gtkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
+        self.write_ctkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
         self.outfile.write('\n')
 
         self.outfile.write(self.docbook_gen.expand(
@@ -2555,7 +2555,7 @@ class CodeGenerator:
                 ' *\n'
                 ' * Class structure for #%sSkeleton.\n'
                 %(i.camel_name, i.camel_name), False))
-        self.write_gtkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
+        self.write_ctkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
         self.outfile.write('\n')
 
         self.outfile.write('struct _%sSkeletonPrivate\n'
@@ -3131,7 +3131,7 @@ class CodeGenerator:
                 ' *\n'
                 ' * Returns: (transfer full) (type %sSkeleton): The skeleton object.\n'
                 %(i.name_lower, i.name, i.camel_name), False))
-        self.write_gtkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
+        self.write_ctkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
         self.outfile.write('%s *\n'
                            '%s_skeleton_new (void)\n'
                            '{\n'
@@ -3194,7 +3194,7 @@ class CodeGenerator:
                     '   *\n'
                     '   * Connect to the #GObject::notify signal to get informed of property changes.\n'
                     %(self.namespace, i.name_hyphen, i.camel_name, i.name), False))
-            self.write_gtkdoc_deprecated_and_since_and_close(i, self.outfile, 2)
+            self.write_ctkdoc_deprecated_and_since_and_close(i, self.outfile, 2)
             flags = 'G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS'
             if i.deprecated:
                 flags = 'G_PARAM_DEPRECATED | ' + flags
@@ -3214,7 +3214,7 @@ class CodeGenerator:
                     ' *\n'
                     ' * Returns: (transfer full) (nullable): A #%s that must be freed with g_object_unref() or %%NULL if @object does not implement the interface.\n'
                     %(self.ns_lower, i.name_upper.lower(), self.namespace, i.camel_name, i.name, i.camel_name), False))
-            self.write_gtkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
+            self.write_ctkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
             self.outfile.write('%s *%sobject_get_%s (%sObject *object)\n'
                                %(i.camel_name, self.ns_lower, i.name_upper.lower(), self.namespace))
             self.outfile.write('{\n'
@@ -3239,7 +3239,7 @@ class CodeGenerator:
                     ' *\n'
                     ' * Returns: (transfer none) (nullable): A #%s or %%NULL if @object does not implement the interface. Do not free the returned object, it is owned by @object.\n'
                     %(self.ns_lower, i.name_upper.lower(), self.namespace, self.ns_lower, i.name_upper.lower(), i.camel_name), False))
-            self.write_gtkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
+            self.write_ctkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
             self.outfile.write('%s *%sobject_peek_%s (%sObject *object)\n'
                                %(i.camel_name, self.ns_lower, i.name_upper.lower(), self.namespace))
             self.outfile.write('{\n'
@@ -3536,7 +3536,7 @@ class CodeGenerator:
                     ' *\n'
                     ' * Sets the #%s instance for the D-Bus interface #%s on @object.\n'
                     %(self.ns_lower, i.name_upper.lower(), self.namespace, i.camel_name, i.camel_name, i.name), False))
-            self.write_gtkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
+            self.write_ctkdoc_deprecated_and_since_and_close(i, self.outfile, 0)
             self.outfile.write('void %sobject_skeleton_set_%s (%sObjectSkeleton *object, %s *interface_)\n'
                                %(self.ns_lower, i.name_upper.lower(), self.namespace, i.camel_name))
             self.outfile.write('{\n'
@@ -3840,7 +3840,7 @@ class CodeGenerator:
 
     # ---------------------------------------------------------------------------------------------------
 
-    def write_gtkdoc_deprecated_and_since_and_close(self, obj, f, indent):
+    def write_ctkdoc_deprecated_and_since_and_close(self, obj, f, indent):
         if len(obj.since) > 0:
             f.write('%*s *\n'
                     '%*s * Since: %s\n'

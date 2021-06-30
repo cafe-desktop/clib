@@ -1,5 +1,5 @@
 <schemalist>
-  <enum id='org.gtk.test.MyEnum'>
+  <enum id='org.ctk.test.MyEnum'>
     <value nick='nospam' value='*'/>
     <value nick='spam' value='1'/>
     <value nick='ham' value='2'/>

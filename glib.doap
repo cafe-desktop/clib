@@ -10,9 +10,9 @@
 
   <shortdesc xml:lang="en">Low level core library</shortdesc>
 
-  <description xml:lang="en">GLib is the low-level core library that forms the basis for projects such as GTK+ and GNOME. It provides data structure handling for C, portability wrappers, and interfaces for such runtime functionality as an event loop, threads, dynamic loading, and an object system.</description>
+  <description xml:lang="en">GLib is the low-level core library that forms the basis for projects such as CTK+ and GNOME. It provides data structure handling for C, portability wrappers, and interfaces for such runtime functionality as an event loop, threads, dynamic loading, and an object system.</description>
 
-  <homepage rdf:resource="http://www.gtk.org" />
+  <homepage rdf:resource="http://www.ctk.org" />
   <license rdf:resource="http://usefulinc.com/doap/licenses/lgpl" />
   <bug-database rdf:resource="https://gitlab.gnome.org/GNOME/glib/issues/new"/>
   <download-page rdf:resource="http://download.gnome.org/sources/glib/" />

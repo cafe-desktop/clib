@@ -286,10 +286,10 @@ g_dbus_action_group_async_init (GDBusActionGroup *group)
     return;
 
   group->subscription_id =
-    g_dbus_connection_signal_subscribe (group->connection, group->bus_name, "org.gtk.Actions", "Changed", group->object_path,
+    g_dbus_connection_signal_subscribe (group->connection, group->bus_name, "org.ctk.Actions", "Changed", group->object_path,
                                         NULL, G_DBUS_SIGNAL_FLAGS_NONE, g_dbus_action_group_changed, group, NULL);
 
-  g_dbus_connection_call (group->connection, group->bus_name, group->object_path, "org.gtk.Actions", "DescribeAll", NULL,
+  g_dbus_connection_call (group->connection, group->bus_name, group->object_path, "org.ctk.Actions", "DescribeAll", NULL,
                           G_VARIANT_TYPE ("(a{s(bgav)})"), G_DBUS_CALL_FLAGS_NONE, -1, NULL,
                           g_dbus_action_group_describe_all_done, g_object_ref (group));
 }
@@ -388,7 +388,7 @@ g_dbus_action_group_activate_action_full (GRemoteActionGroup *remote,
   if (parameter)
     g_variant_builder_add (&builder, "v", parameter);
 
-  g_dbus_connection_call (group->connection, group->bus_name, group->object_path, "org.gtk.Actions", "Activate",
+  g_dbus_connection_call (group->connection, group->bus_name, group->object_path, "org.ctk.Actions", "Activate",
                           g_variant_new ("(sav@a{sv})", action_name, &builder, platform_data),
                           NULL, G_DBUS_CALL_FLAGS_NONE, -1, NULL, NULL, NULL);
 }
@@ -401,7 +401,7 @@ g_dbus_action_group_change_action_state_full (GRemoteActionGroup *remote,
 {
   GDBusActionGroup *group = G_DBUS_ACTION_GROUP (remote);
 
-  g_dbus_connection_call (group->connection, group->bus_name, group->object_path, "org.gtk.Actions", "SetState",
+  g_dbus_connection_call (group->connection, group->bus_name, group->object_path, "org.ctk.Actions", "SetState",
                           g_variant_new ("(sv@a{sv})", action_name, value, platform_data),
                           NULL, G_DBUS_CALL_FLAGS_NONE, -1, NULL, NULL, NULL);
 }
@@ -524,10 +524,10 @@ g_dbus_action_group_sync (GDBusActionGroup  *group,
   g_assert (group->subscription_id == 0);
 
   group->subscription_id =
-    g_dbus_connection_signal_subscribe (group->connection, group->bus_name, "org.gtk.Actions", "Changed", group->object_path,
+    g_dbus_connection_signal_subscribe (group->connection, group->bus_name, "org.ctk.Actions", "Changed", group->object_path,
                                         NULL, G_DBUS_SIGNAL_FLAGS_NONE, g_dbus_action_group_changed, group, NULL);
 
-  reply = g_dbus_connection_call_sync (group->connection, group->bus_name, group->object_path, "org.gtk.Actions",
+  reply = g_dbus_connection_call_sync (group->connection, group->bus_name, group->object_path, "org.ctk.Actions",
                                        "DescribeAll", NULL, G_VARIANT_TYPE ("(a{s(bgav)})"),
                                        G_DBUS_CALL_FLAGS_NONE, -1, cancellable, error);
 

@@ -554,7 +554,7 @@ g_dbus_gvalue_to_gvariant (const GValue       *gvalue,
   ret = NULL;
 
   /* @type can easily be e.g. "s" with the GValue holding a GVariant - for example this
-   * can happen when using the org.gtk.GDBus.C.ForceGVariant annotation with the
+   * can happen when using the org.ctk.GDBus.C.ForceGVariant annotation with the
    * gdbus-codegen(1) tool.
    */
   if (G_VALUE_TYPE (gvalue) == G_TYPE_VARIANT)

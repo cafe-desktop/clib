@@ -2708,8 +2708,8 @@ notify_desktop_launch (GDBusConnection  *session_bus,
   else
     desktop_file_id = "";
 
-  msg = g_dbus_message_new_signal ("/org/gtk/gio/DesktopAppInfo",
-                                   "org.gtk.gio.DesktopAppInfo",
+  msg = g_dbus_message_new_signal ("/org/ctk/gio/DesktopAppInfo",
+                                   "org.ctk.gio.DesktopAppInfo",
                                    "Launched");
   g_dbus_message_set_body (msg, g_variant_new ("(@aysxasa{sv})",
                                                g_variant_new_bytestring (desktop_file_id),

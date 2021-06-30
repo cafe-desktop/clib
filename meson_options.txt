@@ -64,10 +64,10 @@ option('sysprof',
        value : 'disabled',
        description : 'include tracing support for sysprof')
 
-option('gtk_doc',
+option('ctk_doc',
        type : 'boolean',
        value : false,
-       description : 'use gtk-doc to build documentation')
+       description : 'use ctk-doc to build documentation')
 
 option('bsymbolic_functions',
        type : 'boolean',

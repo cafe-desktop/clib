@@ -456,7 +456,7 @@ G_END_DECLS
             <node>
               <interface name="FDPassing">
                 <method name="HelloFD">
-                  <annotation name="org.gtk.GDBus.C.UnixFD" value="1"/>
+                  <annotation name="org.ctk.GDBus.C.UnixFD" value="1"/>
                   <arg name="greeting" direction="in" type="s"/>
                   <arg name="response" direction="out" type="s"/>
                 </method>

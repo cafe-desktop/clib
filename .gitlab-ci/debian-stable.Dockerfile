@@ -15,7 +15,7 @@ RUN apt-get update -qq && apt-get install --no-install-recommends -qq -y \
     gettext \
     git \
     libc6-dev \
-    gtk-doc-tools \
+    ctk-doc-tools \
     itstool \
     lcov \
     libattr1-dev \

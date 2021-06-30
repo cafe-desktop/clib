@@ -24,7 +24,7 @@ glib-mkenums comes with ABSOLUTELY NO WARRANTY.
 You may redistribute copies of glib-mkenums under the terms of
 the GNU General Public License which can be found in the
 GLib source package. Sources, examples and contact
-information are available at http://www.gtk.org'''
+information are available at http://www.ctk.org'''
 
 # pylint: disable=too-few-public-methods
 class Color:
@@ -270,8 +270,8 @@ help_epilog = '''Production text substitutions:
 
 
 # production variables:
-idprefix = ""    # "G", "Gtk", etc
-symprefix = ""   # "g", "gtk", etc, if not just lc($idprefix)
+idprefix = ""    # "G", "Ctk", etc
+symprefix = ""   # "g", "ctk", etc, if not just lc($idprefix)
 fhead = ""   # output file header
 fprod = ""   # per input file production
 ftail = ""   # output file trailer

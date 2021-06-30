@@ -56,7 +56,7 @@ main (int argc, char **argv)
     { NULL }
   };
 
-  app = g_application_new ("org.gtk.TestApplication",
+  app = g_application_new ("org.ctk.TestApplication",
                            G_APPLICATION_HANDLES_COMMAND_LINE);
 
   g_application_add_main_option_entries (app, entries);

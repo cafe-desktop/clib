@@ -87,11 +87,11 @@
  *
  * This is similar to how instances of abstract classes may not
  * directly exist in other type systems, but instances of their
- * non-abstract subtypes may.  For example, in GTK, no object that has
- * the type of #GtkBin can exist (since #GtkBin is an abstract class),
- * but a #GtkWindow can certainly be instantiated, and you would say
- * that the #GtkWindow is a #GtkBin (since #GtkWindow is a subclass of
- * #GtkBin).
+ * non-abstract subtypes may.  For example, in CTK, no object that has
+ * the type of #CtkBin can exist (since #CtkBin is an abstract class),
+ * but a #CtkWindow can certainly be instantiated, and you would say
+ * that the #CtkWindow is a #CtkBin (since #CtkWindow is a subclass of
+ * #CtkBin).
  *
  * ## GVariant Type Strings
  *

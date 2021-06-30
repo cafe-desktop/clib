@@ -372,7 +372,7 @@ instead of the standard one.
 There is also a new command called gforeach that can be used to apply a command
 on each item in a list. E.g. you can do
 <programlisting>
-gforeach i in some_list_variable: print *(GtkWidget *)l
+gforeach i in some_list_variable: print *(CtkWidget *)l
 </programlisting>
 Which would print the contents of each widget in a list of widgets.
 </para>

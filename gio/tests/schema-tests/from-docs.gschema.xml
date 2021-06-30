@@ -6,7 +6,7 @@
     <value nick="second" value="2"/>
   </enum>
 
-  <schema id="org.gtk.test">
+  <schema id="org.ctk.test">
 
     <key name="key-with-range" type="i">
       <range min="1" max="100"/>

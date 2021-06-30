@@ -321,7 +321,7 @@ test_g_file_new_for_commandline_arg (void)
       {"//UTF-8 p\xc5\x99\xc3\xadli\xc5\xa1 \xc5\xbelu\xc5\xa5ou\xc4\x8dk\xc3\xbd k\xc5\xaf\xc5\x88", 0, FALSE, "file"},
       {"file:///UTF-8%20p%C5%99%C3%ADli%C5%A1%20%C5%BElu%C5%A5ou%C4%8Dk%C3%BD%20k%C5%AF%C5%88/", 0, FALSE, "file"},
 #if 0
-      {"http://www.gtk.org/", 0, TRUE, "http"},
+      {"http://www.ctk.org/", 0, TRUE, "http"},
       {"ftp://user:pass@ftp.gimp.org/", 0, TRUE, "ftp"},
 #endif
     };
@@ -417,8 +417,8 @@ test_g_file_has_prefix (void)
       {"file:////dir1/new", TRUE, TRUE, "file:////dir1/new/dir2/dir3", "dir2" G_DIR_SEPARATOR_S "dir3"},
       {"file:///dir/UTF-8%20p%C5%99%C3%ADli%C5%A1%20%C5%BElu%C5%A5ou%C4%8Dk%C3%BD%20k%C5%AF%C5%88", TRUE, TRUE, "file:///dir/UTF-8%20p%C5%99%C3%ADli%C5%A1%20%C5%BElu%C5%A5ou%C4%8Dk%C3%BD%20k%C5%AF%C5%88/dir2", "dir2"},
 #if 0
-      {"dav://www.gtk.org/plan/", TRUE, TRUE, "dav://www.gtk.org/plan/meetings/20071218.txt", "meetings/20071218.txt"},
-      {"dav://www.gtk.org/plan/meetings", TRUE, TRUE, "dav://www.gtk.org/plan/meetings/20071218.txt", "20071218.txt"},
+      {"dav://www.ctk.org/plan/", TRUE, TRUE, "dav://www.ctk.org/plan/meetings/20071218.txt", "meetings/20071218.txt"},
+      {"dav://www.ctk.org/plan/meetings", TRUE, TRUE, "dav://www.ctk.org/plan/meetings/20071218.txt", "20071218.txt"},
 #endif
     };
   
@@ -494,7 +494,7 @@ test_g_file_get_parent_child (void)
       {"file:///dir", FALSE, TRUE, "dir"},
       {"file:///", TRUE, TRUE, "dir"},
       {"file:///UTF-8%20p%C5%99%C3%ADli%C5%A1%20%C5%BElu%C5%A5ou%C4%8Dk%C3%BD%20k%C5%AF%C5%88/", FALSE, TRUE, "UTF-8 p\xc5\x99\xc3\xadli\xc5\xa1 \xc5\xbelu\xc5\xa5ou\xc4\x8dk\xc3\xbd k\xc5\xaf\xc5\x88"},
-      {"dav://www.gtk.org/plan/meetings", FALSE, TRUE, "meetings"},
+      {"dav://www.ctk.org/plan/meetings", FALSE, TRUE, "meetings"},
     };
 
   guint i;

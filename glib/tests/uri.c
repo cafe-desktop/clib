@@ -19,7 +19,7 @@
  * Modified by the GLib Team and others 1997-2000.  See the AUTHORS
  * file for a list of people on the GLib Team.  See the ChangeLog
  * files for a list of changes.  These files are distributed with
- * GLib at ftp://ftp.gtk.org/pub/gtk/.
+ * GLib at ftp://ftp.ctk.org/pub/ctk/.
  */
 
 #include <glib.h>
@@ -505,11 +505,11 @@ test_uri_scheme (void)
   const gchar *s1, *s2;
   gchar *s;
 
-  s = g_uri_parse_scheme ("ftp://ftp.gtk.org");
+  s = g_uri_parse_scheme ("ftp://ftp.ctk.org");
   g_assert_cmpstr (s, ==, "ftp");
   g_free (s);
 
-  s = g_uri_parse_scheme ("good-scheme.but+weird:gtk.org");
+  s = g_uri_parse_scheme ("good-scheme.but+weird:ctk.org");
   g_assert_cmpstr (s, ==, "good-scheme.but+weird");
   g_free (s);
 
@@ -524,9 +524,9 @@ test_uri_scheme (void)
   s = g_uri_parse_scheme ("+http://host/path");
   g_assert_null (s);
 
-  s1 = g_uri_peek_scheme ("ftp://ftp.gtk.org");
+  s1 = g_uri_peek_scheme ("ftp://ftp.ctk.org");
   g_assert_cmpstr (s1, ==, "ftp");
-  s2 = g_uri_peek_scheme ("FTP://ftp.gtk.org");
+  s2 = g_uri_peek_scheme ("FTP://ftp.ctk.org");
   g_assert_cmpstr (s2, ==, "ftp");
   g_assert_true (s1 == s2);
   s1 = g_uri_peek_scheme ("1bad:");

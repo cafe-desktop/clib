@@ -55,7 +55,7 @@ static GMainLoop *loop = NULL;
 
 static const gchar *test_interface_introspection_xml =
   "<node>"
-  "  <interface name='org.gtk.GDBus.PeerTestInterface'>"
+  "  <interface name='org.ctk.GDBus.PeerTestInterface'>"
   "    <method name='HelloPeer'>"
   "      <arg type='s' name='greeting' direction='in'/>"
   "      <arg type='s' name='response' direction='out'/>"

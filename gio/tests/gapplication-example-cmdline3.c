@@ -93,7 +93,7 @@ main (int argc, char **argv)
   GApplication *app;
   int status;
 
-  app = g_application_new ("org.gtk.TestApplication",
+  app = g_application_new ("org.ctk.TestApplication",
                            G_APPLICATION_HANDLES_COMMAND_LINE);
   g_signal_connect (app, "command-line", G_CALLBACK (command_line), NULL);
   g_application_set_inactivity_timeout (app, 10000);

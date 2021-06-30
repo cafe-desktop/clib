@@ -115,57 +115,57 @@ struct _GTypeModuleClass
  * allows to specify #GTypeFlags and custom code.
  * 
  * |[
- * G_DEFINE_DYNAMIC_TYPE_EXTENDED (GtkGadget,
- *                                 gtk_gadget,
- *                                 GTK_TYPE_THING,
+ * G_DEFINE_DYNAMIC_TYPE_EXTENDED (CtkGadget,
+ *                                 ctk_gadget,
+ *                                 CTK_TYPE_THING,
  *                                 0,
  *                                 G_IMPLEMENT_INTERFACE_DYNAMIC (TYPE_GIZMO,
- *                                                                gtk_gadget_gizmo_init));
+ *                                                                ctk_gadget_gizmo_init));
  * ]|
  * expands to
  * |[
- * static void     gtk_gadget_init              (GtkGadget      *self);
- * static void     gtk_gadget_class_init        (GtkGadgetClass *klass);
- * static void     gtk_gadget_class_finalize    (GtkGadgetClass *klass);
+ * static void     ctk_gadget_init              (CtkGadget      *self);
+ * static void     ctk_gadget_class_init        (CtkGadgetClass *klass);
+ * static void     ctk_gadget_class_finalize    (CtkGadgetClass *klass);
  * 
- * static gpointer gtk_gadget_parent_class = NULL;
- * static GType    gtk_gadget_type_id = 0;
+ * static gpointer ctk_gadget_parent_class = NULL;
+ * static GType    ctk_gadget_type_id = 0;
  * 
- * static void     gtk_gadget_class_intern_init (gpointer klass)
+ * static void     ctk_gadget_class_intern_init (gpointer klass)
  * {
- *   gtk_gadget_parent_class = g_type_class_peek_parent (klass); 
- *   gtk_gadget_class_init ((GtkGadgetClass*) klass); 
+ *   ctk_gadget_parent_class = g_type_class_peek_parent (klass); 
+ *   ctk_gadget_class_init ((CtkGadgetClass*) klass); 
  * }
  * 
  * GType
- * gtk_gadget_get_type (void)
+ * ctk_gadget_get_type (void)
  * {
- *   return gtk_gadget_type_id;
+ *   return ctk_gadget_type_id;
  * }
  * 
  * static void
- * gtk_gadget_register_type (GTypeModule *type_module)
+ * ctk_gadget_register_type (GTypeModule *type_module)
  * {
  *   const GTypeInfo g_define_type_info = {
- *     sizeof (GtkGadgetClass),
+ *     sizeof (CtkGadgetClass),
  *     (GBaseInitFunc) NULL,
  *     (GBaseFinalizeFunc) NULL,
- *     (GClassInitFunc) gtk_gadget_class_intern_init,
- *     (GClassFinalizeFunc) gtk_gadget_class_finalize,
+ *     (GClassInitFunc) ctk_gadget_class_intern_init,
+ *     (GClassFinalizeFunc) ctk_gadget_class_finalize,
  *     NULL,   // class_data
- *     sizeof (GtkGadget),
+ *     sizeof (CtkGadget),
  *     0,      // n_preallocs
- *     (GInstanceInitFunc) gtk_gadget_init, 
+ *     (GInstanceInitFunc) ctk_gadget_init, 
  *     NULL    // value_table
  *   };
- *   gtk_gadget_type_id = g_type_module_register_type (type_module,
- *                                                     GTK_TYPE_THING,
- *                                                     "GtkGadget",
+ *   ctk_gadget_type_id = g_type_module_register_type (type_module,
+ *                                                     CTK_TYPE_THING,
+ *                                                     "CtkGadget",
  *                                                     &g_define_type_info,
  *                                                     (GTypeFlags) flags);
  *   {
  *     const GInterfaceInfo g_implement_interface_info = {
- *       (GInterfaceInitFunc) gtk_gadget_gizmo_init
+ *       (GInterfaceInitFunc) ctk_gadget_gizmo_init
  *     };
  *     g_type_module_add_interface (type_module, g_define_type_id, TYPE_GIZMO, &g_implement_interface_info);
  *   }

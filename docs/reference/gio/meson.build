@@ -1,4 +1,4 @@
-if get_option('gtk_doc')
+if get_option('ctk_doc')
   if installed_tests_enabled
     subdir('gdbus-object-manager-example')
   endif
@@ -135,7 +135,7 @@ if get_option('gtk_doc')
     'xdp-dbus.c',
   ]
 
-  docpath = join_paths(glib_datadir, 'gtk-doc', 'html')
+  docpath = join_paths(glib_datadir, 'ctk-doc', 'html')
   version_conf = configuration_data()
   version_conf.set('VERSION', meson.project_version())
   configure_file(
@@ -186,13 +186,13 @@ if get_option('gtk_doc')
     ]
   endif
 
-  gnome.gtkdoc('gio',
+  gnome.ctkdoc('gio',
     main_xml : 'gio-docs.xml',
     namespace : 'g',
     mode : 'none',
     dependencies : [libgio_dep, libgobject_dep, libglib_dep],
     src_dir : 'gio',
-    scan_args : gtkdoc_common_scan_args + [
+    scan_args : ctkdoc_common_scan_args + [
       '--rebuild-types',
       '--ignore-headers=' + ' '.join(ignore_headers),
     ],

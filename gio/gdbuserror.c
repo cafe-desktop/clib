@@ -220,11 +220,11 @@ _g_dbus_error_decode_gerror (const gchar *dbus_name,
   ret = FALSE;
   s = NULL;
 
-  if (g_str_has_prefix (dbus_name, "org.gtk.GDBus.UnmappedGError.Quark._"))
+  if (g_str_has_prefix (dbus_name, "org.ctk.GDBus.UnmappedGError.Quark._"))
     {
       s = g_string_new (NULL);
 
-      for (n = sizeof "org.gtk.GDBus.UnmappedGError.Quark._" - 1;
+      for (n = sizeof "org.ctk.GDBus.UnmappedGError.Quark._" - 1;
            dbus_name[n] != '.' && dbus_name[n] != '\0';
            n++)
         {
@@ -794,7 +794,7 @@ g_dbus_error_strip_remote_error (GError *error)
  * D-Bus error name will be returned.
  *
  * Otherwise the a name of the form
- * `org.gtk.GDBus.UnmappedGError.Quark._ESCAPED_QUARK_NAME.Code_ERROR_CODE`
+ * `org.ctk.GDBus.UnmappedGError.Quark._ESCAPED_QUARK_NAME.Code_ERROR_CODE`
  * will be used. This allows other GDBus applications to map the error
  * on the wire back to a #GError using g_dbus_error_new_for_dbus_error().
  *
@@ -850,7 +850,7 @@ g_dbus_error_encode_gerror (const GError *error)
       /* 0 is not a domain; neither are non-quark integers */
       g_return_val_if_fail (domain_as_string != NULL, NULL);
 
-      s = g_string_new ("org.gtk.GDBus.UnmappedGError.Quark._");
+      s = g_string_new ("org.ctk.GDBus.UnmappedGError.Quark._");
       for (n = 0; domain_as_string[n] != 0; n++)
         {
           gint c = domain_as_string[n];

@@ -78,7 +78,7 @@ static GDBusNodeInfo *introspection_data = NULL;
 /* Introspection data for the service we are exporting */
 static const gchar introspection_xml[] =
   "<node>"
-  "  <interface name='org.gtk.GDBus.TestPeerInterface'>"
+  "  <interface name='org.ctk.GDBus.TestPeerInterface'>"
   "    <method name='HelloWorld'>"
   "      <arg type='s' name='greeting' direction='in'/>"
   "      <arg type='s' name='response' direction='out'/>"
@@ -156,7 +156,7 @@ on_new_connection (GDBusServer *server,
   g_object_ref (connection);
   g_signal_connect (connection, "closed", G_CALLBACK (connection_closed), NULL);
   registration_id = g_dbus_connection_register_object (connection,
-                                                       "/org/gtk/GDBus/TestObject",
+                                                       "/org/ctk/GDBus/TestObject",
                                                        introspection_data->interfaces[0],
                                                        &interface_vtable,
                                                        NULL,  /* user_data */
@@ -363,8 +363,8 @@ main (int argc, char *argv[])
                                   g_get_real_time () / G_USEC_PER_SEC);
       value = g_dbus_connection_call_sync (connection,
                                            NULL, /* bus_name */
-                                           "/org/gtk/GDBus/TestObject",
-                                           "org.gtk.GDBus.TestPeerInterface",
+                                           "/org/ctk/GDBus/TestObject",
+                                           "org.ctk.GDBus.TestPeerInterface",
                                            "HelloWorld",
                                            g_variant_new ("(s)", greeting),
                                            G_VARIANT_TYPE ("(s)"),

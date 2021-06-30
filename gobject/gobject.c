@@ -40,7 +40,7 @@
  * @see_also: #GParamSpecObject, g_param_spec_object()
  *
  * GObject is the fundamental type providing the common attributes and
- * methods for all object types in GTK+, Pango and other libraries
+ * methods for all object types in CTK+, Pango and other libraries
  * based on GObject.  The GObject class provides methods for object
  * construction and destruction, property access methods, and signal
  * support.  Signals are described in detail [here][gobject-Signals].
@@ -109,7 +109,7 @@
  * ]|
  *
  * Some object implementations may need to save an objects floating state
- * across certain code portions (an example is #GtkMenu), to achieve this,
+ * across certain code portions (an example is #CtkMenu), to achieve this,
  * the following sequence can be used:
  *
  * |[<!-- language="C" --> 
@@ -539,7 +539,7 @@ g_object_do_class_init (GObjectClass *class)
    * g_signal_connect() call, like this:
    * |[<!-- language="C" --> 
    * g_signal_connect (text_view->buffer, "notify::paste-target-list",
-   *                   G_CALLBACK (gtk_text_view_target_list_notify),
+   *                   G_CALLBACK (ctk_text_view_target_list_notify),
    *                   text_view)
    * ]|
    * It is important to note that you must use
@@ -1668,10 +1668,10 @@ object_interface_check_properties (gpointer check_data,
        * need to return items of this type -- but may be more
        * restrictive.  For example, it is legal to have:
        *
-       *   GtkWidget *get_item();
+       *   CtkWidget *get_item();
        *
        * that is implemented by a function that always returns a
-       * GtkEntry.  In short: readability implies that the
+       * CtkEntry.  In short: readability implies that the
        * implementation  value type must be equal or more restrictive.
        *
        * Similarly, if the property on the interface is writable then
@@ -1679,10 +1679,10 @@ object_interface_check_properties (gpointer check_data,
        * that type, including subclasses.  In this case, we may also be
        * less restrictive.  For example, it is legal to have:
        *
-       *   set_item (GtkEntry *);
+       *   set_item (CtkEntry *);
        *
        * that is implemented by a function that will actually work with
-       * any GtkWidget.  In short: writability implies that the
+       * any CtkWidget.  In short: writability implies that the
        * implementation value type must be equal or less restrictive.
        *
        * In the case that the property is both readable and writable
@@ -2784,13 +2784,13 @@ g_object_get_property (GObject	   *object,
  * - swapped_object_signal_after, swapped-object-signal-after: equivalent to g_signal_connect_object (..., G_CONNECT_SWAPPED | G_CONNECT_AFTER)
  *
  * |[<!-- language="C" --> 
- *   menu->toplevel = g_object_connect (g_object_new (GTK_TYPE_WINDOW,
- * 						   "type", GTK_WINDOW_POPUP,
+ *   menu->toplevel = g_object_connect (g_object_new (CTK_TYPE_WINDOW,
+ * 						   "type", CTK_WINDOW_POPUP,
  * 						   "child", menu,
  * 						   NULL),
- * 				     "signal::event", gtk_menu_window_event, menu,
- * 				     "signal::size_request", gtk_menu_window_size_request, menu,
- * 				     "signal::destroy", gtk_widget_destroyed, &menu->toplevel,
+ * 				     "signal::event", ctk_menu_window_event, menu,
+ * 				     "signal::size_request", ctk_menu_window_size_request, menu,
+ * 				     "signal::destroy", ctk_widget_destroyed, &menu->toplevel,
  * 				     NULL);
  * ]|
  *
@@ -4424,10 +4424,10 @@ g_object_compat_control (gsize           what,
       gpointer *pp;
     case 1:     /* floating base type */
       return G_TYPE_INITIALLY_UNOWNED;
-    case 2:     /* FIXME: remove this once GLib/Gtk+ break ABI again */
+    case 2:     /* FIXME: remove this once GLib/Ctk+ break ABI again */
       floating_flag_handler = (guint(*)(GObject*,gint)) data;
       return 1;
-    case 3:     /* FIXME: remove this once GLib/Gtk+ break ABI again */
+    case 3:     /* FIXME: remove this once GLib/Ctk+ break ABI again */
       pp = data;
       *pp = floating_flag_handler;
       return 1;

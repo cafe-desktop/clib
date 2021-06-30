@@ -74,7 +74,7 @@
  * and must not contain two sequential slash characters.  Paths should
  * be chosen based on a domain name associated with the program or
  * library to which the settings belong.  Examples of paths are
- * "/org/gtk/settings/file-chooser/" and "/ca/desrt/dconf-editor/".
+ * "/org/ctk/settings/file-chooser/" and "/ca/desrt/dconf-editor/".
  * Paths should not start with "/apps/", "/desktop/" or "/system/" as
  * they often did in GConf.
  *
@@ -146,7 +146,7 @@
  * An example for default value:
  * |[
  * <schemalist>
- *   <schema id="org.gtk.Test" path="/org/gtk/Test/" gettext-domain="test">
+ *   <schema id="org.ctk.Test" path="/org/ctk/Test/" gettext-domain="test">
  *
  *     <key name="greeting" type="s">
  *       <default l10n="messages">"Hello, earthlings"</default>
@@ -173,18 +173,18 @@
  * |[
  * <schemalist>
  *
- *   <enum id="org.gtk.Test.myenum">
+ *   <enum id="org.ctk.Test.myenum">
  *     <value nick="first" value="1"/>
  *     <value nick="second" value="2"/>
  *   </enum>
  *
- *   <flags id="org.gtk.Test.myflags">
+ *   <flags id="org.ctk.Test.myflags">
  *     <value nick="flag1" value="1"/>
  *     <value nick="flag2" value="2"/>
  *     <value nick="flag3" value="4"/>
  *   </flags>
  *
- *   <schema id="org.gtk.Test">
+ *   <schema id="org.ctk.Test">
  *
  *     <key name="key-with-range" type="i">
  *       <range min="1" max="100"/>
@@ -204,11 +204,11 @@
  *       <default>'Joe'</default>
  *     </key>
  *
- *     <key name='enumerated-key' enum='org.gtk.Test.myenum'>
+ *     <key name='enumerated-key' enum='org.ctk.Test.myenum'>
  *       <default>'first'</default>
  *     </key>
  *
- *     <key name='flags-key' flags='org.gtk.Test.myflags'>
+ *     <key name='flags-key' flags='org.ctk.Test.myflags'>
  *       <default>["flag1","flag2"]</default>
  *     </key>
  *   </schema>
@@ -227,7 +227,7 @@
  * as the group name in the key file, and the values are expected in
  * serialized GVariant form, as in the following example:
  * |[
- *     [org.gtk.Example]
+ *     [org.ctk.Example]
  *     key1='string'
  *     key2=1.5
  * ]|

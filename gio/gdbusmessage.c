@@ -3453,8 +3453,8 @@ _sort_keys_func (gconstpointer a,
  * Version: 0
  * Serial:  4
  * Headers:
- *   path -> objectpath '/org/gtk/GDBus/TestObject'
- *   interface -> 'org.gtk.GDBus.TestInterface'
+ *   path -> objectpath '/org/ctk/GDBus/TestObject'
+ *   interface -> 'org.ctk.GDBus.TestInterface'
  *   member -> 'GimmeStdout'
  *   destination -> ':1.146'
  * Body: ()

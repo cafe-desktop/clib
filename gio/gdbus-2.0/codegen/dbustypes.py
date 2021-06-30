@@ -31,7 +31,7 @@ class Annotation:
 
     def post_process(self, interface_prefix, cns, cns_upper, cns_lower, container):
         key = self.key
-        overridden_key = utils.lookup_annotation(self.annotations, 'org.gtk.GDBus.C.Name')
+        overridden_key = utils.lookup_annotation(self.annotations, 'org.ctk.GDBus.C.Name')
         if utils.is_ugly_case(overridden_key):
             self.key_lower = overridden_key.lower()
         else:
@@ -76,7 +76,7 @@ class Arg:
         self.gvalue_get = 'g_value_get_variant'
         self.array_annotation = ''
 
-        if not utils.lookup_annotation(self.annotations, 'org.gtk.GDBus.C.ForceGVariant'):
+        if not utils.lookup_annotation(self.annotations, 'org.ctk.GDBus.C.ForceGVariant'):
             if self.signature == 'b':
                 self.ctype_in_g  = 'gboolean '
                 self.ctype_in  = 'gboolean '
@@ -272,7 +272,7 @@ class Method:
                 self.since = containing_iface.since
 
         name = self.name
-        overridden_name = utils.lookup_annotation(self.annotations, 'org.gtk.GDBus.C.Name')
+        overridden_name = utils.lookup_annotation(self.annotations, 'org.ctk.GDBus.C.Name')
         if utils.is_ugly_case(overridden_name):
             self.name_lower = overridden_name.lower()
         else:
@@ -297,7 +297,7 @@ class Method:
         if utils.lookup_annotation(self.annotations, 'org.freedesktop.DBus.Deprecated') == 'true':
             self.deprecated = True
 
-        if utils.lookup_annotation(self.annotations, 'org.gtk.GDBus.C.UnixFD'):
+        if utils.lookup_annotation(self.annotations, 'org.ctk.GDBus.C.UnixFD'):
             self.unix_fd = True
 
         for a in self.annotations:
@@ -321,7 +321,7 @@ class Signal:
                 self.since = containing_iface.since
 
         name = self.name
-        overridden_name = utils.lookup_annotation(self.annotations, 'org.gtk.GDBus.C.Name')
+        overridden_name = utils.lookup_annotation(self.annotations, 'org.ctk.GDBus.C.Name')
         if utils.is_ugly_case(overridden_name):
             self.name_lower = overridden_name.lower()
         else:
@@ -374,7 +374,7 @@ class Property:
                 self.since = containing_iface.since
 
         name = self.name
-        overridden_name = utils.lookup_annotation(self.annotations, 'org.gtk.GDBus.C.Name')
+        overridden_name = utils.lookup_annotation(self.annotations, 'org.ctk.GDBus.C.Name')
         if utils.is_ugly_case(overridden_name):
             self.name_lower = overridden_name.lower()
         else:
@@ -436,7 +436,7 @@ class Interface:
             cns_upper = ''
             cns_lower = ''
 
-        overridden_name = utils.lookup_annotation(self.annotations, 'org.gtk.GDBus.C.Name')
+        overridden_name = utils.lookup_annotation(self.annotations, 'org.ctk.GDBus.C.Name')
         if utils.is_ugly_case(overridden_name):
             name = overridden_name.replace('_', '')
             name_with_ns = cns + name

@@ -22,7 +22,7 @@
  * Modified by the GLib Team and others 1997-2000.  See the AUTHORS
  * file for a list of people on the GLib Team.  See the ChangeLog
  * files for a list of changes.  These files are distributed with
- * GLib at ftp://ftp.gtk.org/pub/gtk/.
+ * GLib at ftp://ftp.ctk.org/pub/ctk/.
  */
 
 /*
@@ -109,7 +109,7 @@
  * @short_description: manages all available sources of events
  *
  * The main event loop manages all the available sources of events for
- * GLib and GTK+ applications. These events can come from any number of
+ * GLib and CTK+ applications. These events can come from any number of
  * different types of sources such as file descriptors (plain files,
  * pipes or sockets) and timeouts. New types of event sources can also
  * be added using g_source_attach().
@@ -137,13 +137,13 @@
  * exit the main loop, and g_main_loop_run() returns.
  *
  * It is possible to create new instances of #GMainLoop recursively.
- * This is often used in GTK+ applications when showing modal dialog
+ * This is often used in CTK+ applications when showing modal dialog
  * boxes. Note that event sources are associated with a particular
  * #GMainContext, and will be checked and dispatched for all main
  * loops associated with that GMainContext.
  *
- * GTK+ contains wrappers of some of these functions, e.g. gtk_main(),
- * gtk_main_quit() and gtk_events_pending().
+ * CTK+ contains wrappers of some of these functions, e.g. ctk_main(),
+ * ctk_main_quit() and ctk_events_pending().
  *
  * ## Creating new source types
  *
@@ -2063,7 +2063,7 @@ g_source_get_can_recurse (GSource  *source)
  *
  * The source name should describe in a human-readable way
  * what the source does. For example, "X11 event queue"
- * or "GTK+ repaint idle handler" or whatever it is.
+ * or "CTK+ repaint idle handler" or whatever it is.
  *
  * It is permitted to call this function multiple times, but is not
  * recommended due to the potential performance impact.  For example,
@@ -3075,7 +3075,7 @@ get_dispatch (void)
  * many things that the user could do. Instead, you can use the
  * following techniques:
  *
- * 1. Use gtk_widget_set_sensitive() or modal dialogs to prevent
+ * 1. Use ctk_widget_set_sensitive() or modal dialogs to prevent
  *    the user from interacting with elements while the main
  *    loop is recursing.
  * 

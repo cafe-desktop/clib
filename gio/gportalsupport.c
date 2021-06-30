@@ -69,7 +69,7 @@ read_flatpak_info (void)
     {
       const char *var;
 
-      var = g_getenv ("GTK_USE_PORTAL");
+      var = g_getenv ("CTK_USE_PORTAL");
       if (var && var[0] == '1')
         use_portal = TRUE;
       network_available = TRUE;

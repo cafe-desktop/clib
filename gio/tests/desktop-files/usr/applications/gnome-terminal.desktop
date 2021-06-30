@@ -35,5 +35,5 @@ X-GNOME-Bugzilla-Bugzilla=GNOME
 X-GNOME-Bugzilla-Product=gnome-terminal
 X-GNOME-Bugzilla-Component=BugBuddyBugs
 X-GNOME-Bugzilla-Version=3.10.1
-Categories=GNOME;GTK;System;TerminalEmulator;
+Categories=GNOME;CTK;System;TerminalEmulator;
 StartupNotify=true

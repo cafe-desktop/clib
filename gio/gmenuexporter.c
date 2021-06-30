@@ -48,7 +48,7 @@
  */
 
 static GDBusInterfaceInfo *
-org_gtk_Menus_get_interface (void)
+org_ctk_Menus_get_interface (void)
 {
   static GDBusInterfaceInfo *interface_info;
 
@@ -58,7 +58,7 @@ org_gtk_Menus_get_interface (void)
       GDBusNodeInfo *info;
 
       info = g_dbus_node_info_new_for_xml ("<node>"
-                                           "  <interface name='org.gtk.Menus'>"
+                                           "  <interface name='org.ctk.Menus'>"
                                            "    <method name='Start'>"
                                            "      <arg type='au' name='groups' direction='in'/>"
                                            "      <arg type='a(uuaa{sv})' name='content' direction='out'/>"
@@ -73,7 +73,7 @@ org_gtk_Menus_get_interface (void)
                                            "</node>", &error);
       if (info == NULL)
         g_error ("%s", error->message);
-      interface_info = g_dbus_node_info_lookup_interface (info, "org.gtk.Menus");
+      interface_info = g_dbus_node_info_lookup_interface (info, "org.ctk.Menus");
       g_assert (interface_info != NULL);
       g_dbus_interface_info_ref (interface_info);
       g_dbus_node_info_unref (info);
@@ -663,7 +663,7 @@ g_menu_exporter_report (GMenuExporter *exporter,
   g_dbus_connection_emit_signal (exporter->connection,
                                  NULL,
                                  exporter->object_path,
-                                 "org.gtk.Menus", "Changed",
+                                 "org.ctk.Menus", "Changed",
                                  g_variant_builder_end (&builder),
                                  NULL);
 }
@@ -790,7 +790,7 @@ g_dbus_connection_export_menu_model (GDBusConnection  *connection,
 
   exporter = g_slice_new0 (GMenuExporter);
 
-  id = g_dbus_connection_register_object (connection, object_path, org_gtk_Menus_get_interface (),
+  id = g_dbus_connection_register_object (connection, object_path, org_ctk_Menus_get_interface (),
                                           &vtable, exporter, g_menu_exporter_free, error);
 
   if (id == 0)

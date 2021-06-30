@@ -1,5 +1,5 @@
 <schemalist>
-  <schema id="org.gtk.schemasourcecheck" path="/tests/">
+  <schema id="org.ctk.schemasourcecheck" path="/tests/">
     <key name="enabled" type="b">
       <default>true</default>
     </key>

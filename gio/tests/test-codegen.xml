@@ -1,18 +1,18 @@
 <node>
   <!-- Fully Loaded Interface -->
   <interface name="org.project.Bar">
-    <annotation name="org.gtk.GDBus.DocString" value="The org.project.Bar interface is very complicated."/>
-    <annotation name="org.gtk.GDBus.DocString.Short" value="Brief interface doc string"/>
+    <annotation name="org.ctk.GDBus.DocString" value="The org.project.Bar interface is very complicated."/>
+    <annotation name="org.ctk.GDBus.DocString.Short" value="Brief interface doc string"/>
 
     <method name="HelloWorld">
-      <annotation name="org.gtk.GDBus.DocString" value="Method &lt;emphasis&gt;documentation&lt;/emphasis&gt; blablablabla."/>
+      <annotation name="org.ctk.GDBus.DocString" value="Method &lt;emphasis&gt;documentation&lt;/emphasis&gt; blablablabla."/>
       <annotation name="ExistingAnnotation" value="blah"/>
-      <annotation name="org.gtk.GDBus.ExistingInternalAnnotation" value="booh"/>
+      <annotation name="org.ctk.GDBus.ExistingInternalAnnotation" value="booh"/>
       <arg name="greeting" direction="in" type="s">
-        <annotation name="org.gtk.GDBus.DocString" value="in param doc"/>
+        <annotation name="org.ctk.GDBus.DocString" value="in param doc"/>
       </arg>
       <arg name="response" direction="out" type="s">
-        <annotation name="org.gtk.GDBus.DocString" value="out param doc"/>
+        <annotation name="org.ctk.GDBus.DocString" value="out param doc"/>
       </arg>
     </method>
 
@@ -71,9 +71,9 @@
     <method name="PropertyCancellation"/>
 
     <signal name="TestSignal">
-      <annotation name="org.gtk.GDBus.DocString" value="Signal documentation."/>
+      <annotation name="org.ctk.GDBus.DocString" value="Signal documentation."/>
       <arg type="i" name="val_int32">
-        <annotation name="org.gtk.GDBus.DocString" value="Signal param docs"/>
+        <annotation name="org.ctk.GDBus.DocString" value="Signal param docs"/>
       </arg>
       <arg type="as" name="array_of_strings" />
       <arg type="aay" name="array_of_bytestrings" />
@@ -85,7 +85,7 @@
     </signal>
 
     <property name="y" type="y" access="readwrite">
-      <annotation name="org.gtk.GDBus.DocString" value="&lt;para&gt;Property docs, yah...&lt;/para&gt;&lt;para&gt;Second paragraph.&lt;/para&gt;"/>
+      <annotation name="org.ctk.GDBus.DocString" value="&lt;para&gt;Property docs, yah...&lt;/para&gt;&lt;para&gt;Second paragraph.&lt;/para&gt;"/>
     </property>
     <property name="b" type="b" access="readwrite"/>
     <property name="n" type="n" access="readwrite"/>
@@ -147,21 +147,21 @@
   <!-- force various names -->
   <interface name="com.acme.Rocket">
     <!-- Forcing the typename via an annotation -->
-    <annotation name="org.gtk.GDBus.C.Name" value="Rocket123"/>
+    <annotation name="org.ctk.GDBus.C.Name" value="Rocket123"/>
 
     <!-- ditto method -->
     <method name="Ignite">
-      <annotation name="org.gtk.GDBus.C.Name" value="ignite_xyz"/>
+      <annotation name="org.ctk.GDBus.C.Name" value="ignite_xyz"/>
     </method>
 
     <!-- ditto signal -->
     <signal name="Exploded">
-      <annotation name="org.gtk.GDBus.C.Name" value="exploded-xyz"/>
+      <annotation name="org.ctk.GDBus.C.Name" value="exploded-xyz"/>
     </signal>
 
     <!-- ditto property -->
     <property name="Speed" type="d" access="read">
-      <annotation name="org.gtk.GDBus.C.Name" value="speed-xyz"/>
+      <annotation name="org.ctk.GDBus.C.Name" value="speed-xyz"/>
     </property>
 
     <property name="Direction" type="(ddd)" access="read"/>
@@ -176,57 +176,57 @@
     <!-- Forcing GVariant for types that would be mapped -->
     <method name="ForceMethod">
       <arg name="force_in_i" type="i" direction="in">
-        <annotation name="org.gtk.GDBus.C.ForceGVariant" value="true"/>
+        <annotation name="org.ctk.GDBus.C.ForceGVariant" value="true"/>
       </arg>
       <arg name="force_in_s" type="s" direction="in">
-        <annotation name="org.gtk.GDBus.C.ForceGVariant" value="true"/>
+        <annotation name="org.ctk.GDBus.C.ForceGVariant" value="true"/>
       </arg>
       <arg name="force_in_ay" type="ay" direction="in">
-        <annotation name="org.gtk.GDBus.C.ForceGVariant" value="true"/>
+        <annotation name="org.ctk.GDBus.C.ForceGVariant" value="true"/>
       </arg>
       <arg name="force_in_struct" type="(i)" direction="in">
-        <annotation name="org.gtk.GDBus.C.ForceGVariant" value="true"/>
+        <annotation name="org.ctk.GDBus.C.ForceGVariant" value="true"/>
       </arg>
       <arg name="force_out_i" type="i" direction="out">
-        <annotation name="org.gtk.GDBus.C.ForceGVariant" value="true"/>
+        <annotation name="org.ctk.GDBus.C.ForceGVariant" value="true"/>
       </arg>
       <arg name="force_out_s" type="s" direction="out">
-        <annotation name="org.gtk.GDBus.C.ForceGVariant" value="true"/>
+        <annotation name="org.ctk.GDBus.C.ForceGVariant" value="true"/>
       </arg>
       <arg name="force_out_ay" type="ay" direction="out">
-        <annotation name="org.gtk.GDBus.C.ForceGVariant" value="true"/>
+        <annotation name="org.ctk.GDBus.C.ForceGVariant" value="true"/>
       </arg>
       <arg name="force_out_struct" type="(i)" direction="out">
-        <annotation name="org.gtk.GDBus.C.ForceGVariant" value="true"/>
+        <annotation name="org.ctk.GDBus.C.ForceGVariant" value="true"/>
       </arg>
     </method>
 
     <signal name="ForceSignal">
       <arg name="force_i" type="i">
-        <annotation name="org.gtk.GDBus.C.ForceGVariant" value="true"/>
+        <annotation name="org.ctk.GDBus.C.ForceGVariant" value="true"/>
       </arg>
       <arg name="force_s" type="s">
-        <annotation name="org.gtk.GDBus.C.ForceGVariant" value="true"/>
+        <annotation name="org.ctk.GDBus.C.ForceGVariant" value="true"/>
       </arg>
       <arg name="force_ay" type="ay">
-        <annotation name="org.gtk.GDBus.C.ForceGVariant" value="true"/>
+        <annotation name="org.ctk.GDBus.C.ForceGVariant" value="true"/>
       </arg>
       <arg name="force_struct" type="(i)">
-        <annotation name="org.gtk.GDBus.C.ForceGVariant" value="true"/>
+        <annotation name="org.ctk.GDBus.C.ForceGVariant" value="true"/>
       </arg>
     </signal>
 
     <property name="force_i" type="i" access="readwrite">
-      <annotation name="org.gtk.GDBus.C.ForceGVariant" value="true"/>
+      <annotation name="org.ctk.GDBus.C.ForceGVariant" value="true"/>
     </property>
     <property name="force_s" type="s" access="readwrite">
-      <annotation name="org.gtk.GDBus.C.ForceGVariant" value="true"/>
+      <annotation name="org.ctk.GDBus.C.ForceGVariant" value="true"/>
     </property>
     <property name="force_ay" type="ay" access="readwrite">
-      <annotation name="org.gtk.GDBus.C.ForceGVariant" value="true"/>
+      <annotation name="org.ctk.GDBus.C.ForceGVariant" value="true"/>
     </property>
     <property name="force_struct" type="(i)" access="readwrite">
-      <annotation name="org.gtk.GDBus.C.ForceGVariant" value="true"/>
+      <annotation name="org.ctk.GDBus.C.ForceGVariant" value="true"/>
     </property>
 
   </interface> <!-- End org.project.Bat -->
@@ -391,7 +391,7 @@
     -->
     <signal name="AddedSignalIn10"/>
     <method name="AddedMethodIn10">
-      <annotation name="org.gtk.GDBus.Since" value="10.0"/>
+      <annotation name="org.ctk.GDBus.Since" value="10.0"/>
     </method>
 
     <!--
@@ -415,18 +415,18 @@
   </interface>
 
   <interface name="TestUglyCaseInterface">
-    <annotation name="org.gtk.GDBus.C.Name" value="TesT_ugly_CASE_Interface"/>
+    <annotation name="org.ctk.GDBus.C.Name" value="TesT_ugly_CASE_Interface"/>
 
     <method name="GetiSCSIServers">
-      <annotation name="org.gtk.GDBus.C.Name" value="Get_iSCSI_Servers"/>
+      <annotation name="org.ctk.GDBus.C.Name" value="Get_iSCSI_Servers"/>
     </method>
 
     <signal name="serversUPDATEDNOW">
-      <annotation name="org.gtk.GDBus.C.Name" value="Servers_UPDATED_NOW"/>
+      <annotation name="org.ctk.GDBus.C.Name" value="Servers_UPDATED_NOW"/>
     </signal>
 
     <property name="UGLYNAME" type="i" access="readwrite">
-      <annotation name="org.gtk.GDBus.C.Name" value="UGLY_NAME"/>
+      <annotation name="org.ctk.GDBus.C.Name" value="UGLY_NAME"/>
     </property>
   </interface>
 
@@ -477,7 +477,7 @@
 
   <interface name="FDPassing">
     <method name="HelloFD">
-      <annotation name="org.gtk.GDBus.C.UnixFD" value="1"/>
+      <annotation name="org.ctk.GDBus.C.UnixFD" value="1"/>
       <arg name="greeting" direction="in" type="s"/>
       <arg name="response" direction="out" type="s"/>
     </method>

@@ -15,7 +15,7 @@ on_animal_poke (ExampleAnimal          *animal,
   if ((make_sad && make_happy) || (!make_sad && !make_happy))
     {
       g_dbus_method_invocation_return_dbus_error (invocation,
-                                                  "org.gtk.GDBus.Examples.ObjectManager.Error.Failed",
+                                                  "org.ctk.GDBus.Examples.ObjectManager.Error.Failed",
                                                   "Exactly one of make_sad or make_happy must be TRUE");
       goto out;
     }
@@ -25,7 +25,7 @@ on_animal_poke (ExampleAnimal          *animal,
       if (g_strcmp0 (example_animal_get_mood (animal), "Sad") == 0)
         {
           g_dbus_method_invocation_return_dbus_error (invocation,
-                                                      "org.gtk.GDBus.Examples.ObjectManager.Error.SadAnimalIsSad",
+                                                      "org.ctk.GDBus.Examples.ObjectManager.Error.SadAnimalIsSad",
                                                       "Sad animal is already sad");
           goto out;
         }
@@ -40,7 +40,7 @@ on_animal_poke (ExampleAnimal          *animal,
       if (g_strcmp0 (example_animal_get_mood (animal), "Happy") == 0)
         {
           g_dbus_method_invocation_return_dbus_error (invocation,
-                                                      "org.gtk.GDBus.Examples.ObjectManager.Error.HappyAnimalIsHappy",
+                                                      "org.ctk.GDBus.Examples.ObjectManager.Error.HappyAnimalIsHappy",
                                                       "Happy animal is already happy");
           goto out;
         }
@@ -81,7 +81,7 @@ on_bus_acquired (GDBusConnection *connection,
       g_free (s);
 
       /* Make the newly created object export the interface
-       * org.gtk.GDBus.Example.ObjectManager.Animal (note
+       * org.ctk.GDBus.Example.ObjectManager.Animal (note
        * that @object takes its own reference to @animal).
        */
       animal = example_animal_skeleton_new ();
@@ -90,7 +90,7 @@ on_bus_acquired (GDBusConnection *connection,
       g_object_unref (animal);
 
       /* Cats are odd animals - so some of our objects implement the
-       * org.gtk.GDBus.Example.ObjectManager.Cat interface in addition
+       * org.ctk.GDBus.Example.ObjectManager.Cat interface in addition
        * to the .Animal interface
        */
       if (n % 2 == 1)
@@ -142,7 +142,7 @@ main (gint argc, gchar *argv[])
   loop = g_main_loop_new (NULL, FALSE);
 
   id = g_bus_own_name (G_BUS_TYPE_SESSION,
-                       "org.gtk.GDBus.Examples.ObjectManager",
+                       "org.ctk.GDBus.Examples.ObjectManager",
                        G_BUS_NAME_OWNER_FLAGS_ALLOW_REPLACEMENT |
                        G_BUS_NAME_OWNER_FLAGS_REPLACE,
                        on_bus_acquired,

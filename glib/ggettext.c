@@ -19,7 +19,7 @@
  * Modified by the GLib Team and others 1997-2000.  See the AUTHORS
  * file for a list of people on the GLib Team.  See the ChangeLog
  * files for a list of changes.  These files are distributed with
- * GLib at ftp://ftp.gtk.org/pub/gtk/. 
+ * GLib at ftp://ftp.ctk.org/pub/ctk/. 
  */
 
 #include "config.h"
@@ -360,13 +360,13 @@ _g_dgettext_should_translate (void)
  * translations for the current locale.
  *
  * The advantage of using this function over dgettext() proper is that
- * libraries using this function (like GTK+) will not use translations
+ * libraries using this function (like CTK+) will not use translations
  * if the application using the library does not have translations for
  * the current locale.  This results in a consistent English-only
  * interface instead of one having partial translations.  For this
  * feature to work, the call to textdomain() and setlocale() should
- * precede any g_dgettext() invocations.  For GTK+, it means calling
- * textdomain() before gtk_init or its variants.
+ * precede any g_dgettext() invocations.  For CTK+, it means calling
+ * textdomain() before ctk_init or its variants.
  *
  * This function disables translations if and only if upon its first
  * call all the following conditions hold:
@@ -383,7 +383,7 @@ _g_dgettext_should_translate (void)
  *
  * Note that this behavior may not be desired for example if an application
  * has its untranslated messages in a language other than English. In those
- * cases the application should call textdomain() after initializing GTK+.
+ * cases the application should call textdomain() after initializing CTK+.
  *
  * Applications should normally not use this function directly,
  * but use the _() macro for translations.
@@ -477,7 +477,7 @@ g_dngettext (const gchar *domain,
  * `<glib/gi18n-lib.h>`
  * after defining the %GETTEXT_PACKAGE macro suitably for your library:
  * |[<!-- language="C" -->
- * #define GETTEXT_PACKAGE "gtk20"
+ * #define GETTEXT_PACKAGE "ctk20"
  * #include <glib/gi18n-lib.h>
  * ]|
  * For an application, note that you also have to call bindtextdomain(),

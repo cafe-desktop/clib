@@ -55,14 +55,14 @@ register_types (void)
   static volatile gsize inited = 0;
   if (g_once_init_enter (&inited))
     {
-      liststore_interfaces[0] = simple_register_class ("GtkBuildable", G_TYPE_INTERFACE, 0);
-      liststore_interfaces[1] = simple_register_class ("GtkTreeDragDest", G_TYPE_INTERFACE, 0);
-      liststore_interfaces[2] = simple_register_class ("GtkTreeModel", G_TYPE_INTERFACE, 0);
-      liststore_interfaces[3] = simple_register_class ("GtkTreeDragSource", G_TYPE_INTERFACE, 0);
-      liststore_interfaces[4] = simple_register_class ("GtkTreeSortable", G_TYPE_INTERFACE, 0);
+      liststore_interfaces[0] = simple_register_class ("CtkBuildable", G_TYPE_INTERFACE, 0);
+      liststore_interfaces[1] = simple_register_class ("CtkTreeDragDest", G_TYPE_INTERFACE, 0);
+      liststore_interfaces[2] = simple_register_class ("CtkTreeModel", G_TYPE_INTERFACE, 0);
+      liststore_interfaces[3] = simple_register_class ("CtkTreeDragSource", G_TYPE_INTERFACE, 0);
+      liststore_interfaces[4] = simple_register_class ("CtkTreeSortable", G_TYPE_INTERFACE, 0);
       liststore_interfaces[5] = simple_register_class ("UnrelatedInterface", G_TYPE_INTERFACE, 0);
 
-      liststore = simple_register_class ("GtkListStore", G_TYPE_OBJECT, 
+      liststore = simple_register_class ("CtkListStore", G_TYPE_OBJECT, 
           liststore_interfaces[0], liststore_interfaces[1], liststore_interfaces[2],
           liststore_interfaces[3], liststore_interfaces[4], (GType) 0);
 

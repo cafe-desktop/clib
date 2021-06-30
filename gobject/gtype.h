@@ -1331,12 +1331,12 @@ guint     g_type_get_type_registration_serial (void);
 /* --- GType boilerplate --- */
 /**
  * G_DECLARE_FINAL_TYPE:
- * @ModuleObjName: The name of the new type, in camel case (like GtkWidget)
+ * @ModuleObjName: The name of the new type, in camel case (like CtkWidget)
  * @module_obj_name: The name of the new type in lowercase, with words
- *  separated by '_' (like 'gtk_widget')
- * @MODULE: The name of the module, in all caps (like 'GTK')
+ *  separated by '_' (like 'ctk_widget')
+ * @MODULE: The name of the module, in all caps (like 'CTK')
  * @OBJ_NAME: The bare name of the type, in all caps (like 'WIDGET')
- * @ParentName: the name of the parent type, in camel case (like GtkWidget)
+ * @ParentName: the name of the parent type, in camel case (like CtkWidget)
  *
  * A convenience macro for emitting the usual declarations in the header file for a type which is not (at the
  * present time) intended to be subclassed.
@@ -1347,10 +1347,10 @@ guint     g_type_get_type_registration_serial (void);
  * #ifndef _myapp_window_h_
  * #define _myapp_window_h_
  *
- * #include <gtk/gtk.h>
+ * #include <ctk/ctk.h>
  *
  * #define MY_APP_TYPE_WINDOW my_app_window_get_type ()
- * G_DECLARE_FINAL_TYPE (MyAppWindow, my_app_window, MY_APP, WINDOW, GtkWindow)
+ * G_DECLARE_FINAL_TYPE (MyAppWindow, my_app_window, MY_APP, WINDOW, CtkWindow)
  *
  * MyAppWindow *    my_app_window_new    (void);
  *
@@ -1369,7 +1369,7 @@ guint     g_type_get_type_registration_serial (void);
  * - the MY_APP_WINDOW() cast is emitted as static inline function along with the MY_APP_IS_WINDOW() type
  *   checking function
  *
- * - the MyAppWindowClass type is defined as a struct containing GtkWindowClass.  This is done for the
+ * - the MyAppWindowClass type is defined as a struct containing CtkWindowClass.  This is done for the
  *   convenience of the person defining the type and should not be considered to be part of the ABI.  In
  *   particular, without a firm declaration of the instance structure, it is not possible to subclass the type
  *   and therefore the fact that the size of the class structure is exposed is not a concern and it can be
@@ -1412,12 +1412,12 @@ guint     g_type_get_type_registration_serial (void);
 
 /**
  * G_DECLARE_DERIVABLE_TYPE:
- * @ModuleObjName: The name of the new type, in camel case (like GtkWidget)
+ * @ModuleObjName: The name of the new type, in camel case (like CtkWidget)
  * @module_obj_name: The name of the new type in lowercase, with words
- *  separated by '_' (like 'gtk_widget')
- * @MODULE: The name of the module, in all caps (like 'GTK')
+ *  separated by '_' (like 'ctk_widget')
+ * @MODULE: The name of the module, in all caps (like 'CTK')
  * @OBJ_NAME: The bare name of the type, in all caps (like 'WIDGET')
- * @ParentName: the name of the parent type, in camel case (like GtkWidget)
+ * @ParentName: the name of the parent type, in camel case (like CtkWidget)
  *
  * A convenience macro for emitting the usual declarations in the
  * header file for a type which is intended to be subclassed.
@@ -1425,24 +1425,24 @@ guint     g_type_get_type_registration_serial (void);
  * You might use it in a header as follows:
  *
  * |[
- * #ifndef _gtk_frobber_h_
- * #define _gtk_frobber_h_
+ * #ifndef _ctk_frobber_h_
+ * #define _ctk_frobber_h_
  *
- * #define GTK_TYPE_FROBBER gtk_frobber_get_type ()
+ * #define CTK_TYPE_FROBBER ctk_frobber_get_type ()
  * GDK_AVAILABLE_IN_3_12
- * G_DECLARE_DERIVABLE_TYPE (GtkFrobber, gtk_frobber, GTK, FROBBER, GtkWidget)
+ * G_DECLARE_DERIVABLE_TYPE (CtkFrobber, ctk_frobber, CTK, FROBBER, CtkWidget)
  *
- * struct _GtkFrobberClass
+ * struct _CtkFrobberClass
  * {
- *   GtkWidgetClass parent_class;
+ *   CtkWidgetClass parent_class;
  *
- *   void (* handle_frob)  (GtkFrobber *frobber,
+ *   void (* handle_frob)  (CtkFrobber *frobber,
  *                          guint       n_frobs);
  *
  *   gpointer padding[12];
  * };
  *
- * GtkWidget *    gtk_frobber_new   (void);
+ * CtkWidget *    ctk_frobber_new   (void);
  *
  * ...
  *
@@ -1451,23 +1451,23 @@ guint     g_type_get_type_registration_serial (void);
  *
  * This results in the following things happening:
  *
- * - the usual gtk_frobber_get_type() function is declared with a return type of #GType
+ * - the usual ctk_frobber_get_type() function is declared with a return type of #GType
  *
- * - the GtkFrobber struct is created with GtkWidget as the first and only item.  You are expected to use
+ * - the CtkFrobber struct is created with CtkWidget as the first and only item.  You are expected to use
  *   a private structure from your .c file to store your instance variables.
  *
- * - the GtkFrobberClass type is defined as a typedef to struct _GtkFrobberClass, which is left undefined.
+ * - the CtkFrobberClass type is defined as a typedef to struct _CtkFrobberClass, which is left undefined.
  *   You should do this from the header file directly after you use the macro.
  *
- * - the GTK_FROBBER() and GTK_FROBBER_CLASS() casts are emitted as static inline functions along with
- *   the GTK_IS_FROBBER() and GTK_IS_FROBBER_CLASS() type checking functions and GTK_FROBBER_GET_CLASS()
+ * - the CTK_FROBBER() and CTK_FROBBER_CLASS() casts are emitted as static inline functions along with
+ *   the CTK_IS_FROBBER() and CTK_IS_FROBBER_CLASS() type checking functions and CTK_FROBBER_GET_CLASS()
  *   function.
  *
  * - g_autoptr() support being added for your type, based on the type of your parent class
  *
  * You can only use this function if your parent type also supports g_autoptr().
  *
- * Because the type macro (GTK_TYPE_FROBBER in the above example) is not a callable, you must continue to
+ * Because the type macro (CTK_TYPE_FROBBER in the above example) is not a callable, you must continue to
  * manually define this as a macro for yourself.
  *
  * The declaration of the _get_type() function is the first thing emitted by the macro.  This allows this macro
@@ -1510,12 +1510,12 @@ guint     g_type_get_type_registration_serial (void);
 
 /**
  * G_DECLARE_INTERFACE:
- * @ModuleObjName: The name of the new type, in camel case (like GtkWidget)
+ * @ModuleObjName: The name of the new type, in camel case (like CtkWidget)
  * @module_obj_name: The name of the new type in lowercase, with words
- *  separated by '_' (like 'gtk_widget')
- * @MODULE: The name of the module, in all caps (like 'GTK')
+ *  separated by '_' (like 'ctk_widget')
+ * @MODULE: The name of the module, in all caps (like 'CTK')
  * @OBJ_NAME: The bare name of the type, in all caps (like 'WIDGET')
- * @PrerequisiteName: the name of the prerequisite type, in camel case (like GtkWidget)
+ * @PrerequisiteName: the name of the prerequisite type, in camel case (like CtkWidget)
  *
  * A convenience macro for emitting the usual declarations in the header file for a GInterface type.
  *
@@ -1695,53 +1695,53 @@ guint     g_type_get_type_registration_serial (void);
  * G_DEFINE_TYPE(), etc are based.
  *
  * |[<!-- language="C" -->
- * G_DEFINE_TYPE_EXTENDED (GtkGadget,
- *                         gtk_gadget,
- *                         GTK_TYPE_WIDGET,
+ * G_DEFINE_TYPE_EXTENDED (CtkGadget,
+ *                         ctk_gadget,
+ *                         CTK_TYPE_WIDGET,
  *                         0,
- *                         G_ADD_PRIVATE (GtkGadget)
+ *                         G_ADD_PRIVATE (CtkGadget)
  *                         G_IMPLEMENT_INTERFACE (TYPE_GIZMO,
- *                                                gtk_gadget_gizmo_init));
+ *                                                ctk_gadget_gizmo_init));
  * ]|
  * expands to
  * |[<!-- language="C" -->
- * static void     gtk_gadget_init       (GtkGadget      *self);
- * static void     gtk_gadget_class_init (GtkGadgetClass *klass);
- * static gpointer gtk_gadget_parent_class = NULL;
- * static gint     GtkGadget_private_offset;
- * static void     gtk_gadget_class_intern_init (gpointer klass)
+ * static void     ctk_gadget_init       (CtkGadget      *self);
+ * static void     ctk_gadget_class_init (CtkGadgetClass *klass);
+ * static gpointer ctk_gadget_parent_class = NULL;
+ * static gint     CtkGadget_private_offset;
+ * static void     ctk_gadget_class_intern_init (gpointer klass)
  * {
- *   gtk_gadget_parent_class = g_type_class_peek_parent (klass);
- *   if (GtkGadget_private_offset != 0)
- *     g_type_class_adjust_private_offset (klass, &GtkGadget_private_offset);
- *   gtk_gadget_class_init ((GtkGadgetClass*) klass);
+ *   ctk_gadget_parent_class = g_type_class_peek_parent (klass);
+ *   if (CtkGadget_private_offset != 0)
+ *     g_type_class_adjust_private_offset (klass, &CtkGadget_private_offset);
+ *   ctk_gadget_class_init ((CtkGadgetClass*) klass);
  * }
- * static inline gpointer gtk_gadget_get_instance_private (GtkGadget *self)
+ * static inline gpointer ctk_gadget_get_instance_private (CtkGadget *self)
  * {
- *   return (G_STRUCT_MEMBER_P (self, GtkGadget_private_offset));
+ *   return (G_STRUCT_MEMBER_P (self, CtkGadget_private_offset));
  * }
  *
  * GType
- * gtk_gadget_get_type (void)
+ * ctk_gadget_get_type (void)
  * {
  *   static volatile gsize g_define_type_id__volatile = 0;
  *   if (g_once_init_enter (&g_define_type_id__volatile))
  *     {
  *       GType g_define_type_id =
- *         g_type_register_static_simple (GTK_TYPE_WIDGET,
- *                                        g_intern_static_string ("GtkGadget"),
- *                                        sizeof (GtkGadgetClass),
- *                                        (GClassInitFunc) gtk_gadget_class_intern_init,
- *                                        sizeof (GtkGadget),
- *                                        (GInstanceInitFunc) gtk_gadget_init,
+ *         g_type_register_static_simple (CTK_TYPE_WIDGET,
+ *                                        g_intern_static_string ("CtkGadget"),
+ *                                        sizeof (CtkGadgetClass),
+ *                                        (GClassInitFunc) ctk_gadget_class_intern_init,
+ *                                        sizeof (CtkGadget),
+ *                                        (GInstanceInitFunc) ctk_gadget_init,
  *                                        0);
  *       {
- *         GtkGadget_private_offset =
- *           g_type_add_instance_private (g_define_type_id, sizeof (GtkGadgetPrivate));
+ *         CtkGadget_private_offset =
+ *           g_type_add_instance_private (g_define_type_id, sizeof (CtkGadgetPrivate));
  *       }
  *       {
  *         const GInterfaceInfo g_implement_interface_info = {
- *           (GInterfaceInitFunc) gtk_gadget_gizmo_init
+ *           (GInterfaceInitFunc) ctk_gadget_gizmo_init
  *         };
  *         g_type_add_interface_static (g_define_type_id, TYPE_GIZMO, &g_implement_interface_info);
  *       }

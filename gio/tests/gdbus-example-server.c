@@ -14,30 +14,30 @@ static GDBusNodeInfo *introspection_data = NULL;
 /* Introspection data for the service we are exporting */
 static const gchar introspection_xml[] =
   "<node>"
-  "  <interface name='org.gtk.GDBus.TestInterface'>"
-  "    <annotation name='org.gtk.GDBus.Annotation' value='OnInterface'/>"
-  "    <annotation name='org.gtk.GDBus.Annotation' value='AlsoOnInterface'/>"
+  "  <interface name='org.ctk.GDBus.TestInterface'>"
+  "    <annotation name='org.ctk.GDBus.Annotation' value='OnInterface'/>"
+  "    <annotation name='org.ctk.GDBus.Annotation' value='AlsoOnInterface'/>"
   "    <method name='HelloWorld'>"
-  "      <annotation name='org.gtk.GDBus.Annotation' value='OnMethod'/>"
+  "      <annotation name='org.ctk.GDBus.Annotation' value='OnMethod'/>"
   "      <arg type='s' name='greeting' direction='in'/>"
   "      <arg type='s' name='response' direction='out'/>"
   "    </method>"
   "    <method name='EmitSignal'>"
   "      <arg type='d' name='speed_in_mph' direction='in'>"
-  "        <annotation name='org.gtk.GDBus.Annotation' value='OnArg'/>"
+  "        <annotation name='org.ctk.GDBus.Annotation' value='OnArg'/>"
   "      </arg>"
   "    </method>"
   "    <method name='GimmeStdout'/>"
   "    <signal name='VelocityChanged'>"
-  "      <annotation name='org.gtk.GDBus.Annotation' value='Onsignal'/>"
+  "      <annotation name='org.ctk.GDBus.Annotation' value='Onsignal'/>"
   "      <arg type='d' name='speed_in_mph'/>"
   "      <arg type='s' name='speed_as_string'>"
-  "        <annotation name='org.gtk.GDBus.Annotation' value='OnArg_NonFirst'/>"
+  "        <annotation name='org.ctk.GDBus.Annotation' value='OnArg_NonFirst'/>"
   "      </arg>"
   "    </signal>"
   "    <property type='s' name='FluxCapicitorName' access='read'>"
-  "      <annotation name='org.gtk.GDBus.Annotation' value='OnProperty'>"
-  "        <annotation name='org.gtk.GDBus.Annotation' value='OnAnnotation_YesThisIsCrazy'/>"
+  "      <annotation name='org.ctk.GDBus.Annotation' value='OnProperty'>"
+  "        <annotation name='org.ctk.GDBus.Annotation' value='OnAnnotation_YesThisIsCrazy'/>"
   "      </annotation>"
   "    </property>"
   "    <property type='s' name='Title' access='readwrite'/>"
@@ -84,7 +84,7 @@ handle_method_call (GDBusConnection       *connection,
       else if (g_strcmp0 (greeting, "Return Raw") == 0)
         {
           g_dbus_method_invocation_return_dbus_error (invocation,
-                                                      "org.gtk.GDBus.SomeErrorName",
+                                                      "org.ctk.GDBus.SomeErrorName",
                                                       "As requested, here's a raw D-Bus error");
         }
       else
@@ -152,12 +152,12 @@ handle_method_call (GDBusConnection       *connection,
       else
         {
           g_dbus_method_invocation_return_dbus_error (invocation,
-                                                      "org.gtk.GDBus.Failed",
+                                                      "org.ctk.GDBus.Failed",
                                                       "Your message bus daemon does not support file descriptor passing (need D-Bus >= 1.3.0)");
         }
 #else
       g_dbus_method_invocation_return_dbus_error (invocation,
-                                                  "org.gtk.GDBus.NotOnUnix",
+                                                  "org.ctk.GDBus.NotOnUnix",
                                                   "Your OS does not support file descriptor passing");
 #endif
     }
@@ -304,11 +304,11 @@ on_timeout_cb (gpointer user_data)
                          g_variant_new_string (swap_a_and_b ? "Tick" : "Tock"));
   g_dbus_connection_emit_signal (connection,
                                  NULL,
-                                 "/org/gtk/GDBus/TestObject",
+                                 "/org/ctk/GDBus/TestObject",
                                  "org.freedesktop.DBus.Properties",
                                  "PropertiesChanged",
                                  g_variant_new ("(sa{sv}as)",
-                                                "org.gtk.GDBus.TestInterface",
+                                                "org.ctk.GDBus.TestInterface",
                                                 builder,
                                                 invalidated_builder),
                                  &error);
@@ -328,7 +328,7 @@ on_bus_acquired (GDBusConnection *connection,
   guint registration_id;
 
   registration_id = g_dbus_connection_register_object (connection,
-                                                       "/org/gtk/GDBus/TestObject",
+                                                       "/org/ctk/GDBus/TestObject",
                                                        introspection_data->interfaces[0],
                                                        &interface_vtable,
                                                        NULL,  /* user_data */
@@ -371,7 +371,7 @@ main (int argc, char *argv[])
   g_assert (introspection_data != NULL);
 
   owner_id = g_bus_own_name (G_BUS_TYPE_SESSION,
-                             "org.gtk.GDBus.TestServer",
+                             "org.ctk.GDBus.TestServer",
                              G_BUS_NAME_OWNER_FLAGS_NONE,
                              on_bus_acquired,
                              on_name_acquired,

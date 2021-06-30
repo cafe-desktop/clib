@@ -84,7 +84,7 @@ typedef struct
 
 static const gchar *test_interface_introspection_xml =
   "<node>"
-  "  <interface name='org.gtk.GDBus.PeerTestInterface'>"
+  "  <interface name='org.ctk.GDBus.PeerTestInterface'>"
   "    <method name='HelloPeer'>"
   "      <arg type='s' name='greeting' direction='in'/>"
   "      <arg type='s' name='response' direction='out'/>"
@@ -122,8 +122,8 @@ test_interface_method_call (GDBusConnection       *connection,
 
   data->num_method_calls++;
 
-  g_assert_cmpstr (object_path, ==, "/org/gtk/GDBus/PeerTestObject");
-  g_assert_cmpstr (interface_name, ==, "org.gtk.GDBus.PeerTestInterface");
+  g_assert_cmpstr (object_path, ==, "/org/ctk/GDBus/PeerTestObject");
+  g_assert_cmpstr (interface_name, ==, "org.ctk.GDBus.PeerTestInterface");
 
   info = g_dbus_method_invocation_get_method_info (invocation);
   g_assert_cmpstr (info->name, ==, method_name);
@@ -148,8 +148,8 @@ test_interface_method_call (GDBusConnection       *connection,
       error = NULL;
       g_dbus_connection_emit_signal (connection,
                                      NULL,
-                                     "/org/gtk/GDBus/PeerTestObject",
-                                     "org.gtk.GDBus.PeerTestInterface",
+                                     "/org/ctk/GDBus/PeerTestObject",
+                                     "org.ctk.GDBus.PeerTestInterface",
                                      "PeerSignal",
                                      NULL,
                                      &error);
@@ -162,8 +162,8 @@ test_interface_method_call (GDBusConnection       *connection,
       gboolean ret;
       GDBusMessage *message;
 
-      message = g_dbus_message_new_signal ("/org/gtk/GDBus/PeerTestObject",
-                                           "org.gtk.GDBus.PeerTestInterface",
+      message = g_dbus_message_new_signal ("/org/ctk/GDBus/PeerTestObject",
+                                           "org.ctk.GDBus.PeerTestInterface",
                                            "PeerSignalWithNameSet");
       g_dbus_message_set_sender (message, ":1.42");
 
@@ -227,7 +227,7 @@ test_interface_method_call (GDBusConnection       *connection,
       g_object_unref (reply);
 #else
       g_dbus_method_invocation_return_dbus_error (invocation,
-                                                  "org.gtk.GDBus.NotOnUnix",
+                                                  "org.ctk.GDBus.NotOnUnix",
                                                   "Your OS does not support file descriptor passing");
 #endif
     }
@@ -246,8 +246,8 @@ test_interface_get_property (GDBusConnection  *connection,
                              GError          **error,
                              gpointer          user_data)
 {
-  g_assert_cmpstr (object_path, ==, "/org/gtk/GDBus/PeerTestObject");
-  g_assert_cmpstr (interface_name, ==, "org.gtk.GDBus.PeerTestInterface");
+  g_assert_cmpstr (object_path, ==, "/org/ctk/GDBus/PeerTestObject");
+  g_assert_cmpstr (interface_name, ==, "org.ctk.GDBus.PeerTestInterface");
   g_assert_cmpstr (property_name, ==, "PeerProperty");
 
   return g_variant_new_string ("ThePropertyValue");
@@ -403,7 +403,7 @@ on_new_connection (GDBusServer *server,
 
   /* export object on the newly established connection */
   reg_id = g_dbus_connection_register_object (connection,
-                                              "/org/gtk/GDBus/PeerTestObject",
+                                              "/org/ctk/GDBus/PeerTestObject",
                                               test_interface_introspection_data,
                                               &test_interface_vtable,
                                               data,
@@ -560,7 +560,7 @@ on_incoming_connection (GSocketService     *service,
       /* export object on the newly established connection */
       error = NULL;
       reg_id = g_dbus_connection_register_object (connection,
-                                                  "/org/gtk/GDBus/PeerTestObject",
+                                                  "/org/ctk/GDBus/PeerTestObject",
                                                   &test_interface_introspection_data,
                                                   &test_interface_vtable,
                                                   data,
@@ -803,8 +803,8 @@ do_test_peer (void)
                                  G_DBUS_PROXY_FLAGS_NONE,
                                  NULL,
                                  NULL, /* bus_name */
-                                 "/org/gtk/GDBus/PeerTestObject",
-                                 "org.gtk.GDBus.PeerTestInterface",
+                                 "/org/ctk/GDBus/PeerTestObject",
+                                 "org.ctk.GDBus.PeerTestInterface",
                                  NULL, /* GCancellable */
                                  &error);
   g_assert_no_error (error);
@@ -905,8 +905,8 @@ do_test_peer (void)
         method = "OpenFileWithBigMessage";
 
       method_call_message = g_dbus_message_new_method_call (NULL, /* name */
-                                                            "/org/gtk/GDBus/PeerTestObject",
-                                                            "org.gtk.GDBus.PeerTestInterface",
+                                                            "/org/ctk/GDBus/PeerTestObject",
+                                                            "org.ctk.GDBus.PeerTestInterface",
                                                             method);
       g_dbus_message_set_body (method_call_message, g_variant_new ("(s)", testfile));
       error = NULL;
@@ -1366,8 +1366,8 @@ test_peer_signals (void)
                                  G_DBUS_PROXY_FLAGS_DO_NOT_CONNECT_SIGNALS,
                                  NULL,
                                  ":1.1", /* bus_name */
-                                 "/org/gtk/GDBus/PeerTestObject",
-                                 "org.gtk.GDBus.PeerTestInterface",
+                                 "/org/ctk/GDBus/PeerTestObject",
+                                 "org.ctk.GDBus.PeerTestInterface",
                                  NULL, /* GCancellable */
                                  &error);
   g_assert_no_error (error);
@@ -1455,7 +1455,7 @@ dmp_on_new_connection (GDBusServer     *server,
 
   error = NULL;
   node = g_dbus_node_info_new_for_xml ("<node>"
-                                       "  <interface name='org.gtk.GDBus.DmpInterface'>"
+                                       "  <interface name='org.ctk.GDBus.DmpInterface'>"
                                        "    <method name='AddPair'>"
                                        "      <arg type='i' name='first' direction='in'/>"
                                        "      <arg type='i' name='second' direction='in'/>"
@@ -1561,7 +1561,7 @@ delayed_message_processing (void)
       res = g_dbus_connection_call_sync (c,
                                          NULL,    /* bus name */
                                          "/dmp/test",
-                                         "org.gtk.GDBus.DmpInterface",
+                                         "org.ctk.GDBus.DmpInterface",
                                          "AddPair",
                                          g_variant_new ("(ii)", 2, n),
                                          G_VARIANT_TYPE ("(i)"),
@@ -1929,7 +1929,7 @@ codegen_on_animal_poke (ExampleAnimal          *animal,
       g_main_loop_quit (service_loop);
 
       g_dbus_method_invocation_return_dbus_error (invocation,
-                                                  "org.gtk.GDBus.Examples.ObjectManager.Error.Failed",
+                                                  "org.ctk.GDBus.Examples.ObjectManager.Error.Failed",
                                                   "Exactly one of make_sad or make_happy must be TRUE");
       goto out;
     }
@@ -1939,7 +1939,7 @@ codegen_on_animal_poke (ExampleAnimal          *animal,
       if (g_strcmp0 (example_animal_get_mood (animal), "Sad") == 0)
         {
           g_dbus_method_invocation_return_dbus_error (invocation,
-                                                      "org.gtk.GDBus.Examples.ObjectManager.Error.SadAnimalIsSad",
+                                                      "org.ctk.GDBus.Examples.ObjectManager.Error.SadAnimalIsSad",
                                                       "Sad animal is already sad");
           goto out;
         }
@@ -1954,7 +1954,7 @@ codegen_on_animal_poke (ExampleAnimal          *animal,
       if (g_strcmp0 (example_animal_get_mood (animal), "Happy") == 0)
         {
           g_dbus_method_invocation_return_dbus_error (invocation,
-                                                      "org.gtk.GDBus.Examples.ObjectManager.Error.HappyAnimalIsHappy",
+                                                      "org.ctk.GDBus.Examples.ObjectManager.Error.HappyAnimalIsHappy",
                                                       "Happy animal is already happy");
           goto out;
         }

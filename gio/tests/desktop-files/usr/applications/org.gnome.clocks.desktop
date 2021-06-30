@@ -349,7 +349,7 @@ Exec=/bin/sh run --branch=stable --arch=x86_64 --command=gnome-clocks org.gnome.
 Icon=org.gnome.clocks
 Terminal=false
 Type=Application
-Categories=GNOME;GTK;Utility;Clock;
+Categories=GNOME;CTK;Utility;Clock;
 StartupNotify=true
 DBusActivatable=true
 X-GNOME-UsesNotifications=true

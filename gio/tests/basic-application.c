@@ -242,7 +242,7 @@ main (int argc, char **argv)
   GApplication *app;
   int status;
 
-  app = g_application_new ("org.gtk.TestApplication",
+  app = g_application_new ("org.ctk.TestApplication",
                            G_APPLICATION_SEND_ENVIRONMENT |
                            (g_strcmp0 (argv[1], "./cmd") == 0
                              ? G_APPLICATION_HANDLES_COMMAND_LINE

@@ -676,7 +676,7 @@ call_list (gpointer user_data)
   g_dbus_connection_call (bus,
                           g_dbus_connection_get_unique_name (bus),
                           "/",
-                          "org.gtk.Actions",
+                          "org.ctk.Actions",
                           "List",
                           NULL,
                           NULL,
@@ -726,7 +726,7 @@ call_describe (gpointer user_data)
   g_dbus_connection_call (bus,
                           g_dbus_connection_get_unique_name (bus),
                           "/",
-                          "org.gtk.Actions",
+                          "org.ctk.Actions",
                           "Describe",
                           g_variant_new ("(s)", "copy"),
                           NULL,
@@ -1027,7 +1027,7 @@ test_property_actions (void)
   g_signal_connect (group, "action-state-changed", G_CALLBACK (state_changed), NULL);
 
   client = g_socket_client_new ();
-  app = g_application_new ("org.gtk.test", 0);
+  app = g_application_new ("org.ctk.test", 0);
 
   /* string... */
   action = g_property_action_new ("app-id", app, "application-id");
@@ -1071,7 +1071,7 @@ test_property_actions (void)
   g_object_unref (client);
   g_object_unref (app);
 
-  ensure_state (group, "app-id", "'org.gtk.test'");
+  ensure_state (group, "app-id", "'org.ctk.test'");
   ensure_state (group, "keepalive", "uint32 0");
   ensure_state (group, "tls", "false");
   ensure_state (group, "disable-proxy", "false");
@@ -1080,19 +1080,19 @@ test_property_actions (void)
   verify_changed (NULL);
 
   /* some string tests... */
-  g_action_group_change_action_state (G_ACTION_GROUP (group), "app-id", g_variant_new ("s", "org.gtk.test2"));
-  verify_changed ("app-id:'org.gtk.test2'");
-  g_assert_cmpstr (g_application_get_application_id (app), ==, "org.gtk.test2");
-  ensure_state (group, "app-id", "'org.gtk.test2'");
+  g_action_group_change_action_state (G_ACTION_GROUP (group), "app-id", g_variant_new ("s", "org.ctk.test2"));
+  verify_changed ("app-id:'org.ctk.test2'");
+  g_assert_cmpstr (g_application_get_application_id (app), ==, "org.ctk.test2");
+  ensure_state (group, "app-id", "'org.ctk.test2'");
 
-  g_action_group_activate_action (G_ACTION_GROUP (group), "app-id", g_variant_new ("s", "org.gtk.test3"));
-  verify_changed ("app-id:'org.gtk.test3'");
-  g_assert_cmpstr (g_application_get_application_id (app), ==, "org.gtk.test3");
-  ensure_state (group, "app-id", "'org.gtk.test3'");
+  g_action_group_activate_action (G_ACTION_GROUP (group), "app-id", g_variant_new ("s", "org.ctk.test3"));
+  verify_changed ("app-id:'org.ctk.test3'");
+  g_assert_cmpstr (g_application_get_application_id (app), ==, "org.ctk.test3");
+  ensure_state (group, "app-id", "'org.ctk.test3'");
 
-  g_application_set_application_id (app, "org.gtk.test");
-  verify_changed ("app-id:'org.gtk.test'");
-  ensure_state (group, "app-id", "'org.gtk.test'");
+  g_application_set_application_id (app, "org.ctk.test");
+  verify_changed ("app-id:'org.ctk.test'");
+  ensure_state (group, "app-id", "'org.ctk.test'");
 
   /* uint tests */
   g_action_group_change_action_state (G_ACTION_GROUP (group), "keepalive", g_variant_new ("u", 1234));

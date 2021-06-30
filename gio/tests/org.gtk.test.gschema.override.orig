@@ -1,2 +1,2 @@
-[org.gtk.test.per-desktop:GNOME-Classic]
+[org.ctk.test.per-desktop:GNOME-Classic]
 desktop = "GNOME Classic"

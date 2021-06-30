@@ -1045,7 +1045,7 @@ extern GType g_memory_monitor_portal_get_type (void);
 
 #ifdef G_OS_UNIX
 extern GType g_fdo_notification_backend_get_type (void);
-extern GType g_gtk_notification_backend_get_type (void);
+extern GType g_ctk_notification_backend_get_type (void);
 extern GType g_portal_notification_backend_get_type (void);
 extern GType g_proxy_resolver_portal_get_type (void);
 extern GType g_network_monitor_portal_get_type (void);
@@ -1254,7 +1254,7 @@ _g_io_modules_ensure_loaded (void)
 #ifdef G_OS_UNIX
       g_type_ensure (_g_unix_volume_monitor_get_type ());
       g_type_ensure (g_fdo_notification_backend_get_type ());
-      g_type_ensure (g_gtk_notification_backend_get_type ());
+      g_type_ensure (g_ctk_notification_backend_get_type ());
       g_type_ensure (g_portal_notification_backend_get_type ());
       g_type_ensure (g_memory_monitor_dbus_get_type ());
       g_type_ensure (g_memory_monitor_portal_get_type ());
