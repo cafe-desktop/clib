@@ -87,7 +87,7 @@ break g_object_unref if _object == 0xcafebabe
     </para>
   </chapter>
     
-  <chapter id="tools-ctkdoc">
+  <chapter id="tools-gtkdoc">
     <title>Writing API docs</title>
   
     <para>The API documentation for most of the GLib, GObject, CTK+ and GNOME

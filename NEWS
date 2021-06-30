@@ -663,7 +663,7 @@ Overview of changes in GLib 2.63.5
  - #1993 Rename gdbus-codegen --glib-min-version argument to --glib-min-required and add --glib-max-allowed
  - #2012 spawn_thread_queue not initialised in GThreadPool
  - #2020 g_network_monitor_base_add_network() improperly unrefs GInetAddressMask
- - !978 Various fixes to make ctkdoc-check pass on glib
+ - !978 Various fixes to make gtkdoc-check pass on glib
  - !1018 docs: tag enclose 'all' and 'help' values
  - !1170 Avoid C++20 deprecated assignment to volatile
  - !1296 tests: Skip GMemoryMonitor tests if the dbusmock template is not available
@@ -801,7 +801,7 @@ Overview of changes in GLib 2.63.3
  - !1261 gtk-doc: Ensure we have recent enough version
  - !1262 tests: Add tests for the gdbus-codegen executable
  - !1265 build: don't check for protected visibility
- - !1267 Revert "doc: Workaround ctkdoc-scan bug leading to undocumented symbols"
+ - !1267 Revert "doc: Workaround gtkdoc-scan bug leading to undocumented symbols"
  - !1268 ci: Work-around successful installed tests having no logs
  - !1269 gvariant: Add guard to g_variant_get()
  - !1271 tests: Enable GDBus debug for a number of unreliable tests
@@ -2222,7 +2222,7 @@ Overview of changes in GLib 2.57.0
  794506	glib-mkenums: Enters infinite loop if using typedef enum SomeIdentifier
  794528	Fix segfault caused by use-after-free in GPollFileMonitor
  794555	glib meson build fails on MinGW due to misdetected functions
- 794557	ctkdoc-scangobj fails on gio in meson builds
+ 794557	gtkdoc-scangobj fails on gio in meson builds
  794606	glib-2.56.0 fails to compile when res_nquery is not available
  794635	gmacros: Don't define bogus __has_* macros
  794636	G_HAVE_GNUC_VISIBILITY is defined in meson MinGW builds
@@ -3507,7 +3507,7 @@ Bugs fixed:
  696324 gtester-report doesn't work with Python 3.x
  719966 glib: Add missing (nullable) and (optional) annotations
  752837 gobject and glib-compile-resources rely on .CRT$XCU section, no longer works with Win 10 UCRT (VS 2015)
- 755364 make ctkdoc-check happy again
+ 755364 make gtkdoc-check happy again
  756134 Segmentation fault on calling g_simple_action_group_add_action with bad action constructor call
  756179 gwin32.c: Replace VerifyVersionInfoW() with RtlGetVersion() due to API deprecation
  756988 GSequence should document each function's complexity

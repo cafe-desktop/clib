@@ -19,16 +19,16 @@ if get_option('ctk_doc')
     configuration: version_conf
   )
 
-  ctkdocincl = include_directories('.')
+  gtkdocincl = include_directories('.')
 
-  gnome.ctkdoc('gobject',
+  gnome.gtkdoc('gobject',
     main_xml : 'gobject-docs.xml',
     namespace : 'g',
     mode : 'none',
     dependencies : [libgobject_dep, libglib_dep],
-    include_directories : [ctkdocincl],
+    include_directories : [gtkdocincl],
     src_dir : 'gobject',
-    scan_args : ctkdoc_common_scan_args + [
+    scan_args : gtkdoc_common_scan_args + [
       '--rebuild-types',
       '--ignore-headers=' + ' '.join(ignore_headers),
     ],

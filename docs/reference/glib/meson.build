@@ -52,13 +52,13 @@ if get_option('ctk_doc')
     configuration: version_conf
   )
 
-  gnome.ctkdoc('glib',
+  gnome.gtkdoc('glib',
                main_xml : 'glib-docs.xml',
                namespace : 'g',
                mode : 'none',
                src_dir : [ 'glib', 'gmodule' ],
                dependencies : libglib_dep,
-               scan_args : ctkdoc_common_scan_args + [
+               scan_args : gtkdoc_common_scan_args + [
                  '--ignore-headers=' + ' '.join(ignore_headers),
                ],
                content_files : [
