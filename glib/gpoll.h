@@ -91,7 +91,7 @@ typedef gint    (*GPollFunc)    (GPollFD *ufds,
 struct _GPollFD
 {
 #if defined (G_OS_WIN32) && GLIB_SIZEOF_VOID_P == 8
-#ifndef __CTK_DOC_IGNORE__
+#ifndef __GTK_DOC_IGNORE__
   gint64	fd;
 #endif
 #else
