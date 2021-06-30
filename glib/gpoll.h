@@ -49,7 +49,7 @@ G_BEGIN_DECLS
  * indicate polling for messages.
  *
  * But note that G_WIN32_MSG_HANDLE GPollFDs should not be used by GDK
- * (GTK) programs, as GDK itself wants to read messages and convert them
+ * (CTK) programs, as GDK itself wants to read messages and convert them
  * to GDK events.
  *
  * So, unless you really know what you are doing, it's best not to try
@@ -91,7 +91,7 @@ typedef gint    (*GPollFunc)    (GPollFD *ufds,
 struct _GPollFD
 {
 #if defined (G_OS_WIN32) && GLIB_SIZEOF_VOID_P == 8
-#ifndef __GTK_DOC_IGNORE__
+#ifndef __CTK_DOC_IGNORE__
   gint64	fd;
 #endif
 #else

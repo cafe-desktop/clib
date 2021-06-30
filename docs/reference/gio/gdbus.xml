@@ -313,7 +313,7 @@ $ gdbus call --session \
              --method org.freedesktop.Notifications.Notify \
              my_app_name \
              42 \
-             gtk-dialog-info \
+             ctk-dialog-info \
              "The Summary" \
              "Here's the body of the notification" \
              [] \

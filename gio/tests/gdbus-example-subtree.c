@@ -12,13 +12,13 @@ static GDBusInterfaceInfo *partition_interface_info = NULL;
 /* Introspection data for the service we are exporting */
 static const gchar introspection_xml[] =
   "<node>"
-  "  <interface name='org.gtk.GDBus.Example.Manager'>"
+  "  <interface name='org.ctk.GDBus.Example.Manager'>"
   "    <method name='Hello'>"
   "      <arg type='s' name='greeting' direction='in'/>"
   "      <arg type='s' name='response' direction='out'/>"
   "    </method>"
   "  </interface>"
-  "  <interface name='org.gtk.GDBus.Example.Block'>"
+  "  <interface name='org.ctk.GDBus.Example.Block'>"
   "    <method name='Hello'>"
   "      <arg type='s' name='greeting' direction='in'/>"
   "      <arg type='s' name='response' direction='out'/>"
@@ -27,7 +27,7 @@ static const gchar introspection_xml[] =
   "    <property type='i' name='Minor' access='read'/>"
   "    <property type='s' name='Notes' access='readwrite'/>"
   "  </interface>"
-  "  <interface name='org.gtk.GDBus.Example.Partition'>"
+  "  <interface name='org.ctk.GDBus.Example.Partition'>"
   "    <method name='Hello'>"
   "      <arg type='s' name='greeting' direction='in'/>"
   "      <arg type='s' name='response' direction='out'/>"
@@ -52,7 +52,7 @@ manager_method_call (GDBusConnection       *connection,
   const gchar *greeting;
   gchar *response;
 
-  g_assert_cmpstr (interface_name, ==, "org.gtk.GDBus.Example.Manager");
+  g_assert_cmpstr (interface_name, ==, "org.ctk.GDBus.Example.Manager");
   g_assert_cmpstr (method_name, ==, "Hello");
 
   g_variant_get (parameters, "(&s)", &greeting);
@@ -87,7 +87,7 @@ block_method_call (GDBusConnection       *connection,
                    GDBusMethodInvocation *invocation,
                    gpointer               user_data)
 {
-  g_assert_cmpstr (interface_name, ==, "org.gtk.GDBus.Example.Block");
+  g_assert_cmpstr (interface_name, ==, "org.ctk.GDBus.Example.Block");
 
   if (g_strcmp0 (method_name, "Hello") == 0)
     {
@@ -109,7 +109,7 @@ block_method_call (GDBusConnection       *connection,
   else if (g_strcmp0 (method_name, "DoStuff") == 0)
     {
       g_dbus_method_invocation_return_dbus_error (invocation,
-                                                  "org.gtk.GDBus.TestSubtree.Error.Failed",
+                                                  "org.ctk.GDBus.TestSubtree.Error.Failed",
                                                   "This method intentionally always fails");
     }
   else
@@ -204,7 +204,7 @@ partition_method_call (GDBusConnection       *connection,
   const gchar *greeting;
   gchar *response;
 
-  g_assert_cmpstr (interface_name, ==, "org.gtk.GDBus.Example.Partition");
+  g_assert_cmpstr (interface_name, ==, "org.ctk.GDBus.Example.Partition");
   g_assert_cmpstr (method_name, ==, "Hello");
 
   g_variant_get (parameters, "(&s)", &greeting);
@@ -292,7 +292,7 @@ subtree_dispatch (GDBusConnection             *connection,
   const GDBusInterfaceVTable *vtable_to_return;
   gpointer user_data_to_return;
 
-  if (g_strcmp0 (interface_name, "org.gtk.GDBus.Example.Manager") == 0)
+  if (g_strcmp0 (interface_name, "org.ctk.GDBus.Example.Manager") == 0)
     {
       user_data_to_return = "The Root";
       vtable_to_return = &manager_vtable;
@@ -304,9 +304,9 @@ subtree_dispatch (GDBusConnection             *connection,
       else
         user_data_to_return = "A block device";
 
-      if (g_strcmp0 (interface_name, "org.gtk.GDBus.Example.Block") == 0)
+      if (g_strcmp0 (interface_name, "org.ctk.GDBus.Example.Block") == 0)
         vtable_to_return = &block_vtable;
-      else if (g_strcmp0 (interface_name, "org.gtk.GDBus.Example.Partition") == 0)
+      else if (g_strcmp0 (interface_name, "org.ctk.GDBus.Example.Partition") == 0)
         vtable_to_return = &partition_vtable;
       else
         g_assert_not_reached ();
@@ -334,7 +334,7 @@ on_bus_acquired (GDBusConnection *connection,
   guint registration_id;
 
   registration_id = g_dbus_connection_register_subtree (connection,
-                                                        "/org/gtk/GDBus/TestSubtree/Devices",
+                                                        "/org/ctk/GDBus/TestSubtree/Devices",
                                                         &subtree_vtable,
                                                         G_DBUS_SUBTREE_FLAGS_NONE,
                                                         NULL,  /* user_data */
@@ -371,15 +371,15 @@ main (int argc, char *argv[])
   introspection_data = g_dbus_node_info_new_for_xml (introspection_xml, NULL);
   g_assert (introspection_data != NULL);
 
-  manager_interface_info = g_dbus_node_info_lookup_interface (introspection_data, "org.gtk.GDBus.Example.Manager");
-  block_interface_info = g_dbus_node_info_lookup_interface (introspection_data, "org.gtk.GDBus.Example.Block");
-  partition_interface_info = g_dbus_node_info_lookup_interface (introspection_data, "org.gtk.GDBus.Example.Partition");
+  manager_interface_info = g_dbus_node_info_lookup_interface (introspection_data, "org.ctk.GDBus.Example.Manager");
+  block_interface_info = g_dbus_node_info_lookup_interface (introspection_data, "org.ctk.GDBus.Example.Block");
+  partition_interface_info = g_dbus_node_info_lookup_interface (introspection_data, "org.ctk.GDBus.Example.Partition");
   g_assert (manager_interface_info != NULL);
   g_assert (block_interface_info != NULL);
   g_assert (partition_interface_info != NULL);
 
   owner_id = g_bus_own_name (G_BUS_TYPE_SESSION,
-                             "org.gtk.GDBus.TestSubtree",
+                             "org.ctk.GDBus.TestSubtree",
                              G_BUS_NAME_OWNER_FLAGS_NONE,
                              on_bus_acquired,
                              on_name_acquired,

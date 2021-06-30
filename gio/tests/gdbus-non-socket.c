@@ -81,7 +81,7 @@ static const GDBusMethodInfo *pokee_methods[2] = {
 
 static const GDBusInterfaceInfo pokee_object_info = {
   -1,  /* ref_count */
-  "org.gtk.GDBus.Pokee",
+  "org.ctk.GDBus.Pokee",
   (GDBusMethodInfo**) pokee_methods,
   NULL, /* signals */
   NULL, /* properties */
@@ -257,7 +257,7 @@ test_non_socket (void)
   ret = g_dbus_connection_call_sync (connection,
                                      NULL, /* name */
                                      "/pokee",
-                                     "org.gtk.GDBus.Pokee",
+                                     "org.ctk.GDBus.Pokee",
                                      "Poke",
                                      g_variant_new ("(s)", "I am the POKER!"),
                                      G_VARIANT_TYPE ("(s)"), /* return type */

@@ -1,4 +1,4 @@
-if get_option('gtk_doc')
+if get_option('ctk_doc')
   subdir('xml')
 
   ignore_headers = [
@@ -10,7 +10,7 @@ if get_option('gtk_doc')
     'glib-enumtypes.h',
   ]
 
-  docpath = join_paths(glib_datadir, 'gtk-doc', 'html')
+  docpath = join_paths(glib_datadir, 'ctk-doc', 'html')
   version_conf = configuration_data()
   version_conf.set('GLIB_VERSION', meson.project_version())
   configure_file(
@@ -19,16 +19,16 @@ if get_option('gtk_doc')
     configuration: version_conf
   )
 
-  gtkdocincl = include_directories('.')
+  ctkdocincl = include_directories('.')
 
-  gnome.gtkdoc('gobject',
+  gnome.ctkdoc('gobject',
     main_xml : 'gobject-docs.xml',
     namespace : 'g',
     mode : 'none',
     dependencies : [libgobject_dep, libglib_dep],
-    include_directories : [gtkdocincl],
+    include_directories : [ctkdocincl],
     src_dir : 'gobject',
-    scan_args : gtkdoc_common_scan_args + [
+    scan_args : ctkdoc_common_scan_args + [
       '--rebuild-types',
       '--ignore-headers=' + ' '.join(ignore_headers),
     ],

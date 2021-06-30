@@ -9,8 +9,8 @@ warned.
 # General
 
 For prebuilt binaries (DLLs and EXEs) and developer packages (headers,
-import libraries) of GLib, Pango, GTK+ etc for Windows, go to
-https://www.gtk.org/download/windows.php . They are for "native"
+import libraries) of GLib, Pango, CTK+ etc for Windows, go to
+https://www.ctk.org/download/windows.php . They are for "native"
 Windows meaning they use the Win32 API and Microsoft C runtime library
 only. No POSIX (Unix) emulation layer like Cygwin is involved.
 
@@ -60,9 +60,9 @@ MinGW](https://mingwpy.github.io/ucrt.html) too.
 GLib is not actively tested with the static versions of the UCRT, but if you
 need to use those, patches are welcome.
 
-# Building software that use GLib or GTK+
+# Building software that use GLib or CTK+
 
-Building software that just *uses* GLib or GTK+ also require to have
+Building software that just *uses* GLib or CTK+ also require to have
 the right compiler set up the right way. If you intend to use MinGW-GCC,
 follow the relevant instructions below in that case, too.
 
@@ -155,7 +155,7 @@ in `msvc_recommended_pragmas.h`), please be advised that this error/warning shou
 not be disregarded, as this likely means portions of the build are not being
 done correctly, as this is an issue of Visual Studio running on CJK (East Asian)
 locales.  This is an issue that also affects builds of other projects, such as
-QT, Firefox, LibreOffice/OpenOffice, Pango and GTK, along with many other projects.
+QT, Firefox, LibreOffice/OpenOffice, Pango and CTK, along with many other projects.
 
 To overcome this problem, please set your system's locale setting for non-Unicode to
 English (United States), reboot, and restart the build, and the code should build

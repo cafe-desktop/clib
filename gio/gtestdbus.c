@@ -352,7 +352,7 @@ _g_test_watcher_remove_pid (GPid pid)
  * directory and have it processed by configure.
  * |[
  *     [D-BUS Service]
- *     Name=org.gtk.GDBus.Examples.ObjectManager
+ *     Name=org.ctk.GDBus.Examples.ObjectManager
  *     Exec=@abs_top_builddir@/gio/tests/gdbus-example-objectmanager-server
  * ]|
  * You will also need to indicate this service directory in your test

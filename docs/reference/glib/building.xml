@@ -49,8 +49,8 @@
       aliasing and cannot be guaranteed to work.
     </para>
     <para>
-      The GTK+ documentation contains
-      <ulink url="https://developer.gnome.org/gtk3/stable/gtk-building.html">further details</ulink>
+      The CTK+ documentation contains
+      <ulink url="https://developer.gnome.org/ctk3/stable/ctk-building.html">further details</ulink>
       about the build process and ways to influence it.
     </para>
   </refsect1>
@@ -285,16 +285,16 @@
     </formalpara>
 
     <formalpara>
-      <title><option>-Dgtk_doc=false</option> and
-        <option>-Dgtk_doc=true</option></title>
+      <title><option>-Dctk_doc=false</option> and
+        <option>-Dctk_doc=true</option></title>
 
       <para>
         By default, GLib will detect whether the
-        <application>gtk-doc</application> package is installed.
+        <application>ctk-doc</application> package is installed.
         If it is, then it will use it to extract and build the
         documentation for the GLib library. These options
         can be used to explicitly control whether
-        <application>gtk-doc</application> should be
+        <application>ctk-doc</application> should be
         used or not. If it is not used, the distributed,
         pre-generated HTML files will be installed instead of
         building them on your machine.

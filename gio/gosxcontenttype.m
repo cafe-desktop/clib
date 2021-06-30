@@ -525,7 +525,7 @@ g_content_type_guess (const gchar  *filename,
         }
       else
         {
-          /* GTK needs this... */
+          /* CTK needs this... */
           if (g_str_has_suffix (basename, ".ui"))
             {
               uti = CFStringCreateCopy (NULL, kUTTypeXML);

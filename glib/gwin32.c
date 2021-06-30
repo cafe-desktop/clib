@@ -20,7 +20,7 @@
  * Modified by the GLib Team and others 1997-2000.  See the AUTHORS
  * file for a list of people on the GLib Team.  See the ChangeLog
  * files for a list of changes.  These files are distributed with
- * GLib at ftp://ftp.gtk.org/pub/gtk/. 
+ * GLib at ftp://ftp.ctk.org/pub/ctk/. 
  */
 
 /* 
@@ -116,9 +116,9 @@ g_win32_getlocale (void)
   const gchar *script = NULL;
 
   /* Let the user override the system settings through environment
-   * variables, as on POSIX systems. Note that in GTK+ applications
-   * since GTK+ 2.10.7 setting either LC_ALL or LANG also sets the
-   * Win32 locale and C library locale through code in gtkmain.c.
+   * variables, as on POSIX systems. Note that in CTK+ applications
+   * since CTK+ 2.10.7 setting either LC_ALL or LANG also sets the
+   * Win32 locale and C library locale through code in ctkmain.c.
    */
   if (((ev = g_getenv ("LC_ALL")) != NULL && ev[0] != '\0')
       || ((ev = g_getenv ("LC_MESSAGES")) != NULL && ev[0] != '\0')

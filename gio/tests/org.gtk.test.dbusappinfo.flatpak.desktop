@@ -2,4 +2,4 @@
 Type=Application
 Name=Test
 DBusActivatable=true
-X-Flatpak=org.gtk.test.dbusappinfo.flatpak
+X-Flatpak=org.ctk.test.dbusappinfo.flatpak

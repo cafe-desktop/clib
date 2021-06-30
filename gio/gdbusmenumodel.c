@@ -305,7 +305,7 @@ g_dbus_menu_path_activate (GDBusMenuPath *path)
 {
   if (path->active++ == 0)
     path->watch_id = g_dbus_connection_signal_subscribe (path->id->connection, path->id->bus_name,
-                                                         "org.gtk.Menus", "Changed", path->id->object_path,
+                                                         "org.ctk.Menus", "Changed", path->id->object_path,
                                                          NULL, G_DBUS_SIGNAL_FLAGS_NONE,
                                                          g_dbus_menu_path_signal, path, NULL);
 }
@@ -485,7 +485,7 @@ g_dbus_menu_group_go_offline (GDBusMenuGroup *group)
   g_dbus_connection_call (group->path->id->connection,
                           group->path->id->bus_name,
                           group->path->id->object_path,
-                          "org.gtk.Menus", "End",
+                          "org.ctk.Menus", "End",
                           g_variant_new_parsed ("([ %u ],)", group->id),
                           NULL, G_DBUS_CALL_FLAGS_NONE, -1,
                           NULL, NULL, NULL);
@@ -548,7 +548,7 @@ g_dbus_menu_group_activate (GDBusMenuGroup *group)
           g_dbus_connection_call (group->path->id->connection,
                                   group->path->id->bus_name,
                                   group->path->id->object_path,
-                                  "org.gtk.Menus", "Start",
+                                  "org.ctk.Menus", "Start",
                                   g_variant_new_parsed ("([ %u ],)", group->id),
                                   G_VARIANT_TYPE ("(a(uuaa{sv}))"),
                                   G_DBUS_CALL_FLAGS_NONE, -1, NULL,

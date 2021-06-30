@@ -1,4 +1,4 @@
-if get_option('gtk_doc')
+if get_option('ctk_doc')
   subdir('xml')
 
   ignore_headers = [
@@ -43,7 +43,7 @@ if get_option('gtk_doc')
     'dirent.h',
   ]
 
-  docpath = join_paths(glib_datadir, 'gtk-doc', 'html')
+  docpath = join_paths(glib_datadir, 'ctk-doc', 'html')
   version_conf = configuration_data()
   version_conf.set('GLIB_VERSION', meson.project_version())
   configure_file(
@@ -52,13 +52,13 @@ if get_option('gtk_doc')
     configuration: version_conf
   )
 
-  gnome.gtkdoc('glib',
+  gnome.ctkdoc('glib',
                main_xml : 'glib-docs.xml',
                namespace : 'g',
                mode : 'none',
                src_dir : [ 'glib', 'gmodule' ],
                dependencies : libglib_dep,
-               scan_args : gtkdoc_common_scan_args + [
+               scan_args : ctkdoc_common_scan_args + [
                  '--ignore-headers=' + ' '.join(ignore_headers),
                ],
                content_files : [

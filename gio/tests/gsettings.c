@@ -14,7 +14,7 @@ static const gchar *locale_dir = ".";
 
 static gboolean backend_set;
 
-/* These tests rely on the schemas in org.gtk.test.gschema.xml
+/* These tests rely on the schemas in org.ctk.test.gschema.xml
  * to be compiled and installed in the same directory.
  */
 
@@ -70,7 +70,7 @@ test_basic (void)
   gboolean delay_apply;
   GSettings *settings;
 
-  settings = g_settings_new ("org.gtk.test");
+  settings = g_settings_new ("org.ctk.test");
 
   g_object_get (settings,
                 "schema-id", &str,
@@ -79,7 +79,7 @@ test_basic (void)
                 "has-unapplied", &has_unapplied,
                 "delay-apply", &delay_apply,
                 NULL);
-  g_assert_cmpstr (str, ==, "org.gtk.test");
+  g_assert_cmpstr (str, ==, "org.ctk.test");
   g_assert_nonnull (b);
   g_assert_cmpstr (path, ==, "/tests/");
   g_assert_false (has_unapplied);
@@ -100,7 +100,7 @@ test_basic (void)
 
   if (!backend_set && g_test_undefined ())
     {
-      GSettings *tmp_settings = g_settings_new ("org.gtk.test");
+      GSettings *tmp_settings = g_settings_new ("org.ctk.test");
 
       g_test_expect_message (G_LOG_DOMAIN, G_LOG_LEVEL_CRITICAL,
                              "*g_settings_set_value*expects type*");
@@ -138,7 +138,7 @@ test_unknown_key (void)
       GSettings *settings;
       GVariant *value;
 
-      settings = g_settings_new ("org.gtk.test");
+      settings = g_settings_new ("org.ctk.test");
       value = g_settings_get_value (settings, "no_such_key");
 
       g_assert_null (value);
@@ -186,7 +186,7 @@ test_wrong_type (void)
   if (!g_test_undefined ())
     return;
 
-  settings = g_settings_new ("org.gtk.test");
+  settings = g_settings_new ("org.ctk.test");
 
   g_test_expect_message ("GLib", G_LOG_LEVEL_CRITICAL,
                          "*given value has a type of*");
@@ -216,7 +216,7 @@ test_wrong_path (void)
     {
       GSettings *settings G_GNUC_UNUSED;
 
-      settings = g_settings_new_with_path ("org.gtk.test", "/wrong-path/");
+      settings = g_settings_new_with_path ("org.ctk.test", "/wrong-path/");
       return;
     }
   g_test_trap_subprocess (NULL, 0, 0);
@@ -234,7 +234,7 @@ test_no_path (void)
     {
       GSettings *settings G_GNUC_UNUSED;
 
-      settings = g_settings_new ("org.gtk.test.no-path");
+      settings = g_settings_new ("org.ctk.test.no-path");
       return;
     }
   g_test_trap_subprocess (NULL, 0, 0);
@@ -261,7 +261,7 @@ test_basic_types (void)
   gdouble d;
   gchar *str;
 
-  settings = g_settings_new ("org.gtk.test.basic-types");
+  settings = g_settings_new ("org.ctk.test.basic-types");
 
   g_settings_get (settings, "test-boolean", "b", &b);
   g_assert_cmpint (b, ==, 1);
@@ -366,7 +366,7 @@ test_complex_types (void)
   GVariantIter *iter = NULL;
   GVariant *v = NULL;
 
-  settings = g_settings_new ("org.gtk.test.complex-types");
+  settings = g_settings_new ("org.ctk.test.complex-types");
 
   g_settings_get (settings, "test-tuple", "(s(ii))", &s, &i1, &i2);
   g_assert_cmpstr (s, ==, "one");
@@ -439,7 +439,7 @@ test_changes (void)
   GSettings *settings;
   GSettings *settings2;
 
-  settings = g_settings_new ("org.gtk.test");
+  settings = g_settings_new ("org.ctk.test");
 
   g_signal_connect (settings, "changed",
                     G_CALLBACK (changed_cb), "greeting");
@@ -449,7 +449,7 @@ test_changes (void)
   g_settings_set (settings, "greeting", "s", "new greeting");
   g_assert_true (changed_cb_called);
 
-  settings2 = g_settings_new ("org.gtk.test");
+  settings2 = g_settings_new ("org.ctk.test");
 
   changed_cb_called = FALSE;
 
@@ -489,8 +489,8 @@ test_delay_apply (void)
   GVariant *v;
   const gchar *s;
 
-  settings = g_settings_new ("org.gtk.test");
-  settings2 = g_settings_new ("org.gtk.test");
+  settings = g_settings_new ("org.ctk.test");
+  settings2 = g_settings_new ("org.ctk.test");
 
   g_settings_set (settings2, "greeting", "s", "top o' the morning");
 
@@ -590,8 +590,8 @@ test_delay_revert (void)
   GSettings *settings2;
   gchar *str;
 
-  settings = g_settings_new ("org.gtk.test");
-  settings2 = g_settings_new ("org.gtk.test");
+  settings = g_settings_new ("org.ctk.test");
+  settings2 = g_settings_new ("org.ctk.test");
 
   g_settings_set (settings2, "greeting", "s", "top o' the morning");
 
@@ -642,10 +642,10 @@ test_delay_child (void)
   guint8 byte;
   gboolean delay;
 
-  base = g_settings_new ("org.gtk.test.basic-types");
+  base = g_settings_new ("org.ctk.test.basic-types");
   g_settings_set (base, "test-byte", "y", 36);
 
-  settings = g_settings_new ("org.gtk.test");
+  settings = g_settings_new ("org.ctk.test");
   g_settings_delay (settings);
   g_object_get (settings, "delay-apply", &delay, NULL);
   g_assert_true (delay);
@@ -706,8 +706,8 @@ test_atomic (void)
   GSettings *settings2;
   gchar *str;
 
-  settings = g_settings_new ("org.gtk.test");
-  settings2 = g_settings_new ("org.gtk.test");
+  settings = g_settings_new ("org.ctk.test");
+  settings2 = g_settings_new ("org.ctk.test");
 
   g_settings_set (settings2, "greeting", "s", "top o' the morning");
 
@@ -784,7 +784,7 @@ test_l10n (void)
 
   locale = g_strdup (setlocale (LC_MESSAGES, NULL));
 
-  settings = g_settings_new ("org.gtk.test.localized");
+  settings = g_settings_new ("org.ctk.test.localized");
 
   g_setenv ("LC_MESSAGES", "C", TRUE);
   setlocale (LC_MESSAGES, "C");
@@ -835,7 +835,7 @@ test_l10n_context (void)
 
   locale = g_strdup (setlocale (LC_MESSAGES, NULL));
 
-  settings = g_settings_new ("org.gtk.test.localized");
+  settings = g_settings_new ("org.ctk.test.localized");
 
   g_setenv ("LC_MESSAGES", "C", TRUE);
   setlocale (LC_MESSAGES, "C");
@@ -1174,7 +1174,7 @@ test_simple_binding (void)
   GVariant *value;
   gchar **strv;
 
-  settings = g_settings_new ("org.gtk.test.binding");
+  settings = g_settings_new ("org.ctk.test.binding");
   obj = test_object_new ();
 
   g_settings_bind (settings, "bool", obj, "bool", G_SETTINGS_BIND_DEFAULT);
@@ -1414,7 +1414,7 @@ test_unbind (void)
   TestObject *obj;
   GSettings *settings;
 
-  settings = g_settings_new ("org.gtk.test.binding");
+  settings = g_settings_new ("org.ctk.test.binding");
   obj = test_object_new ();
 
   g_settings_bind (settings, "int", obj, "int", G_SETTINGS_BIND_DEFAULT);
@@ -1438,7 +1438,7 @@ test_bind_writable (void)
   GSettings *settings;
   gboolean b;
 
-  settings = g_settings_new ("org.gtk.test.binding");
+  settings = g_settings_new ("org.ctk.test.binding");
   obj = test_object_new ();
 
   g_object_set (obj, "bool", FALSE, NULL);
@@ -1471,7 +1471,7 @@ test_directional_binding (void)
   gboolean b;
   gint i;
 
-  settings = g_settings_new ("org.gtk.test.binding");
+  settings = g_settings_new ("org.ctk.test.binding");
   obj = test_object_new ();
 
   g_object_set (obj, "bool", FALSE, NULL);
@@ -1514,7 +1514,7 @@ test_typesafe_binding (void)
       TestObject *obj;
       GSettings *settings;
 
-      settings = g_settings_new ("org.gtk.test.binding");
+      settings = g_settings_new ("org.ctk.test.binding");
       obj = test_object_new ();
 
       g_settings_bind (settings, "string", obj, "int", G_SETTINGS_BIND_DEFAULT);
@@ -1571,7 +1571,7 @@ test_custom_binding (void)
   gchar *s;
   gboolean b;
 
-  settings = g_settings_new ("org.gtk.test.binding");
+  settings = g_settings_new ("org.ctk.test.binding");
   obj = test_object_new ();
 
   g_settings_set_string (settings, "string", "true");
@@ -1623,7 +1623,7 @@ test_no_change_binding (void)
   GSettings *settings;
   gboolean b;
 
-  settings = g_settings_new ("org.gtk.test.binding");
+  settings = g_settings_new ("org.ctk.test.binding");
   obj = test_object_new ();
 
   g_object_set (obj, "bool", TRUE, NULL);
@@ -1656,7 +1656,7 @@ test_no_read_binding_fail (void)
   TestObject *obj;
   GSettings *settings;
 
-  settings = g_settings_new ("org.gtk.test.binding");
+  settings = g_settings_new ("org.ctk.test.binding");
   obj = test_object_new ();
 
   g_settings_bind (settings, "string", obj, "no-read", 0);
@@ -1668,7 +1668,7 @@ test_no_read_binding_pass (void)
   TestObject *obj;
   GSettings *settings;
 
-  settings = g_settings_new ("org.gtk.test.binding");
+  settings = g_settings_new ("org.ctk.test.binding");
   obj = test_object_new ();
 
   g_settings_bind (settings, "string", obj, "no-read", G_SETTINGS_BIND_GET);
@@ -1699,7 +1699,7 @@ test_no_write_binding_fail (void)
   TestObject *obj;
   GSettings *settings;
 
-  settings = g_settings_new ("org.gtk.test.binding");
+  settings = g_settings_new ("org.ctk.test.binding");
   obj = test_object_new ();
 
   g_settings_bind (settings, "string", obj, "no-write", 0);
@@ -1711,7 +1711,7 @@ test_no_write_binding_pass (void)
   TestObject *obj;
   GSettings *settings;
 
-  settings = g_settings_new ("org.gtk.test.binding");
+  settings = g_settings_new ("org.ctk.test.binding");
   obj = test_object_new ();
 
   g_settings_bind (settings, "string", obj, "no-write", G_SETTINGS_BIND_SET);
@@ -1769,7 +1769,7 @@ test_keyfile (Fixture       *fixture,
   keyfile_path = g_build_filename (fixture->tmp_dir, "keyfile", NULL);
   store_path = g_build_filename (keyfile_path, "gsettings.store", NULL);
   kf_backend = g_keyfile_settings_backend_new (store_path, "/", "root");
-  settings = g_settings_new_with_backend ("org.gtk.test", kf_backend);
+  settings = g_settings_new_with_backend ("org.ctk.test", kf_backend);
   g_object_unref (kf_backend);
 
   g_settings_reset (settings, "greeting");
@@ -1897,7 +1897,7 @@ test_keyfile_no_path (Fixture       *fixture,
   keyfile_path = g_build_filename (fixture->tmp_dir, "keyfile", NULL);
   store_path = g_build_filename (keyfile_path, "gsettings.store", NULL);
   kf_backend = g_keyfile_settings_backend_new (store_path, test_data->root_path, test_data->root_group);
-  settings = g_settings_new_with_backend_and_path ("org.gtk.test.no-path", kf_backend, test_data->path);
+  settings = g_settings_new_with_backend_and_path ("org.ctk.test.no-path", kf_backend, test_data->path);
   g_object_unref (kf_backend);
 
   g_settings_reset (settings, "test-boolean");
@@ -1976,7 +1976,7 @@ test_keyfile_outside_root_path (Fixture       *fixture,
   keyfile_path = g_build_filename (fixture->tmp_dir, "keyfile", NULL);
   store_path = g_build_filename (keyfile_path, "gsettings.store", NULL);
   kf_backend = g_keyfile_settings_backend_new (store_path, "/tests/basic-types/", "root");
-  settings = g_settings_new_with_backend_and_path ("org.gtk.test.no-path", kf_backend, "/tests/");
+  settings = g_settings_new_with_backend_and_path ("org.ctk.test.no-path", kf_backend, "/tests/");
   g_object_unref (kf_backend);
 
   g_assert_false (g_settings_is_writable (settings, "test-boolean"));
@@ -2005,7 +2005,7 @@ test_keyfile_no_root_group (Fixture       *fixture,
   keyfile_path = g_build_filename (fixture->tmp_dir, "keyfile", NULL);
   store_path = g_build_filename (keyfile_path, "gsettings.store", NULL);
   kf_backend = g_keyfile_settings_backend_new (store_path, "/", NULL);
-  settings = g_settings_new_with_backend_and_path ("org.gtk.test.no-path", kf_backend, "/");
+  settings = g_settings_new_with_backend_and_path ("org.ctk.test.no-path", kf_backend, "/");
   g_object_unref (kf_backend);
 
   g_assert_false (g_settings_is_writable (settings, "test-boolean"));
@@ -2031,7 +2031,7 @@ test_child_schema (void)
   guint8 byte;
 
   /* first establish some known conditions */
-  settings = g_settings_new ("org.gtk.test.basic-types");
+  settings = g_settings_new ("org.ctk.test.basic-types");
   g_settings_set (settings, "test-byte", "y", 36);
 
   g_settings_get (settings, "test-byte", "y", &byte);
@@ -2039,7 +2039,7 @@ test_child_schema (void)
 
   g_object_unref (settings);
 
-  settings = g_settings_new ("org.gtk.test");
+  settings = g_settings_new ("org.ctk.test");
   child = g_settings_get_child (settings, "basic-types");
   g_assert_nonnull (child);
 
@@ -2111,7 +2111,7 @@ test_enums_non_enum_key (void)
 {
   GSettings *direct;
 
-  direct = g_settings_new ("org.gtk.test.enums.direct");
+  direct = g_settings_new ("org.ctk.test.enums.direct");
   g_settings_get_enum (direct, "test");
   g_assert_not_reached ();
 }
@@ -2121,7 +2121,7 @@ test_enums_non_enum_value (void)
 {
   GSettings *settings;
 
-  settings = g_settings_new ("org.gtk.test.enums");
+  settings = g_settings_new ("org.ctk.test.enums");
   g_settings_set_enum (settings, "test", 42);
   g_assert_not_reached ();
 }
@@ -2131,7 +2131,7 @@ test_enums_range (void)
 {
   GSettings *settings;
 
-  settings = g_settings_new ("org.gtk.test.enums");
+  settings = g_settings_new ("org.ctk.test.enums");
   g_settings_set_string (settings, "test", "qux");
   g_assert_not_reached ();
 }
@@ -2141,7 +2141,7 @@ test_enums_non_flags (void)
 {
   GSettings *settings;
 
-  settings = g_settings_new ("org.gtk.test.enums");
+  settings = g_settings_new ("org.ctk.test.enums");
   g_settings_get_flags (settings, "test");
   g_assert_not_reached ();
 }
@@ -2152,8 +2152,8 @@ test_enums (void)
   GSettings *settings, *direct;
   gchar *str;
 
-  settings = g_settings_new ("org.gtk.test.enums");
-  direct = g_settings_new ("org.gtk.test.enums.direct");
+  settings = g_settings_new ("org.ctk.test.enums");
+  direct = g_settings_new ("org.ctk.test.enums.direct");
 
   if (g_test_undefined () && !backend_set)
     {
@@ -2207,7 +2207,7 @@ test_flags_non_flags_key (void)
 {
   GSettings *direct;
 
-  direct = g_settings_new ("org.gtk.test.enums.direct");
+  direct = g_settings_new ("org.ctk.test.enums.direct");
   g_settings_get_flags (direct, "test");
   g_assert_not_reached ();
 }
@@ -2217,7 +2217,7 @@ test_flags_non_flags_value (void)
 {
   GSettings *settings;
 
-  settings = g_settings_new ("org.gtk.test.enums");
+  settings = g_settings_new ("org.ctk.test.enums");
   g_settings_set_flags (settings, "f-test", 0x42);
   g_assert_not_reached ();
 }
@@ -2227,7 +2227,7 @@ test_flags_range (void)
 {
   GSettings *settings;
 
-  settings = g_settings_new ("org.gtk.test.enums");
+  settings = g_settings_new ("org.ctk.test.enums");
   g_settings_set_strv (settings, "f-test",
                        (const gchar **) g_strsplit ("rock", ",", 0));
   g_assert_not_reached ();
@@ -2238,7 +2238,7 @@ test_flags_non_enum (void)
 {
   GSettings *settings;
 
-  settings = g_settings_new ("org.gtk.test.enums");
+  settings = g_settings_new ("org.ctk.test.enums");
   g_settings_get_enum (settings, "f-test");
   g_assert_not_reached ();
 }
@@ -2250,8 +2250,8 @@ test_flags (void)
   gchar **strv;
   gchar *str;
 
-  settings = g_settings_new ("org.gtk.test.enums");
-  direct = g_settings_new ("org.gtk.test.enums.direct");
+  settings = g_settings_new ("org.ctk.test.enums");
+  direct = g_settings_new ("org.ctk.test.enums.direct");
 
   if (g_test_undefined () && !backend_set)
     {
@@ -2318,7 +2318,7 @@ test_range_high (void)
 {
   GSettings *settings;
 
-  settings = g_settings_new ("org.gtk.test.range");
+  settings = g_settings_new ("org.ctk.test.range");
   g_settings_set_int (settings, "val", 45);
   g_assert_not_reached ();
 }
@@ -2328,7 +2328,7 @@ test_range_low (void)
 {
   GSettings *settings;
 
-  settings = g_settings_new ("org.gtk.test.range");
+  settings = g_settings_new ("org.ctk.test.range");
   g_settings_set_int (settings, "val", 1);
   g_assert_not_reached ();
 }
@@ -2339,8 +2339,8 @@ test_range (void)
   GSettings *settings, *direct;
   GVariant *value;
 
-  settings = g_settings_new ("org.gtk.test.range");
-  direct = g_settings_new ("org.gtk.test.range.direct");
+  settings = g_settings_new ("org.ctk.test.range");
+  direct = g_settings_new ("org.ctk.test.range.direct");
 
   if (g_test_undefined () && !backend_set)
     {
@@ -2433,7 +2433,7 @@ test_list_items (void)
   gchar **children;
   gchar **keys;
 
-  settings = g_settings_new ("org.gtk.test");
+  settings = g_settings_new ("org.ctk.test");
   g_object_get (settings, "settings-schema", &schema, NULL);
   children = g_settings_list_children (settings);
   keys = g_settings_schema_list_keys (schema);
@@ -2460,24 +2460,24 @@ G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 G_GNUC_END_IGNORE_DEPRECATIONS
 
   g_assert_true (strv_set_equal ((gchar **)relocs,
-                                 "org.gtk.test.no-path",
-                                 "org.gtk.test.extends.base",
-                                 "org.gtk.test.extends.extended",
+                                 "org.ctk.test.no-path",
+                                 "org.ctk.test.extends.base",
+                                 "org.ctk.test.extends.extended",
                                  NULL));
 
   g_assert_true (strv_set_equal ((gchar **)schemas,
-                                 "org.gtk.test",
-                                 "org.gtk.test.basic-types",
-                                 "org.gtk.test.complex-types",
-                                 "org.gtk.test.localized",
-                                 "org.gtk.test.binding",
-                                 "org.gtk.test.enums",
-                                 "org.gtk.test.enums.direct",
-                                 "org.gtk.test.range",
-                                 "org.gtk.test.range.direct",
-                                 "org.gtk.test.mapped",
-                                 "org.gtk.test.descriptions",
-                                 "org.gtk.test.per-desktop",
+                                 "org.ctk.test",
+                                 "org.ctk.test.basic-types",
+                                 "org.ctk.test.complex-types",
+                                 "org.ctk.test.localized",
+                                 "org.ctk.test.binding",
+                                 "org.ctk.test.enums",
+                                 "org.ctk.test.enums.direct",
+                                 "org.ctk.test.range",
+                                 "org.ctk.test.range.direct",
+                                 "org.ctk.test.mapped",
+                                 "org.ctk.test.descriptions",
+                                 "org.ctk.test.per-desktop",
                                  NULL));
 }
 
@@ -2522,7 +2522,7 @@ test_get_mapped (void)
   gpointer p;
   gint val;
 
-  settings = g_settings_new ("org.gtk.test.mapped");
+  settings = g_settings_new ("org.ctk.test.mapped");
   g_settings_set_int (settings, "val", 1);
 
   state = 0;
@@ -2541,23 +2541,23 @@ test_get_range (void)
   GVariant *range;
 
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-  settings = g_settings_new ("org.gtk.test.range");
+  settings = g_settings_new ("org.ctk.test.range");
   range = g_settings_get_range (settings, "val");
   check_and_free (range, "('range', <(2, 44)>)");
   g_object_unref (settings);
 
-  settings = g_settings_new ("org.gtk.test.enums");
+  settings = g_settings_new ("org.ctk.test.enums");
   range = g_settings_get_range (settings, "test");
   check_and_free (range, "('enum', <['foo', 'bar', 'baz', 'quux']>)");
   g_object_unref (settings);
 
-  settings = g_settings_new ("org.gtk.test.enums");
+  settings = g_settings_new ("org.ctk.test.enums");
   range = g_settings_get_range (settings, "f-test");
   check_and_free (range, "('flags', "
                   "<['mourning', 'laughing', 'talking', 'walking']>)");
   g_object_unref (settings);
 
-  settings = g_settings_new ("org.gtk.test");
+  settings = g_settings_new ("org.ctk.test");
   range = g_settings_get_range (settings, "greeting");
   check_and_free (range, "('type', <@as []>)");
   g_object_unref (settings);
@@ -2602,29 +2602,29 @@ test_schema_source (void)
   g_assert_nonnull (source);
 
   /* check recursive lookups are working */
-  schema = g_settings_schema_source_lookup (source, "org.gtk.test", TRUE);
+  schema = g_settings_schema_source_lookup (source, "org.ctk.test", TRUE);
   g_assert_nonnull (schema);
   g_settings_schema_unref (schema);
 
   /* check recursive lookups for non-existent schemas */
-  schema = g_settings_schema_source_lookup (source, "org.gtk.doesnotexist", TRUE);
+  schema = g_settings_schema_source_lookup (source, "org.ctk.doesnotexist", TRUE);
   g_assert_null (schema);
 
   /* check non-recursive for schema that only exists in lower layers */
-  schema = g_settings_schema_source_lookup (source, "org.gtk.test", FALSE);
+  schema = g_settings_schema_source_lookup (source, "org.ctk.test", FALSE);
   g_assert_null (schema);
 
   /* check non-recursive lookup for non-existent */
-  schema = g_settings_schema_source_lookup (source, "org.gtk.doesnotexist", FALSE);
+  schema = g_settings_schema_source_lookup (source, "org.ctk.doesnotexist", FALSE);
   g_assert_null (schema);
 
   /* check non-recursive for schema that exists in toplevel */
-  schema = g_settings_schema_source_lookup (source, "org.gtk.schemasourcecheck", FALSE);
+  schema = g_settings_schema_source_lookup (source, "org.ctk.schemasourcecheck", FALSE);
   g_assert_nonnull (schema);
   g_settings_schema_unref (schema);
 
   /* check recursive for schema that exists in toplevel */
-  schema = g_settings_schema_source_lookup (source, "org.gtk.schemasourcecheck", TRUE);
+  schema = g_settings_schema_source_lookup (source, "org.ctk.schemasourcecheck", TRUE);
   g_assert_nonnull (schema);
 
   /* try to use it for something */
@@ -2642,16 +2642,16 @@ test_schema_source (void)
   g_assert_nonnull (source);
 
   /* should not find it this time, even if recursive... */
-  schema = g_settings_schema_source_lookup (source, "org.gtk.test", FALSE);
+  schema = g_settings_schema_source_lookup (source, "org.ctk.test", FALSE);
   g_assert_null (schema);
-  schema = g_settings_schema_source_lookup (source, "org.gtk.test", TRUE);
+  schema = g_settings_schema_source_lookup (source, "org.ctk.test", TRUE);
   g_assert_null (schema);
 
   /* should still find our own... */
-  schema = g_settings_schema_source_lookup (source, "org.gtk.schemasourcecheck", TRUE);
+  schema = g_settings_schema_source_lookup (source, "org.ctk.schemasourcecheck", TRUE);
   g_assert_nonnull (schema);
   g_settings_schema_unref (schema);
-  schema = g_settings_schema_source_lookup (source, "org.gtk.schemasourcecheck", FALSE);
+  schema = g_settings_schema_source_lookup (source, "org.ctk.schemasourcecheck", FALSE);
   g_assert_nonnull (schema);
   g_settings_schema_unref (schema);
 
@@ -2664,7 +2664,7 @@ test_schema_list_keys (void)
 {
   gchar                 **keys;
   GSettingsSchemaSource  *src    = g_settings_schema_source_get_default ();
-  GSettingsSchema        *schema = g_settings_schema_source_lookup (src, "org.gtk.test", TRUE);
+  GSettingsSchema        *schema = g_settings_schema_source_lookup (src, "org.ctk.test", TRUE);
   g_assert_nonnull (schema);
 
   keys = g_settings_schema_list_keys (schema);
@@ -2690,7 +2690,7 @@ test_actions (void)
   GVariantType *state_type;
   GVariant *state;
 
-  settings = g_settings_new ("org.gtk.test.basic-types");
+  settings = g_settings_new ("org.ctk.test.basic-types");
   string = g_settings_create_action (settings, "test-string");
   toggle = g_settings_create_action (settings, "test-boolean");
   g_object_unref (settings); /* should be held by the actions */
@@ -2756,10 +2756,10 @@ test_null_backend (void)
   gboolean writable;
 
   backend = g_null_settings_backend_new ();
-  settings = g_settings_new_with_backend_and_path ("org.gtk.test", backend, "/tests/");
+  settings = g_settings_new_with_backend_and_path ("org.ctk.test", backend, "/tests/");
 
   g_object_get (settings, "schema-id", &str, NULL);
-  g_assert_cmpstr (str, ==, "org.gtk.test");
+  g_assert_cmpstr (str, ==, "org.ctk.test");
   g_free (str);
 
   g_settings_get (settings, "greeting", "s", &str);
@@ -2804,7 +2804,7 @@ test_read_descriptions (void)
   GSettingsSchemaKey *key;
   GSettings *settings;
 
-  settings = g_settings_new ("org.gtk.test");
+  settings = g_settings_new ("org.ctk.test");
   g_object_get (settings, "settings-schema", &schema, NULL);
   key = g_settings_schema_get_key (schema, "greeting");
 
@@ -2816,7 +2816,7 @@ test_read_descriptions (void)
 
   g_object_unref (settings);
 
-  settings = g_settings_new ("org.gtk.test.descriptions");
+  settings = g_settings_new ("org.ctk.test.descriptions");
   g_object_get (settings, "settings-schema", &schema, NULL);
   key = g_settings_schema_get_key (schema, "a");
 
@@ -2842,7 +2842,7 @@ test_default_value (void)
   const gchar *str;
   gchar *s;
 
-  settings = g_settings_new ("org.gtk.test");
+  settings = g_settings_new ("org.ctk.test");
   g_object_get (settings, "settings-schema", &schema, NULL);
   key = g_settings_schema_get_key (schema, "greeting");
   g_settings_schema_unref (schema);
@@ -2895,7 +2895,7 @@ string_map_func (GVariant *value,
   return TRUE;
 }
 
-/* Test that per-desktop values from org.gtk.test.gschema.override
+/* Test that per-desktop values from org.ctk.test.gschema.override
  * does not change default value if current desktop is not listed in
  * $XDG_CURRENT_DESKTOP.
  */
@@ -2907,7 +2907,7 @@ test_per_desktop (void)
   gpointer p;
   gchar *str;
 
-  settings = g_settings_new ("org.gtk.test.per-desktop");
+  settings = g_settings_new ("org.ctk.test.per-desktop");
   obj = test_object_new ();
 
   if (!g_test_subprocess ())
@@ -2938,7 +2938,7 @@ test_per_desktop (void)
   g_object_unref (obj);
 }
 
-/* Test that per-desktop values from org.gtk.test.gschema.override
+/* Test that per-desktop values from org.ctk.test.gschema.override
  * are successfully loaded based on the value of $XDG_CURRENT_DESKTOP.
  */
 static void
@@ -2951,7 +2951,7 @@ test_per_desktop_subprocess (void)
 
   g_setenv ("XDG_CURRENT_DESKTOP", "GNOME-Classic:GNOME", TRUE);
 
-  settings = g_settings_new ("org.gtk.test.per-desktop");
+  settings = g_settings_new ("org.ctk.test.per-desktop");
   obj = test_object_new ();
 
   str = g_settings_get_string (settings, "desktop");
@@ -2983,7 +2983,7 @@ test_extended_schema (void)
   GSettings *settings;
   gchar **keys;
 
-  settings = g_settings_new_with_path ("org.gtk.test.extends.extended", "/test/extendes/");
+  settings = g_settings_new_with_path ("org.ctk.test.extends.extended", "/test/extendes/");
   g_object_get (settings, "settings-schema", &schema, NULL);
   keys = g_settings_schema_list_keys (schema);
   g_assert_true (strv_set_equal (keys, "int32", "string", "another-int32", NULL));
@@ -3038,37 +3038,37 @@ main (int argc, char *argv[])
       if (!backend_set)
         g_setenv ("GSETTINGS_BACKEND", "memory", TRUE);
 
-      g_remove ("org.gtk.test.enums.xml");
+      g_remove ("org.ctk.test.enums.xml");
       /* #GLIB_MKENUMS is defined in meson.build */
       g_assert_true (g_spawn_command_line_sync (GLIB_MKENUMS " "
                                                 "--template " SRCDIR "/enums.xml.template "
                                                 SRCDIR "/testenum.h",
                                                 &enums, NULL, &result, NULL));
       g_assert_cmpint (result, ==, 0);
-      g_assert_true (g_file_set_contents ("org.gtk.test.enums.xml", enums, -1, NULL));
+      g_assert_true (g_file_set_contents ("org.ctk.test.enums.xml", enums, -1, NULL));
       g_free (enums);
 
-      g_assert_true (g_file_get_contents (SRCDIR "/org.gtk.test.gschema.xml.orig", &schema_text, NULL, NULL));
-      g_assert_true (g_file_set_contents ("org.gtk.test.gschema.xml", schema_text, -1, NULL));
+      g_assert_true (g_file_get_contents (SRCDIR "/org.ctk.test.gschema.xml.orig", &schema_text, NULL, NULL));
+      g_assert_true (g_file_set_contents ("org.ctk.test.gschema.xml", schema_text, -1, NULL));
       g_free (schema_text);
 
-      g_assert_true (g_file_get_contents (SRCDIR "/org.gtk.test.gschema.override.orig", &override_text, NULL, NULL));
-      g_assert_true (g_file_set_contents ("org.gtk.test.gschema.override", override_text, -1, NULL));
+      g_assert_true (g_file_get_contents (SRCDIR "/org.ctk.test.gschema.override.orig", &override_text, NULL, NULL));
+      g_assert_true (g_file_set_contents ("org.ctk.test.gschema.override", override_text, -1, NULL));
       g_free (override_text);
 
       g_remove ("gschemas.compiled");
       /* #GLIB_COMPILE_SCHEMAS is defined in meson.build */
       g_assert_true (g_spawn_command_line_sync (GLIB_COMPILE_SCHEMAS " --targetdir=. "
-                                                "--schema-file=org.gtk.test.enums.xml "
-                                                "--schema-file=org.gtk.test.gschema.xml "
-                                                "--override-file=org.gtk.test.gschema.override",
+                                                "--schema-file=org.ctk.test.enums.xml "
+                                                "--schema-file=org.ctk.test.gschema.xml "
+                                                "--override-file=org.ctk.test.gschema.override",
                                                 NULL, NULL, &result, NULL));
       g_assert_cmpint (result, ==, 0);
 
       g_remove ("schema-source/gschemas.compiled");
       g_mkdir ("schema-source", 0777);
       g_assert_true (g_spawn_command_line_sync (GLIB_COMPILE_SCHEMAS " --targetdir=schema-source "
-                                                "--schema-file=" SRCDIR "/org.gtk.schemasourcecheck.gschema.xml",
+                                                "--schema-file=" SRCDIR "/org.ctk.schemasourcecheck.gschema.xml",
                                                 NULL, NULL, &result, NULL));
       g_assert_cmpint (result, ==, 0);
 

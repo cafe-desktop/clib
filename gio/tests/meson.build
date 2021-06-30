@@ -207,7 +207,7 @@ if host_machine.system() != 'windows'
   if have_dbus_daemon
     annotate_args = [
       '--annotate', 'org.project.Bar', 'Key1', 'Value1',
-      '--annotate', 'org.project.Bar', 'org.gtk.GDBus.Internal', 'Value2',
+      '--annotate', 'org.project.Bar', 'org.ctk.GDBus.Internal', 'Value2',
       '--annotate', 'org.project.Bar.HelloWorld()', 'Key3', 'Value3',
       '--annotate', 'org.project.Bar::TestSignal', 'Key4', 'Value4',
       '--annotate', 'org.project.Bar:ay', 'Key5', 'Value5',
@@ -501,8 +501,8 @@ if installed_tests_enabled
     'appinfo-test-actions.desktop',
     'appinfo-test-static.desktop',
     'file.c',
-    'org.gtk.test.dbusappinfo.desktop',
-    'org.gtk.test.dbusappinfo.flatpak.desktop',
+    'org.ctk.test.dbusappinfo.desktop',
+    'org.ctk.test.dbusappinfo.flatpak.desktop',
     'test1.overlay',
     install_dir : installed_tests_execdir,
   )

@@ -85,7 +85,7 @@ main (int argc, char **argv)
   GApplication *app;
   int status;
 
-  app = test_application_new ("org.gtk.TestApplication", 0);
+  app = test_application_new ("org.ctk.TestApplication", 0);
   g_signal_connect (app, "activate", G_CALLBACK (activate), NULL);
   g_application_set_inactivity_timeout (app, 10000);
 

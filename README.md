@@ -1,7 +1,7 @@
 # GLib
 
 GLib is the low-level core library that forms the basis for projects such
-as GTK and GNOME. It provides data structure handling for C, portability
+as CTK and GNOME. It provides data structure handling for C, portability
 wrappers, and interfaces for such runtime functionality as an event loop,
 threads, dynamic loading, and an object system.
 
@@ -9,7 +9,7 @@ The official download locations are:
   <https://download.gnome.org/sources/glib>
 
 The official web site is:
-  <https://www.gtk.org/>
+  <https://www.ctk.org/>
 
 ## Installation
 
@@ -264,7 +264,7 @@ separate issue is not required.
 
 * A new type, GInitiallyUnowned, has been introduced, which is
   intended to serve as a common implementation of the 'floating reference'
-  concept that is e.g. used by GtkObject. Note that changing the
+  concept that is e.g. used by CtkObject. Note that changing the
   inheritance hierarchy of a type can cause problems for language
   bindings and other code which needs to work closely with the type
   system. Therefore, switching to GInitiallyUnowned should be done

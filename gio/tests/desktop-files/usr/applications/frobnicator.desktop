@@ -6,4 +6,4 @@ Icon=frobnicator
 StartupNotify=true
 Terminal=false
 Type=Application
-Categories=GNOME;GTK;Utilities
+Categories=GNOME;CTK;Utilities

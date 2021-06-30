@@ -45,7 +45,7 @@
  *
  * Users should instantiate a subclass of this that implements all the
  * various callbacks to show the required dialogs, such as
- * #GtkMountOperation. If no user interaction is desired (for example
+ * #CtkMountOperation. If no user interaction is desired (for example
  * when automounting filesystems at login time), usually %NULL can be
  * passed, see each method taking a #GMountOperation for details.
  *
@@ -314,7 +314,7 @@ g_mount_operation_class_init (GMountOperationClass *klass)
    *
    * If the message contains a line break, the first line should be
    * presented as a heading. For example, it may be used as the
-   * primary text in a #GtkMessageDialog.
+   * primary text in a #CtkMessageDialog.
    */
   signals[ASK_PASSWORD] =
     g_signal_new (I_("ask-password"),
@@ -340,7 +340,7 @@ g_mount_operation_class_init (GMountOperationClass *klass)
    *
    * If the message contains a line break, the first line should be
    * presented as a heading. For example, it may be used as the
-   * primary text in a #GtkMessageDialog.
+   * primary text in a #CtkMessageDialog.
    */
   signals[ASK_QUESTION] =
     g_signal_new (I_("ask-question"),
@@ -411,7 +411,7 @@ g_mount_operation_class_init (GMountOperationClass *klass)
    *
    * If the message contains a line break, the first line should be
    * presented as a heading. For example, it may be used as the
-   * primary text in a #GtkMessageDialog.
+   * primary text in a #CtkMessageDialog.
    *
    * Since: 2.22
    */
@@ -453,7 +453,7 @@ g_mount_operation_class_init (GMountOperationClass *klass)
    *
    * If the message contains a line break, the first line should be
    * presented as a heading. For example, it may be used as the
-   * primary text in a #GtkMessageDialog.
+   * primary text in a #CtkMessageDialog.
    *
    * Since: 2.34
    */

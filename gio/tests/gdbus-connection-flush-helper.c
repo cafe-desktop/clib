@@ -37,8 +37,8 @@ main (int   argc,
   error = NULL;
   g_dbus_connection_emit_signal (c,
                                  NULL, /* const gchar *destination_bus_name */
-                                 "/org/gtk/GDBus/FlushObject",
-                                 "org.gtk.GDBus.FlushInterface",
+                                 "/org/ctk/GDBus/FlushObject",
+                                 "org.ctk.GDBus.FlushInterface",
                                  "SomeSignal",
                                  NULL, /* GVariant *parameters */
                                  &error);

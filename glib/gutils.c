@@ -19,7 +19,7 @@
  * Modified by the GLib Team and others 1997-2000.  See the AUTHORS
  * file for a list of people on the GLib Team.  See the ChangeLog
  * files for a list of changes.  These files are distributed with
- * GLib at ftp://ftp.gtk.org/pub/gtk/. 
+ * GLib at ftp://ftp.ctk.org/pub/ctk/. 
  */
 
 /* 
@@ -1049,9 +1049,9 @@ static gchar *g_prgname = NULL;
  * in contrast to g_get_application_name().
  *
  * If you are using #GApplication the program name is set in
- * g_application_run(). In case of GDK or GTK+ it is set in
- * gdk_init(), which is called by gtk_init() and the
- * #GtkApplication::startup handler. The program name is found by
+ * g_application_run(). In case of GDK or CTK+ it is set in
+ * gdk_init(), which is called by ctk_init() and the
+ * #CtkApplication::startup handler. The program name is found by
  * taking the last component of @argv[0].
  *
  * Returns: (nullable) (transfer none): the name of the program,
@@ -1078,9 +1078,9 @@ g_get_prgname (void)
  * in contrast to g_set_application_name().
  *
  * If you are using #GApplication the program name is set in
- * g_application_run(). In case of GDK or GTK+ it is set in
- * gdk_init(), which is called by gtk_init() and the
- * #GtkApplication::startup handler. The program name is found by
+ * g_application_run(). In case of GDK or CTK+ it is set in
+ * gdk_init(), which is called by ctk_init() and the
+ * #CtkApplication::startup handler. The program name is found by
  * taking the last component of @argv[0].
  *
  * Note that for thread-safety reasons this function can only be called once.
@@ -1135,7 +1135,7 @@ g_get_application_name (void)
  * Sets a human-readable name for the application. This name should be
  * localized if possible, and is intended for display to the user.
  * Contrast with g_set_prgname(), which sets a non-localized name.
- * g_set_prgname() will be called automatically by gtk_init(),
+ * g_set_prgname() will be called automatically by ctk_init(),
  * but g_set_application_name() will not.
  *
  * Note that for thread safety reasons, this function can only
@@ -2389,7 +2389,7 @@ g_win32_get_system_data_dirs_for_module_real (void (*address_of_function)(void))
   /* Using the above subfolders of Documents and Settings perhaps
    * makes sense from a Windows perspective.
    *
-   * But looking at the actual use cases of this function in GTK+
+   * But looking at the actual use cases of this function in CTK+
    * and GNOME software, what we really want is the "share"
    * subdirectory of the installation directory for the package
    * our caller is a part of.

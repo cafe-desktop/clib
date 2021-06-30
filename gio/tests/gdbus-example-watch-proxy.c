@@ -160,9 +160,9 @@ main (int argc, char *argv[])
   g_option_context_set_summary (opt_context,
                                 "Example: to watch the object of gdbus-example-server, use:\n"
                                 "\n"
-                                "  ./gdbus-example-watch-proxy -n org.gtk.GDBus.TestServer  \\\n"
-                                "                              -o /org/gtk/GDBus/TestObject \\\n"
-                                "                              -i org.gtk.GDBus.TestInterface");
+                                "  ./gdbus-example-watch-proxy -n org.ctk.GDBus.TestServer  \\\n"
+                                "                              -o /org/ctk/GDBus/TestObject \\\n"
+                                "                              -i org.ctk.GDBus.TestInterface");
   g_option_context_add_main_entries (opt_context, opt_entries, NULL);
   error = NULL;
   if (!g_option_context_parse (opt_context, &argc, &argv, &error))

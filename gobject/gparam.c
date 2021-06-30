@@ -932,7 +932,7 @@ param_spec_pool_equals (gconstpointer key_spec_1,
  *
  * If @type_prefixing is %TRUE, lookups in the newly created pool will
  * allow to specify the owner as a colon-separated prefix of the
- * property name, like "GtkContainer:border-width". This feature is
+ * property name, like "CtkContainer:border-width". This feature is
  * deprecated, so you should always set @type_prefixing to %FALSE.
  *
  * Returns: (transfer none): a newly allocated #GParamSpecPool.

@@ -102,7 +102,7 @@ test_bus_own_name (void)
   GVariant *result;
 
   error = NULL;
-  name = "org.gtk.GDBus.Name1";
+  name = "org.ctk.GDBus.Name1";
 
   /*
    * First check that name_lost_handler() is invoked if there is no bus.
@@ -587,7 +587,7 @@ test_bus_watch_name (void)
   data.num_vanished = 0;
   data.expect_null_connection = TRUE;
   id = g_bus_watch_name (G_BUS_TYPE_SESSION,
-                         "org.gtk.GDBus.Name1",
+                         "org.ctk.GDBus.Name1",
                          G_BUS_NAME_WATCHER_FLAGS_NONE,
                          name_appeared_handler,
                          name_vanished_handler,
@@ -613,7 +613,7 @@ test_bus_watch_name (void)
   data.num_lost = 0;
   data.expect_null_connection = FALSE;
   owner_id = g_bus_own_name (G_BUS_TYPE_SESSION,
-                             "org.gtk.GDBus.Name1",
+                             "org.ctk.GDBus.Name1",
                              G_BUS_NAME_OWNER_FLAGS_NONE,
                              w_bus_acquired_handler,
                              w_name_acquired_handler,
@@ -631,7 +631,7 @@ test_bus_watch_name (void)
   data.num_appeared = 0;
   data.num_vanished = 0;
   id = g_bus_watch_name_on_connection (connection,
-                                       "org.gtk.GDBus.Name1",
+                                       "org.ctk.GDBus.Name1",
                                        G_BUS_NAME_WATCHER_FLAGS_NONE,
                                        name_appeared_handler,
                                        name_vanished_handler,
@@ -667,7 +667,7 @@ test_bus_watch_name (void)
   data.num_vanished = 0;
   data.num_free_func = 0;
   id = g_bus_watch_name_with_closures (G_BUS_TYPE_SESSION,
-                                       "org.gtk.GDBus.Name1",
+                                       "org.ctk.GDBus.Name1",
                                        G_BUS_NAME_WATCHER_FLAGS_NONE,
                                        g_cclosure_new (G_CALLBACK (name_appeared_handler),
                                                        &data,
@@ -686,7 +686,7 @@ test_bus_watch_name (void)
   data.num_lost = 0;
   data.expect_null_connection = FALSE;
   owner_id = g_bus_own_name (G_BUS_TYPE_SESSION,
-                             "org.gtk.GDBus.Name1",
+                             "org.ctk.GDBus.Name1",
                              G_BUS_NAME_OWNER_FLAGS_NONE,
                              w_bus_acquired_handler,
                              w_name_acquired_handler,

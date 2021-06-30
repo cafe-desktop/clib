@@ -370,7 +370,7 @@ if host_system != 'windows'
     'gunixinputstream.c',
     'gunixoutputstream.c',
     'gfdonotificationbackend.c',
-    'ggtknotificationbackend.c',
+    'gctknotificationbackend.c',
   )
 
   portal_sources = [files(
@@ -591,7 +591,7 @@ gio_sources += portal_sources
 gio_sources += local_sources
 
 MISSING_STUFF = '''
-# This is read by gobject-introspection/misc/ and gtk-doc
+# This is read by gobject-introspection/misc/ and ctk-doc
 gio-public-headers.txt: Makefile
   '$(AM_V_GEN) echo $(gioinclude_HEADERS) $(giowin32include_HEADERS) $(giounixinclude_HEADERS) > $@.tmp && mv $@.tmp $@
 

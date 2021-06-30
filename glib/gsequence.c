@@ -1040,7 +1040,7 @@ g_sequence_insert_sorted_iter (GSequence                *seq,
    * it is inserted.
    *
    * The reason we need the "iter" versions at all is that that
-   * is the only kind of compare functions GtkTreeView can use.
+   * is the only kind of compare functions CtkTreeView can use.
    */
   tmp_seq = g_sequence_new (NULL);
   tmp_seq->real_sequence = seq;

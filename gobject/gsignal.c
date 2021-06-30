@@ -14,8 +14,8 @@
  * You should have received a copy of the GNU Lesser General
  * Public License along with this library; if not, see <http://www.gnu.org/licenses/>.
  *
- * this code is based on the original GtkSignal implementation
- * for the Gtk+ library by Peter Mattis <petm@xcf.berkeley.edu>
+ * this code is based on the original CtkSignal implementation
+ * for the Ctk+ library by Peter Mattis <petm@xcf.berkeley.edu>
  */
 
 /*
@@ -386,8 +386,8 @@ gboolean
 g_signal_is_valid_name (const gchar *name)
 {
   /* FIXME: We allow this, against our own documentation (the leading `-` is
-   * invalid), because GTK has historically used this. */
-  if (g_str_equal (name, "-gtk-private-changed"))
+   * invalid), because CTK has historically used this. */
+  if (g_str_equal (name, "-ctk-private-changed"))
     return TRUE;
 
   return g_param_spec_is_valid_name (name);

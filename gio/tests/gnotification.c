@@ -63,7 +63,7 @@ notification_received (GNotificationServer *server,
   gint *count = user_data;
   const gchar *title;
 
-  g_assert_cmpstr (app_id, ==, "org.gtk.TestApplication");
+  g_assert_cmpstr (app_id, ==, "org.ctk.TestApplication");
 
   switch (*count)
     {
@@ -103,7 +103,7 @@ notification_removed (GNotificationServer *server,
 {
   gint *count = user_data;
 
-  g_assert_cmpstr (app_id, ==, "org.gtk.TestApplication");
+  g_assert_cmpstr (app_id, ==, "org.ctk.TestApplication");
   g_assert_cmpstr (notification_id, ==, "test1");
 
   (*count)++;
@@ -121,7 +121,7 @@ server_notify_is_running (GObject    *object,
     {
       GApplication *app;
 
-      app = g_application_new ("org.gtk.TestApplication", G_APPLICATION_FLAGS_NONE);
+      app = g_application_new ("org.ctk.TestApplication", G_APPLICATION_FLAGS_NONE);
       g_signal_connect (app, "activate", G_CALLBACK (activate_app), NULL);
 
       g_application_run (app, 0, NULL);

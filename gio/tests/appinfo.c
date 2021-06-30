@@ -92,7 +92,7 @@ test_launch_no_app_id (void)
     "StartupWMClass=appinfo-class\n"
     "MimeType=image/png;image/jpeg;\n"
     "Keywords=keyword1;test keyword;\n"
-    "Categories=GNOME;GTK;\n";
+    "Categories=GNOME;CTK;\n";
 
   gchar *exec_line_variants[2];
   gsize i;
@@ -557,12 +557,12 @@ test_from_keyfile (void)
   file = g_desktop_app_info_get_filename (info);
   g_assert_null (file);
   categories = g_desktop_app_info_get_categories (info);
-  g_assert_cmpstr (categories, ==, "GNOME;GTK;");
+  g_assert_cmpstr (categories, ==, "GNOME;CTK;");
   categories_list = g_desktop_app_info_get_string_list (info, "Categories", &categories_count);
   g_assert_cmpint (categories_count, ==, 2);
   g_assert_cmpint (g_strv_length (categories_list), ==, 2);
   g_assert_cmpstr (categories_list[0], ==, "GNOME");
-  g_assert_cmpstr (categories_list[1], ==, "GTK");
+  g_assert_cmpstr (categories_list[1], ==, "CTK");
   keywords = (gchar **)g_desktop_app_info_get_keywords (info);
   g_assert_cmpint (g_strv_length (keywords), ==, 2);
   g_assert_cmpstr (keywords[0], ==, "keyword1");

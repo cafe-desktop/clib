@@ -137,7 +137,7 @@ check_transparent_gerror (GQuark error_domain,
 
   error = g_error_new (error_domain, error_code, "test message");
   given_dbus_error_name = g_dbus_error_encode_gerror (error);
-  g_assert (g_str_has_prefix (given_dbus_error_name, "org.gtk.GDBus.UnmappedGError.Quark"));
+  g_assert (g_str_has_prefix (given_dbus_error_name, "org.ctk.GDBus.UnmappedGError.Quark"));
   g_error_free (error);
 
   error = g_dbus_error_new_for_dbus_error (given_dbus_error_name, "test message");
@@ -167,7 +167,7 @@ test_transparent_gerror (void)
    * For example, if G_IO_ERROR_FAILED is not registered, then check
    *
    *  - g_dbus_error_encode_gerror() returns something of the form
-   *    org.gtk.GDBus.UnmappedGError.Quark_HEXENCODED_QUARK_NAME_.Code_ERROR_CODE
+   *    org.ctk.GDBus.UnmappedGError.Quark_HEXENCODED_QUARK_NAME_.Code_ERROR_CODE
    *
    *  - mapping back the D-Bus error name gives us G_IO_ERROR_FAILED
    *
@@ -189,8 +189,8 @@ typedef enum
 
 GDBusErrorEntry test_error_entries[] =
 {
-  { TEST_ERROR_FAILED, "org.gtk.test.Error.Failed" },
-  { TEST_ERROR_BLA,    "org.gtk.test.Error.Bla"    }
+  { TEST_ERROR_FAILED, "org.ctk.test.Error.Failed" },
+  { TEST_ERROR_BLA,    "org.ctk.test.Error.Bla"    }
 };
 
 static void
@@ -207,23 +207,23 @@ test_register_error (void)
                                       G_N_ELEMENTS (test_error_entries));
   g_assert_cmpint (test_error_quark, !=, 0);
 
-  error = g_dbus_error_new_for_dbus_error ("org.gtk.test.Error.Failed", "Failed");
+  error = g_dbus_error_new_for_dbus_error ("org.ctk.test.Error.Failed", "Failed");
   g_assert_error (error, test_error_quark, TEST_ERROR_FAILED);
   res = g_dbus_error_is_remote_error (error);
   msg = g_dbus_error_get_remote_error (error);
   g_assert (res);
-  g_assert_cmpstr (msg, ==, "org.gtk.test.Error.Failed");
+  g_assert_cmpstr (msg, ==, "org.ctk.test.Error.Failed");
   res = g_dbus_error_strip_remote_error (error);
   g_assert (res);
   g_assert_cmpstr (error->message, ==, "Failed");
   g_clear_error (&error);
   g_free (msg);
 
-  g_dbus_error_set_dbus_error (&error, "org.gtk.test.Error.Failed", "Failed again", "Prefix %d", 1);
+  g_dbus_error_set_dbus_error (&error, "org.ctk.test.Error.Failed", "Failed again", "Prefix %d", 1);
   res = g_dbus_error_is_remote_error (error);
   msg = g_dbus_error_get_remote_error (error);
   g_assert (res);
-  g_assert_cmpstr (msg, ==, "org.gtk.test.Error.Failed");
+  g_assert_cmpstr (msg, ==, "org.ctk.test.Error.Failed");
   res = g_dbus_error_strip_remote_error (error);
   g_assert (res);
   g_assert_cmpstr (error->message, ==, "Prefix 1: Failed again");
@@ -242,12 +242,12 @@ test_register_error (void)
 
   error = g_error_new_literal (test_error_quark, TEST_ERROR_BLA, "Bla");
   msg = g_dbus_error_encode_gerror (error);
-  g_assert_cmpstr (msg, ==, "org.gtk.test.Error.Bla");
+  g_assert_cmpstr (msg, ==, "org.ctk.test.Error.Bla");
   g_free (msg);
   g_clear_error (&error);
 
   res = g_dbus_error_unregister_error (test_error_quark,
-                                       TEST_ERROR_BLA, "org.gtk.test.Error.Bla");
+                                       TEST_ERROR_BLA, "org.ctk.test.Error.Bla");
   g_assert (res);
 }
 

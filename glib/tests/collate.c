@@ -115,7 +115,7 @@ const gchar *input0[] = {
   "foo",
   "bar",
   "baz",
-  "GTK+",
+  "CTK+",
   NULL
 };
 
@@ -127,7 +127,7 @@ const gchar *sorted0[] = {
   "eer34",
   "er1",
   "foo",
-  "GTK+",
+  "CTK+",
   "üĠണ",
   "z",
   NULL
@@ -141,7 +141,7 @@ const gchar *file_sorted0[] = {
   "eer34",
   "er1",
   "foo",
-  "GTK+",
+  "CTK+",
   "üĠണ",
   "z",
   NULL

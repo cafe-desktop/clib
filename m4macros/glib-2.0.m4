@@ -149,7 +149,7 @@ main (void)
                glib_major_version, glib_minor_version, glib_micro_version);
         printf("*** You need a version of GLib newer than %u.%u.%u. The latest version of\n",
 	       major, minor, micro);
-        printf("*** GLib is always available from ftp://ftp.gtk.org.\n");
+        printf("*** GLib is always available from ftp://ftp.ctk.org.\n");
         printf("***\n");
         printf("*** If you have already installed a sufficiently new version, this error\n");
         printf("*** probably means that the wrong copy of the pkg-config shell script is\n");

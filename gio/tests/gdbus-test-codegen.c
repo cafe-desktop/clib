@@ -1314,7 +1314,7 @@ check_proxies_in_thread (gpointer user_data)
   error = NULL;
   bar_proxy = foo_igen_bar_proxy_new_for_bus_sync (G_BUS_TYPE_SESSION,
                                                    G_DBUS_PROXY_FLAGS_NONE,
-                                                   "org.gtk.GDBus.BindingsTool.Test",
+                                                   "org.ctk.GDBus.BindingsTool.Test",
                                                    "/bar",
                                                    NULL, /* GCancellable* */
                                                    &error);
@@ -1325,7 +1325,7 @@ check_proxies_in_thread (gpointer user_data)
   error = NULL;
   bat_proxy = foo_igen_bat_proxy_new_for_bus_sync (G_BUS_TYPE_SESSION,
                                                    G_DBUS_PROXY_FLAGS_NONE,
-                                                   "org.gtk.GDBus.BindingsTool.Test",
+                                                   "org.ctk.GDBus.BindingsTool.Test",
                                                    "/bat",
                                                    NULL, /* GCancellable* */
                                                    &error);
@@ -1336,7 +1336,7 @@ check_proxies_in_thread (gpointer user_data)
   error = NULL;
   authorize_proxy = foo_igen_authorize_proxy_new_for_bus_sync (G_BUS_TYPE_SESSION,
                                                                G_DBUS_PROXY_FLAGS_NONE,
-                                                               "org.gtk.GDBus.BindingsTool.Test",
+                                                               "org.ctk.GDBus.BindingsTool.Test",
                                                                "/authorize",
                                                                NULL, /* GCancellable* */
                                                                &error);
@@ -1347,14 +1347,14 @@ check_proxies_in_thread (gpointer user_data)
   error = NULL;
   thread_proxy_1 = foo_igen_method_threads_proxy_new_for_bus_sync (G_BUS_TYPE_SESSION,
                                                                    G_DBUS_PROXY_FLAGS_NONE,
-                                                                   "org.gtk.GDBus.BindingsTool.Test",
+                                                                   "org.ctk.GDBus.BindingsTool.Test",
                                                                    "/method_threads_1",
                                                                    NULL, /* GCancellable* */
                                                                    &error);
   g_assert_no_error (error);
   thread_proxy_2 = foo_igen_method_threads_proxy_new_for_bus_sync (G_BUS_TYPE_SESSION,
                                                                    G_DBUS_PROXY_FLAGS_NONE,
-                                                                   "org.gtk.GDBus.BindingsTool.Test",
+                                                                   "org.ctk.GDBus.BindingsTool.Test",
                                                                    "/method_threads_2",
                                                                    NULL, /* GCancellable* */
                                                                    &error);
@@ -2368,7 +2368,7 @@ test_object_manager (void)
   loop = g_main_loop_new (NULL, FALSE);
 
   id = g_bus_own_name (G_BUS_TYPE_SESSION,
-                       "org.gtk.GDBus.BindingsTool.Test",
+                       "org.ctk.GDBus.BindingsTool.Test",
                        G_BUS_NAME_OWNER_FLAGS_NONE,
                        on_bus_acquired,
                        on_name_acquired,
@@ -2390,7 +2390,7 @@ test_object_manager (void)
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
-/* This checks that forcing names via org.gtk.GDBus.Name works (see test-codegen.xml) */
+/* This checks that forcing names via org.ctk.GDBus.Name works (see test-codegen.xml) */
 
 extern gpointer name_forcing_1;
 extern gpointer name_forcing_2;

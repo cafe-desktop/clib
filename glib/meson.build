@@ -12,7 +12,7 @@ libsysprof_capture_dep = dependency('sysprof-capture-4',
   required: get_option('sysprof'),
   default_options: [
     'enable_examples=false',
-    'enable_gtk=false',
+    'enable_ctk=false',
     'enable_tests=false',
     'enable_tools=false',
     'libsysprof=false',

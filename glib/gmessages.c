@@ -19,7 +19,7 @@
  * Modified by the GLib Team and others 1997-2000.  See the AUTHORS
  * file for a list of people on the GLib Team.  See the ChangeLog
  * files for a list of changes.  These files are distributed with
- * GLib at ftp://ftp.gtk.org/pub/gtk/.
+ * GLib at ftp://ftp.ctk.org/pub/ctk/.
  */
 
 /*
@@ -248,9 +248,9 @@ myInvalidParameterHandler(const wchar_t *expression,
  * not advisable, as it cannot be filtered against using the `G_MESSAGES_DEBUG`
  * environment variable.
  *
- * For example, GTK+ uses this in its `Makefile.am`:
+ * For example, CTK+ uses this in its `Makefile.am`:
  * |[
- * AM_CPPFLAGS = -DG_LOG_DOMAIN=\"Gtk\"
+ * AM_CPPFLAGS = -DG_LOG_DOMAIN=\"Ctk\"
  * ]|
  *
  * Applications can choose to leave it as the default %NULL (or `""`)
@@ -819,9 +819,9 @@ g_log_set_fatal_mask (const gchar   *log_domain,
  *                    | G_LOG_FLAG_RECURSION, my_log_handler, NULL);
  * ]|
  *
- * This example adds a log handler for all critical messages from GTK+:
+ * This example adds a log handler for all critical messages from CTK+:
  * |[<!-- language="C" --> 
- * g_log_set_handler ("Gtk", G_LOG_LEVEL_CRITICAL | G_LOG_FLAG_FATAL
+ * g_log_set_handler ("Ctk", G_LOG_LEVEL_CRITICAL | G_LOG_FLAG_FATAL
  *                    | G_LOG_FLAG_RECURSION, my_log_handler, NULL);
  * ]|
  *
@@ -3132,7 +3132,7 @@ g_log_default_handler (const gchar   *log_domain,
  * Any messages passed to g_print() will be output via
  * the new handler. The default handler simply outputs
  * the message to stdout. By providing your own handler
- * you can redirect the output, to a GTK+ widget or a
+ * you can redirect the output, to a CTK+ widget or a
  * log file for example.
  *
  * Returns: the old print handler
@@ -3213,7 +3213,7 @@ g_print (const gchar *format,
  * Any messages passed to g_printerr() will be output via
  * the new handler. The default handler simply outputs the
  * message to stderr. By providing your own handler you can
- * redirect the output, to a GTK+ widget or a log file for
+ * redirect the output, to a CTK+ widget or a log file for
  * example.
  *
  * Returns: the old error message handler

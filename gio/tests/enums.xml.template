@@ -5,7 +5,7 @@
 <schemalist>
 /*** END file-header ***/
 /*** BEGIN value-header ***/
-  <@type@ id='org.gtk.test.@EnumName@'>
+  <@type@ id='org.ctk.test.@EnumName@'>
 /*** END value-header ***/
 /*** BEGIN value-production ***/
     <value nick='@valuenick@' value='@valuenum@'/>

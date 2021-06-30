@@ -8,7 +8,7 @@ Overview of Changes in GLib 1.2.1:
 
 What's new in GLib 1.2.0 (since GLib 1.0.x):
 
-* GLib is distributed seperatedly from Gtk+
+* GLib is distributed seperatedly from Ctk+
 * Win32 Portability
 * Threading support
 * GModule mechanism (implemented in an extra library) which wraps dynamic
@@ -87,7 +87,7 @@ Overview of Changes in GLib 1.1.8:
     Solaris threads, and (experimentally) NSPR.
   - All static variables should now properly locked.
   - Enhancements to the generic main-loop mechanism to be thread-safe.
-    (It is used for the main-loop in GTK+ as of GTK+-1.1.8)
+    (It is used for the main-loop in CTK+ as of CTK+-1.1.8)
 * Portability fixes.
 
 Overview of Changes in GLib 1.1.7:
@@ -174,7 +174,7 @@ Overview of Changes in GLib 1.1.3:
   changes. Again, the ChangeLog is much more informative (grep for garray.c).
 * The internals of the g_dataset mechanism are now exported through the
   new g_datalist_* API (this is also the underlying implementation for the
-  keyed data of GtkObjects).
+  keyed data of CtkObjects).
 * New function g_atexit(), use of the ATEXIT() macro is discouraged.
 * Better configure checks for ansi compliance.
 * Libtool update to version 1.2b.
@@ -192,7 +192,7 @@ What is new in GLib 1.1.1:
 
 What is new in GLib 1.1.0:
 
-* GLib is distributed seperatedly from Gtk+ now and uses a sophisticated
+* GLib is distributed seperatedly from Ctk+ now and uses a sophisticated
   shared library versioning scheme to deal with interface and binary
   incompatibilities.
 * There is a glib-config helper script installed now.
@@ -202,7 +202,7 @@ What is new in GLib 1.1.0:
 * New g_str*() functions for simple string handling.
 * GScanner extensions for scope, warning and error handling.
 * Minor performance improvements for GMemChunks.
-* Implementations of GQuarks and datasets (similar to GtkObjects data
+* Implementations of GQuarks and datasets (similar to CtkObjects data
   mechansim, but works for generic memory locations).
 * More convenience macros for GNU C function arguments.
 * Const correction all over the place, including a new pointer type

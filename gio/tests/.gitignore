@@ -102,8 +102,8 @@ mimeapps
 monitor
 network-address
 network-monitor
-org.gtk.test.enums.xml
-org.gtk.test.gschema.xml
+org.ctk.test.enums.xml
+org.ctk.test.gschema.xml
 permission
 pollable
 plugin_resources.c
@@ -113,7 +113,7 @@ readwrite
 resolver
 resources
 send-data
-services/org.gtk.GDBus.Examples.ObjectManager.service
+services/org.ctk.GDBus.Examples.ObjectManager.service
 simple-async-result
 simple-proxy
 sleepy-stream

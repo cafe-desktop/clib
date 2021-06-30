@@ -141,7 +141,7 @@
     certain heuristics).
   </para>
   <para>
-    If the value given by the <literal>org.gtk.GDBus.C.Name</literal>
+    If the value given by the <literal>org.ctk.GDBus.C.Name</literal>
     annotation or the <option>--c-namespace</option> option contains
     an underscore (sometimes called <emphasis>Ugly_Case</emphasis>),
     then the camel-case name is derived by removing all underscores,
@@ -452,7 +452,7 @@
 gdbus-codegen --c-namespace MyApp                           \
   --generate-c-code myapp-generated                         \
   --annotate "org.project.InterfaceName"                    \
-    org.gtk.GDBus.C.Name MyFrobnicator                      \
+    org.ctk.GDBus.C.Name MyFrobnicator                      \
   --annotate "org.project.InterfaceName:Property"           \
     bar bat                                                 \
   --annotate "org.project.InterfaceName.Method()"           \
@@ -503,7 +503,7 @@ gdbus-codegen --c-namespace MyApp                           \
           have the following features: (1) If a method has <literal>h</literal> (file
           descriptor) parameter(s), a <type>GUnixFDList</type> parameter will exist in the
           generated code for it (whereas previously the annotation
-          <literal>org.gtk.GDBus.C.UnixFD</literal> was required), and (2) Method call functions will
+          <literal>org.ctk.GDBus.C.UnixFD</literal> was required), and (2) Method call functions will
           have two additional arguments to allow the user to specify <type>GDBusCallFlags</type>
           and a timeout value, as is possible when using <function>g_dbus_proxy_call()</function>.
         </para>
@@ -574,7 +574,7 @@ gdbus-codegen --c-namespace MyApp                           \
     </varlistentry>
 
     <varlistentry>
-      <term><literal>org.gtk.GDBus.Since</literal></term>
+      <term><literal>org.ctk.GDBus.Since</literal></term>
       <listitem>
         <para>
           Can be used on any <literal>&lt;interface&gt;</literal>,
@@ -597,7 +597,7 @@ gdbus-codegen --c-namespace MyApp                           \
     </varlistentry>
 
     <varlistentry>
-      <term><literal>org.gtk.GDBus.DocString</literal></term>
+      <term><literal>org.ctk.GDBus.DocString</literal></term>
       <listitem>
         <para>
           A string with Docbook content for documentation. This annotation can
@@ -611,7 +611,7 @@ gdbus-codegen --c-namespace MyApp                           \
     </varlistentry>
 
     <varlistentry>
-      <term><literal>org.gtk.GDBus.DocString.Short</literal></term>
+      <term><literal>org.ctk.GDBus.DocString.Short</literal></term>
       <listitem>
         <para>
           A string with Docbook content for short/brief
@@ -622,7 +622,7 @@ gdbus-codegen --c-namespace MyApp                           \
     </varlistentry>
 
     <varlistentry>
-      <term><literal>org.gtk.GDBus.C.Name</literal></term>
+      <term><literal>org.ctk.GDBus.C.Name</literal></term>
       <listitem>
         <para>
           Can be used on any <literal>&lt;interface&gt;</literal>,
@@ -638,7 +638,7 @@ gdbus-codegen --c-namespace MyApp                           \
     </varlistentry>
 
     <varlistentry>
-      <term><literal>org.gtk.GDBus.C.ForceGVariant</literal></term>
+      <term><literal>org.ctk.GDBus.C.ForceGVariant</literal></term>
       <listitem>
         <para>
           If set to a non-empty string, a #GVariant instance will
@@ -650,7 +650,7 @@ gdbus-codegen --c-namespace MyApp                           \
     </varlistentry>
 
     <varlistentry>
-      <term><literal>org.gtk.GDBus.C.UnixFD</literal></term>
+      <term><literal>org.ctk.GDBus.C.UnixFD</literal></term>
       <listitem>
         <para>
           If set to a non-empty string, the generated code will
@@ -665,10 +665,10 @@ gdbus-codegen --c-namespace MyApp                           \
 
   <para>
     As an easier alternative to using the
-    <literal>org.gtk.GDBus.DocString</literal> annotation, note that
+    <literal>org.ctk.GDBus.DocString</literal> annotation, note that
     parser used by <command>gdbus-codegen</command> parses XML
     comments in a way similar to <ulink
-    url="http://www.gtk.org/gtk-doc/">gtk-doc</ulink>:
+    url="http://www.ctk.org/ctk-doc/">ctk-doc</ulink>:
 <informalexample><programlisting><![CDATA[
 <!--
   net.Corp.Bar:
@@ -712,8 +712,8 @@ gdbus-codegen --c-namespace MyApp                           \
   <para>
     Note that <literal><![CDATA[@since]]></literal> can be used in any inline
     documentation bit (e.g. for interfaces, methods, signals and
-    properties) to set the <literal>org.gtk.GDBus.Since</literal>
-    annotation. For the <literal>org.gtk.GDBus.DocString</literal>
+    properties) to set the <literal>org.ctk.GDBus.Since</literal>
+    annotation. For the <literal>org.ctk.GDBus.DocString</literal>
     annotation (and inline comments), note that substrings of the form
     <literal><![CDATA[#net.Corp.Bar]]></literal>,
     <literal><![CDATA[net.Corp.Bar.FooMethod()]]></literal>,
@@ -727,8 +727,8 @@ gdbus-codegen --c-namespace MyApp                           \
   </para>
   <para>
     If both XML comments and
-    <literal>org.gtk.GDBus.DocString</literal> or
-    <literal>org.gtk.GDBus.DocString.Short</literal> annotations are
+    <literal>org.ctk.GDBus.DocString</literal> or
+    <literal>org.ctk.GDBus.DocString.Short</literal> annotations are
     present, the latter wins.
   </para>
 </refsect1>
@@ -1096,7 +1096,7 @@ on_handle_hello_world (MyAppFrobber           *interface,
   </para>
   <para>
     This automatic mapping can be turned off by using the annotation
-    <literal>org.gtk.GDBus.C.ForceGVariant</literal> - if used then a
+    <literal>org.ctk.GDBus.C.ForceGVariant</literal> - if used then a
     #GVariant is always exchanged instead of the
     corresponding native C type. This annotation may be convenient to
     use when using
@@ -1116,18 +1116,18 @@ on_handle_hello_world (MyAppFrobber           *interface,
   </para>
   <para>
     The ABI of the generated #GType<!-- -->s will be preserved only if
-    the <literal>org.gtk.GDBus.Since</literal> annotation is used
+    the <literal>org.ctk.GDBus.Since</literal> annotation is used
     judiciously — this is because the VTable for the #GInterface
     relies on functions pointers for signal handlers. Specifically, if
     a D-Bus method, property or signal or is added to a D-Bus
     interface, then ABI of the generated #GInterface type is preserved
     if, and only if, each added method, property signal is annotated
-    with they <literal>org.gtk.GDBus.Since</literal> annotation using
+    with they <literal>org.ctk.GDBus.Since</literal> annotation using
     a greater version number than previous versions.
   </para>
   <para>
     The generated C code currently happens to be annotated with <ulink
-    url="http://www.gtk.org/gtk-doc/">gtk-doc</ulink> / <ulink
+    url="http://www.ctk.org/ctk-doc/">ctk-doc</ulink> / <ulink
     url="https://wiki.gnome.org/Projects/GObjectIntrospection">GObject
     Introspection</ulink> comments / annotations. The layout and
     contents might change in the future so no guarantees about

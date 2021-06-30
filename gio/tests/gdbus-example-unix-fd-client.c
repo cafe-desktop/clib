@@ -25,8 +25,8 @@ get_server_stdout (GDBusConnection  *connection,
   method_reply_message = NULL;
 
   method_call_message = g_dbus_message_new_method_call (name_owner,
-                                                        "/org/gtk/GDBus/TestObject",
-                                                        "org.gtk.GDBus.TestInterface",
+                                                        "/org/ctk/GDBus/TestObject",
+                                                        "org.ctk.GDBus.TestInterface",
                                                         "GimmeStdout");
   method_reply_message = g_dbus_connection_send_message_with_reply_sync (connection,
                                                                          method_call_message,
@@ -116,7 +116,7 @@ main (int argc, char *argv[])
   GMainLoop *loop;
 
   watcher_id = g_bus_watch_name (G_BUS_TYPE_SESSION,
-                                 "org.gtk.GDBus.TestServer",
+                                 "org.ctk.GDBus.TestServer",
                                  G_BUS_NAME_WATCHER_FLAGS_NONE,
                                  on_name_appeared,
                                  on_name_vanished,

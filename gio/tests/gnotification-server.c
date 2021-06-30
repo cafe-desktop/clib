@@ -46,7 +46,7 @@ enum
 };
 
 static GDBusInterfaceInfo *
-org_gtk_Notifications_get_interface (void)
+org_ctk_Notifications_get_interface (void)
 {
   static GDBusInterfaceInfo *iface_info;
 
@@ -57,7 +57,7 @@ org_gtk_Notifications_get_interface (void)
 
       info = g_dbus_node_info_new_for_xml (
         "<node>"
-        "  <interface name='org.gtk.Notifications'>"
+        "  <interface name='org.ctk.Notifications'>"
         "    <method name='AddNotification'>"
         "      <arg type='s' direction='in' />"
         "      <arg type='s' direction='in' />"
@@ -73,7 +73,7 @@ org_gtk_Notifications_get_interface (void)
       if (info == NULL)
         g_error ("%s", error->message);
 
-      iface_info = g_dbus_node_info_lookup_interface (info, "org.gtk.Notifications");
+      iface_info = g_dbus_node_info_lookup_interface (info, "org.ctk.Notifications");
       g_assert (iface_info);
 
       g_dbus_interface_info_ref (iface_info);
@@ -123,7 +123,7 @@ g_notification_server_notification_removed (GNotificationServer *server,
 }
 
 static void
-org_gtk_Notifications_method_call (GDBusConnection       *connection,
+org_ctk_Notifications_method_call (GDBusConnection       *connection,
                                    const gchar           *sender,
                                    const gchar           *object_path,
                                    const gchar           *interface_name,
@@ -220,12 +220,12 @@ g_notification_server_bus_acquired (GDBusConnection *connection,
                                     gpointer         user_data)
 {
   const GDBusInterfaceVTable vtable = {
-    org_gtk_Notifications_method_call, NULL, NULL
+    org_ctk_Notifications_method_call, NULL, NULL
   };
   GNotificationServer *server = user_data;
 
-  server->object_id = g_dbus_connection_register_object (connection, "/org/gtk/Notifications",
-                                                         org_gtk_Notifications_get_interface (),
+  server->object_id = g_dbus_connection_register_object (connection, "/org/ctk/Notifications",
+                                                         org_ctk_Notifications_get_interface (),
                                                          &vtable, server, NULL, NULL);
 
   /* register_object only fails if the same object is exported more than once */
@@ -265,7 +265,7 @@ g_notification_server_init (GNotificationServer *server)
                                                 g_free, (GDestroyNotify) g_hash_table_unref);
 
   server->name_owner_id = g_bus_own_name (G_BUS_TYPE_SESSION,
-                                          "org.gtk.Notifications",
+                                          "org.ctk.Notifications",
                                           G_BUS_NAME_OWNER_FLAGS_NONE,
                                           g_notification_server_bus_acquired,
                                           g_notification_server_name_acquired,

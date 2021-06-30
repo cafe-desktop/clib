@@ -19,7 +19,7 @@
  * Modified by the GLib Team and others 1997-2000.  See the AUTHORS
  * file for a list of people on the GLib Team.  See the ChangeLog
  * files for a list of changes.  These files are distributed with
- * GLib at ftp://ftp.gtk.org/pub/gtk/. 
+ * GLib at ftp://ftp.ctk.org/pub/ctk/. 
  */
 
 #include "config.h"
@@ -81,7 +81,7 @@
  *
  * The minor version number of the GLib library.
  *
- * Like #gtk_minor_version, but from the headers used at
+ * Like #ctk_minor_version, but from the headers used at
  * application compile time, rather than from the library
  * linked against at application run time.
  */
@@ -100,7 +100,7 @@
  *
  * The micro version number of the GLib library.
  *
- * Like #gtk_micro_version, but from the headers used at
+ * Like #ctk_micro_version, but from the headers used at
  * application compile time, rather than from the library
  * linked against at application run time.
  */

@@ -198,11 +198,11 @@ typedef enum
  * g_signal_new ("size_request",
  *   G_TYPE_FROM_CLASS (gobject_class),
  * 	 G_SIGNAL_RUN_FIRST,
- * 	 G_STRUCT_OFFSET (GtkWidgetClass, size_request),
+ * 	 G_STRUCT_OFFSET (CtkWidgetClass, size_request),
  * 	 NULL, NULL,
- * 	 _gtk_marshal_VOID__BOXED,
+ * 	 _ctk_marshal_VOID__BOXED,
  * 	 G_TYPE_NONE, 1,
- * 	 GTK_TYPE_REQUISITION | G_SIGNAL_TYPE_STATIC_SCOPE);
+ * 	 CTK_TYPE_REQUISITION | G_SIGNAL_TYPE_STATIC_SCOPE);
  * ]|
  */
 #define	G_SIGNAL_TYPE_STATIC_SCOPE (G_TYPE_FLAG_RESERVED_ID_BIT)
@@ -523,15 +523,15 @@ void   g_signal_chain_from_overridden_handler (gpointer           instance,
  * For example, this allows the shorter code:
  * |[<!-- language="C" -->
  * g_signal_connect_swapped (button, "clicked",
- *                           (GCallback) gtk_widget_hide, other_widget);
+ *                           (GCallback) ctk_widget_hide, other_widget);
  * ]|
  *
  * Rather than the cumbersome:
  * |[<!-- language="C" -->
  * static void
- * button_clicked_cb (GtkButton *button, GtkWidget *other_widget)
+ * button_clicked_cb (CtkButton *button, CtkWidget *other_widget)
  * {
- *     gtk_widget_hide (other_widget);
+ *     ctk_widget_hide (other_widget);
  * }
  *
  * ...

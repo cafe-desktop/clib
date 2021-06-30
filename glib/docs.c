@@ -716,7 +716,7 @@
  * @title: Type Conversion Macros
  * @short_description: portably storing integers in pointer variables
  *
- * Many times GLib, GTK+, and other libraries allow you to pass "user
+ * Many times GLib, CTK+, and other libraries allow you to pass "user
  * data" to a callback, in the form of a void pointer. From time to time
  * you want to pass an integer instead of a pointer. You could allocate
  * an integer, with something like:
@@ -1811,7 +1811,7 @@
 
 /**
  * G_STRUCT_OFFSET:
- * @struct_type: a structure type, e.g. #GtkWidget
+ * @struct_type: a structure type, e.g. #CtkWidget
  * @member: a field in the structure, e.g. @window
  *
  * Returns the offset, in bytes, of a member of a struct.

@@ -258,7 +258,7 @@ on_name_acquired (GDBusConnection *connection,
     <para>
       If this XML is processed like this
 <informalexample><programlisting><![CDATA[
-gdbus-codegen --interface-prefix org.gtk.GDBus.Example.ObjectManager. \
+gdbus-codegen --interface-prefix org.ctk.GDBus.Example.ObjectManager. \
               --generate-c-code generated-code	                      \
               --c-namespace Example 				      \
               --c-generate-object-manager			      \
@@ -268,14 +268,14 @@ gdbus-codegen --interface-prefix org.gtk.GDBus.Example.ObjectManager. \
       then two files <filename>generated-code.h</filename> and
       <filename>generated-code.c</filename> are
       generated. Additionally, two XML files
-      <filename>generated-docs-org.gtk.GDBus.Example.ObjectManager.Animal</filename> and
-      <filename>generated-docs-org.gtk.GDBus.Example.ObjectManager.Cat</filename>
+      <filename>generated-docs-org.ctk.GDBus.Example.ObjectManager.Animal</filename> and
+      <filename>generated-docs-org.ctk.GDBus.Example.ObjectManager.Cat</filename>
       with Docbook XML are generated. For an example of what the docs look
       like see <link
-      linkend="gdbus-interface-org-gtk-GDBus-Example-ObjectManager-Animal">the Animal D-Bus interface documentation</link>.
+      linkend="gdbus-interface-org-ctk-GDBus-Example-ObjectManager-Animal">the Animal D-Bus interface documentation</link>.
       and
       <link
-      linkend="gdbus-interface-org-gtk-GDBus-Example-ObjectManager-Cat">the Cat D-Bus interface documentation</link>.
+      linkend="gdbus-interface-org-ctk-GDBus-Example-ObjectManager-Cat">the Cat D-Bus interface documentation</link>.
     </para>
     <para>
       While the contents of <filename>generated-code.h</filename> and
@@ -286,7 +286,7 @@ gdbus-codegen --interface-prefix org.gtk.GDBus.Example.ObjectManager. \
       <xref linkend="gdbus-example-codegen-server"/>
       and <xref
       linkend="gdbus-example-codegen-client"/>. Additionally, since
-      the generated code has 100% gtk-doc coverage, see
+      the generated code has 100% ctk-doc coverage, see
       #ExampleAnimal, #ExampleCat, #ExampleObject and
       #ExampleObjectManagerClient pages for documentation.
     </para>
@@ -297,8 +297,8 @@ gdbus-codegen --interface-prefix org.gtk.GDBus.Example.ObjectManager. \
 
   </section>
 
-  <xi:include href="../../../../gio/tests/gdbus-object-manager-example/objectmanager-gen-org.gtk.GDBus.Example.ObjectManager.Animal.xml"/>
-  <xi:include href="../../../../gio/tests/gdbus-object-manager-example/objectmanager-gen-org.gtk.GDBus.Example.ObjectManager.Cat.xml"/>
+  <xi:include href="../../../../gio/tests/gdbus-object-manager-example/objectmanager-gen-org.ctk.GDBus.Example.ObjectManager.Animal.xml"/>
+  <xi:include href="../../../../gio/tests/gdbus-object-manager-example/objectmanager-gen-org.ctk.GDBus.Example.ObjectManager.Cat.xml"/>
   <xi:include href="../gdbus-object-manager-example/xml/ExampleAnimal.xml"/>
   <xi:include href="../gdbus-object-manager-example/xml/ExampleCat.xml"/>
   <xi:include href="../gdbus-object-manager-example/xml/ExampleObject.xml"/>

@@ -22,7 +22,7 @@
  * Modified by the GLib Team and others 1997-2000.  See the AUTHORS
  * file for a list of people on the GLib Team.  See the ChangeLog
  * files for a list of changes.  These files are distributed with
- * GLib at ftp://ftp.gtk.org/pub/gtk/.
+ * GLib at ftp://ftp.ctk.org/pub/ctk/.
  */
 
 /*
@@ -244,7 +244,7 @@ g_quark_from_string (const gchar *string)
  * with statically allocated strings in the main program, but not with
  * statically allocated memory in dynamically loaded modules, if you
  * expect to ever unload the module again (e.g. do not use this
- * function in GTK+ theme engines).
+ * function in CTK+ theme engines).
  *
  * This function must not be used before library constructors have finished
  * running. In particular, this means it cannot be used to initialize global

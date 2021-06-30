@@ -33,7 +33,7 @@ RUN dnf -y update \
     glibc-langpack-ru \
     glibc-langpack-tr \
     "gnome-desktop-testing >= 2018.1" \
-    gtk-doc \
+    ctk-doc \
     itstool \
     lcov \
     libattr-devel \
