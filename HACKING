@@ -4,7 +4,7 @@ following packages installed:
         - Meson 0.48.0
         - GNU gettext 0.10.40
         - pkg-config 0.16
-        - ctk-doc
+        - gtk-doc
         - libffi 3.0.0
 
 To compile a Git version of glib on your system, you will need to take

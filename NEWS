@@ -638,7 +638,7 @@ Overview of changes in GLib 2.63.5
   (this is not an API break as `--glib-min-version` was added earlier in the
   2.63 cycle) (#1993)
 
-* Add ctk-doc checks to CI and fix a number of documentation issues
+* Add gtk-doc checks to CI and fix a number of documentation issues
   (thanks to Xavier Claessens) (!978)
 
 * Add `G_SIZEOF_MEMBER()` macro (!1333)
@@ -780,7 +780,7 @@ Overview of changes in GLib 2.63.3
  - #1935 Assert in _kqsub_free seems to be too strict
  - #1943 Consider g_clear_list()
  - #1947 Documentation clarification for g_uuid_string_random()
- - #1953 Documentation for g_type_init() and others missing from online ctk-doc documentation
+ - #1953 Documentation for g_type_init() and others missing from online gtk-doc documentation
  - #1961 A typo in the comment of `g_settings_schema_get_path`: threfore -> therefore
  - !1005 gio: Add GMemoryMonitor to monitor for low-memory
  - !1172 gptrarray: Add an example to the g_ptr_array_steal() docs
@@ -798,7 +798,7 @@ Overview of changes in GLib 2.63.3
  - !1255 ci: Build Docker images rather than OCI images if using podman
  - !1256 gdate: Add autoptr support
  - !1258 Minor CI fixups
- - !1261 ctk-doc: Ensure we have recent enough version
+ - !1261 gtk-doc: Ensure we have recent enough version
  - !1262 tests: Add tests for the gdbus-codegen executable
  - !1265 build: don't check for protected visibility
  - !1267 Revert "doc: Workaround ctkdoc-scan bug leading to undocumented symbols"
@@ -807,7 +807,7 @@ Overview of changes in GLib 2.63.3
  - !1271 tests: Enable GDBus debug for a number of unreliable tests
  - !1274 trash portal: Don't follow symlinks
  - !1275 Small doc correction
- - !1277 Various ctk-doc improvements
+ - !1277 Various gtk-doc improvements
  - !1278 Update installed tests CI
  - !1280 clang-format-diff: Output diff for multiple files, not just one
  - !1282 Revert "Revert "docs: remove GDBusObjectManager example""
@@ -1830,7 +1830,7 @@ Overview of changes in GLib 2.59.0
  - #1530 tests/mainloop-test appears to be flaky
  - #1535 meson: installed-test metadata not run in TAP mode
  - #1536 meson: spurious dependencies on convenience libraries in .pc files
- - #1537 meson: absolute paths to ${builddir} included in ctk-doc HTML
+ - #1537 meson: absolute paths to ${builddir} included in gtk-doc HTML
  - #1538 meson: G_HAVE_GROWING_STACK defined differently
  - #1539 meson: Some files are unnecessarily installed executable
  - #1541 meson: timeloop-closure test not installed
@@ -2379,7 +2379,7 @@ Overview of changes in GLib 2.55.1
  780893 Reword licensing header for gdbus-codegen
  782057 Unit tests fail in run-assert-msg-test.sh
  784995 meson: some Windows improvements
- 786796 ctk-doc build fails with meson
+ 786796 gtk-doc build fails with meson
  788806 Impossible to build static glib via meson
  788936 Show mime type icons on OS X
  790416 g_date_time_format returns empty string on %r with German locale
@@ -6225,7 +6225,7 @@ Overview of changes from GLib 2.33.10 to 2.33.12
  682849 drop the global lock for g_object_weak_ref
  682965 gdbus-tool: Check return value of strrchr()
  683088 gdbus-codegen: fix error when wrong interface n...
-        Fix the build with ctk-doc-stub
+        Fix the build with gtk-doc-stub
         Don't crash if set_app_info is called before ad...
 
 * Translation updates
@@ -6286,7 +6286,7 @@ Overview of changes from GLib 2.33.8 to 2.33.10
  679556 it's hard to use gtest when g_warning() is expected
  680823 g_file_make_directory_with_parents: Fix error propagation
  681319 gtlscertificate: Add certificate-bytes and private-key-bytes props
- 681336 man pages not built if --enable-ctk-doc not specified
+ 681336 man pages not built if --enable-gtk-doc not specified
  681413 build: Switch back to using AS_IF for conditionals
  681501 gmem: array only partially filled with memcpy
  681854 Documentation fix for Howto compile a program with glib
@@ -6327,7 +6327,7 @@ Overview of changes from GLib 2.33.6 to 2.33.8
  681116 gtlscertificate: Add g_tls_certificate_equal() function
  681118 gtlsdatabase: Don't complain if no callbacks for async...
  669331 try to get gio tests working a little better on win32
- 674314 Make ctk-doc not a hard dependency of GLib
+ 674314 Make gtk-doc not a hard dependency of GLib
  674800 gclosure: generic marshaller leaks return value
  675524 gsocket: FIONREAD undeclared (needs sys/filio.h)
  679509 use after free in g_dbus_action_group_describe_all_done()
@@ -7340,7 +7340,7 @@ Overview of changes from GLib 2.29.18 to 2.29.90
 
 * fix a race condition in the first use of g_get_monotonic_time()
 
-* lots ctk-doc cleanups
+* lots gtk-doc cleanups
 
 * better intltool compatibility when generating pot file
 
@@ -10034,7 +10034,7 @@ Overview of Changes from GLib 2.19.3 to GLib 2.19.4
  560676 function access for g_threads_supported
  565905 There is no g_context_group_set_translation_domain
  564210 SUN Studio 12 has supported visibility attribute
- 565136 GObject's "notify" signal parameters are wrong in ctk-doc
+ 565136 GObject's "notify" signal parameters are wrong in gtk-doc
  565831 error in interface creation sample
  566348 g_file_open_tmp uses the wrong g_mkstemp on win32
  566064 Add NOATIME flag to query_info_flags

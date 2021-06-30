@@ -43,7 +43,7 @@ if get_option('ctk_doc')
     'dirent.h',
   ]
 
-  docpath = join_paths(glib_datadir, 'ctk-doc', 'html')
+  docpath = join_paths(glib_datadir, 'gtk-doc', 'html')
   version_conf = configuration_data()
   version_conf.set('GLIB_VERSION', meson.project_version())
   configure_file(

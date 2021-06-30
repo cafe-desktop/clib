@@ -67,7 +67,7 @@ option('sysprof',
 option('ctk_doc',
        type : 'boolean',
        value : false,
-       description : 'use ctk-doc to build documentation')
+       description : 'use gtk-doc to build documentation')
 
 option('bsymbolic_functions',
        type : 'boolean',

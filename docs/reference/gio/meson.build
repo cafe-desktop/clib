@@ -135,7 +135,7 @@ if get_option('ctk_doc')
     'xdp-dbus.c',
   ]
 
-  docpath = join_paths(glib_datadir, 'ctk-doc', 'html')
+  docpath = join_paths(glib_datadir, 'gtk-doc', 'html')
   version_conf = configuration_data()
   version_conf.set('VERSION', meson.project_version())
   configure_file(

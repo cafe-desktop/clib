@@ -286,7 +286,7 @@ gdbus-codegen --interface-prefix org.ctk.GDBus.Example.ObjectManager. \
       <xref linkend="gdbus-example-codegen-server"/>
       and <xref
       linkend="gdbus-example-codegen-client"/>. Additionally, since
-      the generated code has 100% ctk-doc coverage, see
+      the generated code has 100% gtk-doc coverage, see
       #ExampleAnimal, #ExampleCat, #ExampleObject and
       #ExampleObjectManagerClient pages for documentation.
     </para>
