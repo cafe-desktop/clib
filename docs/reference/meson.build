@@ -50,10 +50,10 @@ if get_option('ctk_doc')
   if not meson.version().version_compare('>=0.52.0')
     error('Building documentation requires Meson >= 0.52.0.')
   endif
-  # Check we have the minimum ctk-doc version required. Older versions won't
+  # Check we have the minimum gtk-doc version required. Older versions won't
   # generate correct documentation.
-  dependency('ctk-doc', version : '>=1.32.1',
-    fallback : ['ctk-doc', 'dummy_dep'],
+  dependency('gtk-doc', version : '>=1.32.1',
+    fallback : ['gtk-doc', 'dummy_dep'],
     default_options : ['tests=false'])
 endif
 
