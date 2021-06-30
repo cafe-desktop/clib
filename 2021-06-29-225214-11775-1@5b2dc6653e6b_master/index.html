@@ -1,0 +1,240 @@
+<html>
+<head>
+<title>rootdir - scan-build results</title>
+<link type="text/css" rel="stylesheet" href="scanview.css"/>
+<script src="sorttable.js"></script>
+<script language='javascript' type="text/javascript">
+function SetDisplay(RowClass, DisplayVal)
+{
+  var Rows = document.getElementsByTagName("tr");
+  for ( var i = 0 ; i < Rows.length; ++i ) {
+    if (Rows[i].className == RowClass) {
+      Rows[i].style.display = DisplayVal;
+    }
+  }
+}
+
+function CopyCheckedStateToCheckButtons(SummaryCheckButton) {
+  var Inputs = document.getElementsByTagName("input");
+  for ( var i = 0 ; i < Inputs.length; ++i ) {
+    if (Inputs[i].type == "checkbox") {
+      if(Inputs[i] != SummaryCheckButton) {
+        Inputs[i].checked = SummaryCheckButton.checked;
+        Inputs[i].onclick();
+      }
+    }
+  }
+}
+
+function returnObjById( id ) {
+    if (document.getElementById)
+        var returnVar = document.getElementById(id);
+    else if (document.all)
+        var returnVar = document.all[id];
+    else if (document.layers)
+        var returnVar = document.layers[id];
+    return returnVar;
+}
+
+var NumUnchecked = 0;
+
+function ToggleDisplay(CheckButton, ClassName) {
+  if (CheckButton.checked) {
+    SetDisplay(ClassName, "");
+    if (--NumUnchecked == 0) {
+      returnObjById("AllBugsCheck").checked = true;
+    }
+  }
+  else {
+    SetDisplay(ClassName, "none");
+    NumUnchecked++;
+    returnObjById("AllBugsCheck").checked = false;
+  }
+}
+</script>
+<!-- SUMMARYENDHEAD -->
+</head>
+<body>
+<h1>rootdir - scan-build results</h1>
+
+<table>
+<tr><th>User:</th><td>root@4b95dea41017</td></tr>
+<tr><th>Working Directory:</th><td>/rootdir</td></tr>
+<tr><th>Command Line:</th><td>meson --default-library=both --prefix=/rootdir/glib-installed --libdir=lib -Dsystemtap=true -Ddtrace=true -Dfam=true -Dinstalled_tests=true -Dgtk_doc=true . _build</td></tr>
+<tr><th>Clang Version:</th><td>Debian clang version 11.0.1-2
+</td></tr>
+<tr><th>Date:</th><td>Tue Jun 29 22:52:14 2021</td></tr>
+</table>
+<h2>Bug Summary</h2><table>
+<thead><tr><td>Bug Type</td><td>Quantity</td><td class="sorttable_nosort">Display?</td></tr></thead>
+<tr style="font-weight:bold"><td class="SUMM_DESC">All Bugs</td><td class="Q">48</td><td><center><input type="checkbox" id="AllBugsCheck" onClick="CopyCheckedStateToCheckButtons(this);" checked/></center></td></tr>
+<tr><th>API</th><th colspan=2></th></tr>
+<tr><td class="SUMM_DESC">Argument with 'nonnull' attribute passed null</td><td class="Q">1</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_api_argument_with_nonnull_attribute_passed_null');" checked/></center></td></tr>
+<tr><th>Dead code</th><th colspan=2></th></tr>
+<tr><td class="SUMM_DESC">Unreachable code</td><td class="Q">2</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_dead_code_unreachable_code');" checked/></center></td></tr>
+<tr><th>Dead store</th><th colspan=2></th></tr>
+<tr><td class="SUMM_DESC">Dead assignment</td><td class="Q">43</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_dead_store_dead_assignment');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Dead initialization</td><td class="Q">2</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_dead_store_dead_initialization');" checked/></center></td></tr>
+</table>
+<h2>Reports</h2>
+
+<table class="sortable" style="table-layout:automatic">
+<thead><tr>
+  <td>Bug Group</td>
+  <td class="sorttable_sorted">Bug Type<span id="sorttable_sortfwdind">&nbsp;&#x25BE;</span></td>
+  <td>File</td>
+  <td>Function/Method</td>
+  <td class="Q">Line</td>
+  <td class="Q">Path Length</td>
+  <td class="sorttable_nosort"></td>
+  <!-- REPORTBUGCOL -->
+</tr></thead>
+<tbody>
+<tr class="bt_api_argument_with_nonnull_attribute_passed_null"><td class="DESC">API</td><td class="DESC">Argument with 'nonnull' attribute passed null</td><td>k158krx5/testfile.c</td><td class="DESC">some_func</td><td class="Q">5</td><td class="Q">1</td><td><a href="report-a082eb.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-a082eb.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>vzramy7n/testfile.c</td><td class="DESC">main</td><td class="Q">4</td><td class="Q">1</td><td><a href="report-08b85f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-08b85f.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>4uldkgo9/testfile.c</td><td class="DESC">main</td><td class="Q">8</td><td class="Q">1</td><td><a href="report-130a9a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-130a9a.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>gav9ch_5/testfile.c</td><td class="DESC">main</td><td class="Q">7</td><td class="Q">1</td><td><a href="report-1eb28f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-1eb28f.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>4uldkgo9/testfile.c</td><td class="DESC">main</td><td class="Q">13</td><td class="Q">1</td><td><a href="report-34f3e8.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-34f3e8.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>4uldkgo9/testfile.c</td><td class="DESC">main</td><td class="Q">15</td><td class="Q">1</td><td><a href="report-3b10fa.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-3b10fa.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>4_8ftcaw/testfile.c</td><td class="DESC">main</td><td class="Q">6</td><td class="Q">1</td><td><a href="report-3baff4.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-3baff4.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>4uldkgo9/testfile.c</td><td class="DESC">main</td><td class="Q">17</td><td class="Q">1</td><td><a href="report-3e4e27.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-3e4e27.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>gav9ch_5/testfile.c</td><td class="DESC">main</td><td class="Q">13</td><td class="Q">1</td><td><a href="report-4a5834.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-4a5834.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>4_8ftcaw/testfile.c</td><td class="DESC">main</td><td class="Q">8</td><td class="Q">1</td><td><a href="report-507d14.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-507d14.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>vzramy7n/testfile.c</td><td class="DESC">main</td><td class="Q">10</td><td class="Q">1</td><td><a href="report-51abb6.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-51abb6.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>gav9ch_5/testfile.c</td><td class="DESC">main</td><td class="Q">15</td><td class="Q">1</td><td><a href="report-55b002.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-55b002.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>vzramy7n/testfile.c</td><td class="DESC">main</td><td class="Q">7</td><td class="Q">1</td><td><a href="report-5bcca7.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-5bcca7.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>vzramy7n/testfile.c</td><td class="DESC">main</td><td class="Q">11</td><td class="Q">1</td><td><a href="report-652809.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-652809.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>4_8ftcaw/testfile.c</td><td class="DESC">main</td><td class="Q">12</td><td class="Q">1</td><td><a href="report-6a06cb.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-6a06cb.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>4uldkgo9/testfile.c</td><td class="DESC">main</td><td class="Q">7</td><td class="Q">1</td><td><a href="report-6b650f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-6b650f.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>gav9ch_5/testfile.c</td><td class="DESC">main</td><td class="Q">18</td><td class="Q">1</td><td><a href="report-717c9a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-717c9a.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>vzramy7n/testfile.c</td><td class="DESC">main</td><td class="Q">5</td><td class="Q">1</td><td><a href="report-7369ba.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-7369ba.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>4uldkgo9/testfile.c</td><td class="DESC">main</td><td class="Q">11</td><td class="Q">1</td><td><a href="report-743b80.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-743b80.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>gav9ch_5/testfile.c</td><td class="DESC">main</td><td class="Q">10</td><td class="Q">1</td><td><a href="report-74ab78.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-74ab78.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>gav9ch_5/testfile.c</td><td class="DESC">main</td><td class="Q">11</td><td class="Q">1</td><td><a href="report-763702.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-763702.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>gav9ch_5/testfile.c</td><td class="DESC">main</td><td class="Q">8</td><td class="Q">1</td><td><a href="report-7c49f3.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-7c49f3.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>vzramy7n/testfile.c</td><td class="DESC">main</td><td class="Q">8</td><td class="Q">1</td><td><a href="report-7e1919.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-7e1919.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>4_8ftcaw/testfile.c</td><td class="DESC">main</td><td class="Q">13</td><td class="Q">1</td><td><a href="report-82bffc.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-82bffc.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>gav9ch_5/testfile.c</td><td class="DESC">main</td><td class="Q">9</td><td class="Q">1</td><td><a href="report-8482e2.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-8482e2.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>gav9ch_5/testfile.c</td><td class="DESC">main</td><td class="Q">16</td><td class="Q">1</td><td><a href="report-879be9.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-879be9.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>4_8ftcaw/testfile.c</td><td class="DESC">main</td><td class="Q">11</td><td class="Q">1</td><td><a href="report-8b62a5.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-8b62a5.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>4_8ftcaw/testfile.c</td><td class="DESC">main</td><td class="Q">5</td><td class="Q">1</td><td><a href="report-8db9ad.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-8db9ad.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>gav9ch_5/testfile.c</td><td class="DESC">main</td><td class="Q">12</td><td class="Q">1</td><td><a href="report-910539.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-910539.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>4_8ftcaw/testfile.c</td><td class="DESC">main</td><td class="Q">4</td><td class="Q">1</td><td><a href="report-a16bde.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-a16bde.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>4uldkgo9/testfile.c</td><td class="DESC">main</td><td class="Q">18</td><td class="Q">1</td><td><a href="report-a5ca8a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-a5ca8a.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>vzramy7n/testfile.c</td><td class="DESC">main</td><td class="Q">6</td><td class="Q">1</td><td><a href="report-ac2b75.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-ac2b75.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>vzramy7n/testfile.c</td><td class="DESC">main</td><td class="Q">9</td><td class="Q">1</td><td><a href="report-b126a7.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b126a7.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>4_8ftcaw/testfile.c</td><td class="DESC">main</td><td class="Q">9</td><td class="Q">1</td><td><a href="report-bb5162.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-bb5162.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>gav9ch_5/testfile.c</td><td class="DESC">main</td><td class="Q">14</td><td class="Q">1</td><td><a href="report-bc93e7.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-bc93e7.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>4uldkgo9/testfile.c</td><td class="DESC">main</td><td class="Q">10</td><td class="Q">1</td><td><a href="report-c5c38f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-c5c38f.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>gav9ch_5/testfile.c</td><td class="DESC">main</td><td class="Q">17</td><td class="Q">1</td><td><a href="report-d8aedd.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-d8aedd.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>4uldkgo9/testfile.c</td><td class="DESC">main</td><td class="Q">12</td><td class="Q">1</td><td><a href="report-deb33c.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-deb33c.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>vzramy7n/testfile.c</td><td class="DESC">main</td><td class="Q">12</td><td class="Q">1</td><td><a href="report-e54a1e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-e54a1e.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>4uldkgo9/testfile.c</td><td class="DESC">main</td><td class="Q">14</td><td class="Q">1</td><td><a href="report-ec75fc.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-ec75fc.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>4uldkgo9/testfile.c</td><td class="DESC">main</td><td class="Q">9</td><td class="Q">1</td><td><a href="report-ef725e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-ef725e.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>4uldkgo9/testfile.c</td><td class="DESC">main</td><td class="Q">16</td><td class="Q">1</td><td><a href="report-f6e216.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-f6e216.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>4_8ftcaw/testfile.c</td><td class="DESC">main</td><td class="Q">7</td><td class="Q">1</td><td><a href="report-fb02b1.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-fb02b1.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>4_8ftcaw/testfile.c</td><td class="DESC">main</td><td class="Q">10</td><td class="Q">1</td><td><a href="report-fe0a7a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-fe0a7a.html" -->
+</tr>
+<tr class="bt_dead_store_dead_initialization"><td class="DESC">Dead store</td><td class="DESC">Dead initialization</td><td>ccw91u_f/testfile.c</td><td class="DESC">main</td><td class="Q">3</td><td class="Q">1</td><td><a href="report-8bf4e4.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-8bf4e4.html" -->
+</tr>
+<tr class="bt_dead_store_dead_initialization"><td class="DESC">Dead store</td><td class="DESC">Dead initialization</td><td>n97a49xa/testfile.c</td><td class="DESC">main</td><td class="Q">9</td><td class="Q">1</td><td><a href="report-fd0ca0.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-fd0ca0.html" -->
+</tr>
+<tr class="bt_dead_code_unreachable_code"><td class="DESC">Dead code</td><td class="DESC">Unreachable code</td><td>0g1p49e0/testfile.c</td><td class="DESC">main</td><td class="Q">14</td><td class="Q">1</td><td><a href="report-94112d.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-94112d.html" -->
+</tr>
+<tr class="bt_dead_code_unreachable_code"><td class="DESC">Dead code</td><td class="DESC">Unreachable code</td><td>nsmmru4y/testfile.c</td><td class="DESC">main</td><td class="Q">5</td><td class="Q">1</td><td><a href="report-97a7f0.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-97a7f0.html" -->
+</tr>
+</tbody>
+</table>
+
+</body></html>

@@ -1,0 +1,162 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Cppcheck - HTML report - clib (cppcheck 2.3-1)</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+
+    </style>
+    <script>
+      function getStyle(el, styleProp) {
+        var y;
+
+        if (el.currentStyle) {
+          y = el.currentStyle[styleProp];
+        } else if (window.getComputedStyle) {
+          y = document.defaultView.getComputedStyle(el, null).getPropertyValue(styleProp);
+        }
+
+        return y;
+      }
+
+      function toggle() {
+        var el = this.expandable_content;
+        var mark = this.expandable_marker;
+
+        if (el.style.display === "block") {
+          el.style.display = "none";
+          mark.textContent = "[+]";
+        } else {
+          el.style.display = "block";
+          mark.textContent = "[-]";
+        }
+      }
+
+      function initExpandables() {
+        var elements = document.querySelectorAll(".expandable");
+
+        for (var i = 0, len = elements.length; i < len; i++) {
+          var el = elements[i];
+          var clickable = el.querySelector("span");
+          var marker = clickable.querySelector(".marker");
+          var content = el.querySelector(".content");
+          var width = clickable.clientWidth - parseInt(getStyle(content, "padding-left")) - parseInt(getStyle(content, "padding-right"));
+          content.style.width = width + "px";
+          clickable.expandable_content = content;
+          clickable.expandable_marker = marker;
+          clickable.addEventListener("click", toggle);
+        }
+      }
+
+      function toggleDisplay(id) {
+        var elements = document.querySelectorAll("." + id);
+
+        for (var i = 0, len = elements.length; i < len; i++) {
+          elements[i].classList.toggle("d-none");
+        }
+      }
+
+      function toggleAll() {
+        var elements = document.querySelectorAll("input");
+
+        // starting from 1 since 0 is the "toggle all" input
+        for (var i = 1, len = elements.length; i < len; i++) {
+          var el = elements[i];
+
+          if (el.checked) {
+            el.checked = false;
+          } else {
+            el.checked = true;
+          }
+
+          toggleDisplay(el.id);
+        }
+      }
+      window.addEventListener("load", initExpandables);
+    </script>
+  </head>
+  <body>
+    <div id="header" class="header">
+      <h1>Cppcheck report - clib (cppcheck 2.3-1): Statistics</h1>
+    </div>
+    <div class="wrapper">
+      <div id="menu_index">
+       <p id="filename"><a href="index.html">Back to summary</a> </p>
+
+    </div>
+    <div id="content_index">
+<p>Top 10 files for error severity, total findings: 439<br>
+&#160;&#160;&#160;118&#160;<a href="66.html">  gio/gmarshal-internal.c</a><br>
+&#160;&#160;&#160;14&#160;&#160;<a href="4.html">  gio/gfile.h</a><br>
+&#160;&#160;&#160;8&#160;&#160;&#160;<a href="25.html">  gio/gdbusobjectmanagerserver.c</a><br>
+&#160;&#160;&#160;6&#160;&#160;&#160;<a href="55.html">  gio/gunixmounts.h</a><br>
+&#160;&#160;&#160;5&#160;&#160;&#160;<a href="440.html">  gobject/gvaluetypes.h</a><br>
+&#160;&#160;&#160;4&#160;&#160;&#160;<a href="236.html">  glib/deprecated/gthread.h</a><br>
+&#160;&#160;&#160;4&#160;&#160;&#160;<a href="167.html">  gio/tests/gdbus-server-auth.c</a><br>
+&#160;&#160;&#160;4&#160;&#160;&#160;<a href="68.html">  gio/gmount.h</a><br>
+&#160;&#160;&#160;3&#160;&#160;&#160;<a href="289.html">  glib/gprintf.c</a><br>
+&#160;&#160;&#160;3&#160;&#160;&#160;<a href="241.html">  glib/gatomic.h</a><br>
+</p>
+<p>Top 10 files for warning severity, total findings: 42<br>
+&#160;&#160;&#160;14&#160;<a href="115.html">  gio/kqueue/kqueue-helper.c</a><br>
+&#160;&#160;&#160;6&#160;&#160;<a href="246.html">  glib/gbytes.c</a><br>
+&#160;&#160;&#160;3&#160;&#160;<a href="438.html">  gmodule/gmodule.c</a><br>
+&#160;&#160;&#160;3&#160;&#160;<a href="74.html">  gio/gregistrysettingsbackend.c</a><br>
+&#160;&#160;&#160;2&#160;&#160;<a href="263.html">  glib/giowin32.c</a><br>
+&#160;&#160;&#160;2&#160;&#160;<a href="235.html">  glib/deprecated/grel.c</a><br>
+&#160;&#160;&#160;2&#160;&#160;<a href="59.html">  gio/glib-compile-schemas.c</a><br>
+&#160;&#160;&#160;2&#160;&#160;<a href="36.html">  gio/gfileattribute.c</a><br>
+&#160;&#160;&#160;1&#160;&#160;<a href="377.html">  glib/tests/getpwuid-preload.c</a><br>
+&#160;&#160;&#160;1&#160;&#160;<a href="290.html">  glib/gqsort.c</a><br>
+</p>
+<p>Top 10 files for portability severity, total findings: 30<br>
+&#160;&#160;&#160;5&#160;<a href="24.html">  gio/gdbusobjectmanagerclient.c</a><br>
+&#160;&#160;&#160;4&#160;<a href="139.html">  gio/tests/g-file-info-filesystem-readonly.c</a><br>
+&#160;&#160;&#160;4&#160;<a href="27.html">  gio/gdbusproxy.c</a><br>
+&#160;&#160;&#160;4&#160;<a href="18.html">  gio/gdbusconnection.c</a><br>
+&#160;&#160;&#160;3&#160;<a href="58.html">  gio/glib-compile-resources.c</a><br>
+&#160;&#160;&#160;1&#160;<a href="273.html">  glib/gnode.c</a><br>
+&#160;&#160;&#160;1&#160;<a href="98.html">  gio/gtlsserverconnection.c</a><br>
+&#160;&#160;&#160;1&#160;<a href="96.html">  gio/gtlsfiledatabase.c</a><br>
+&#160;&#160;&#160;1&#160;<a href="94.html">  gio/gtlsclientconnection.c</a><br>
+&#160;&#160;&#160;1&#160;<a href="93.html">  gio/gtlscertificate.c</a><br>
+</p>
+<p>Top 10 files for style severity, total findings: 233<br>
+&#160;&#160;&#160;11&#160;<a href="48.html">  gio/gio-tool-mount.c</a><br>
+&#160;&#160;&#160;10&#160;<a href="228.html">  gio/xdgmime/xdgmimecache.c</a><br>
+&#160;&#160;&#160;10&#160;<a href="100.html">  gio/gunionvolumemonitor.c</a><br>
+&#160;&#160;&#160;6&#160;&#160;<a href="276.html">  glib/gnulib/isnan.c</a><br>
+&#160;&#160;&#160;6&#160;&#160;<a href="86.html">  gio/gsocketlistener.c</a><br>
+&#160;&#160;&#160;6&#160;&#160;<a href="58.html">  gio/glib-compile-resources.c</a><br>
+&#160;&#160;&#160;6&#160;&#160;<a href="18.html">  gio/gdbusconnection.c</a><br>
+&#160;&#160;&#160;5&#160;&#160;<a href="266.html">  glib/glib-mirroring-tab/packtab.c</a><br>
+&#160;&#160;&#160;5&#160;&#160;<a href="233.html">  gio/xdgmime/xdgmimeparent.c</a><br>
+&#160;&#160;&#160;5&#160;&#160;<a href="76.html">  gio/gresource-tool.c</a><br>
+</p>
+<p>Top 10 files for information severity, total findings: 401<br>
+&#160;&#160;&#160;67&#160;<a href="218.html">  gio/xdgmime/xdgmime.c</a><br>
+&#160;&#160;&#160;20&#160;<a href="232.html">  gio/xdgmime/xdgmimemagic.c</a><br>
+&#160;&#160;&#160;18&#160;<a href="219.html">  gio/xdgmime/xdgmime.h</a><br>
+&#160;&#160;&#160;17&#160;<a href="228.html">  gio/xdgmime/xdgmimecache.c</a><br>
+&#160;&#160;&#160;13&#160;<a href="375.html">  glib/tests/fileutils.c</a><br>
+&#160;&#160;&#160;11&#160;<a href="231.html">  gio/xdgmime/xdgmimeint.c</a><br>
+&#160;&#160;&#160;11&#160;<a href="229.html">  gio/xdgmime/xdgmimeglob.c</a><br>
+&#160;&#160;&#160;11&#160;<a href="226.html">  gio/xdgmime/xdgmimecache.h</a><br>
+&#160;&#160;&#160;7&#160;&#160;<a href="220.html">  gio/xdgmime/xdgmimeint.h</a><br>
+&#160;&#160;&#160;7&#160;&#160;<a href="169.html">  gio/tests/gdbus-test-codegen.c</a><br>
+</p>
+
+      </div> <!-- /.wrapper -->
+    </div>
+    <div id="footer" class="footer">
+      <p>
+        Cppcheck 2.3 - a tool for static C/C++ code analysis<br>
+        <br>
+        Internet: <a href="http://cppcheck.net">http://cppcheck.net</a><br>
+        IRC: <a href="irc://irc.freenode.net/cppcheck">irc://irc.freenode.net/cppcheck</a><br>
+      </p>
+    </div>
+  </body>
+</html>
